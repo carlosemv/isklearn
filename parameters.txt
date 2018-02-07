@@ -1,0 +1,36 @@
+lags				"--lags "				i (1, 10)
+
+f_eng1				"--f_eng1 "				c ("Extraction", "Selection", "None")
+f_eng2				"--f_eng2 "				c ("Extraction", "Selection", "None")
+pre_scaling			"--pre_scaling "		c ("True", "False") | f_eng1 != "None" || f_eng2 != "None"
+extraction 			"--extraction "			c () | f_eng1 == "Extraction" || f_eng2 == "Extraction"
+selection 			"--selection "			c () | f_eng1 == "Selection" || f_eng2 == "Selection"
+
+scaling 			"--scaling"				c ("True", "False")
+algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors", "Adaboost")
+
+C					"--C "					r (0.1, 1000.0) | algorithm == "SVM"
+epsilon				"--epsilon "			r (0.00001, 10.0) | algorithm == "SVM"
+kernel				"--kernel "				c ("linear","rbf","sigmoid") | algorithm == "SVM"
+gamma 				"--gamma "				r (0.0001, 10.0) | algorithm == "SVM"
+
+max_features		"--max_features "		r (0.1, 1.0) | algorithm == "RandomForest"
+rf_estimators		"--rf_estimators "		i (10, 200) | algorithm == "RandomForest"
+max_depth 			"--max_depth "			c ("none", "value") | algorithm == "RandomForest"
+max_depth_value		"--max_depth_value "	i (2, 30) | algorithm == "RandomForest" && max_depth=="value"
+min_samples_leaf	"--min_samples_leaf "	i (1, 10) | algorithm == "RandomForest"
+
+solver				"--solver "				c ("lbfgs", "sgd", "adam") | algorithm == "MLP"
+learning_rate_init		"--learning_rate_init "		r (0.000001, 0.1) | algorithm == "MLP" && solver %in% c("sgd", "adam")
+hidden_layers		"--hidden_layers "		i (1, 3) | algorithm == "MLP"
+neurons1			"--neurons1 "			i (3, 300) | algorithm == "MLP"
+neurons2			"--neurons2 "			i (3, 300) | algorithm == "MLP" && hidden_layers >= 2
+neurons3			"--neurons3 "			i (3, 300) | algorithm == "MLP" && hidden_layers >= 3
+activation			"--activation "			c ("identity", "logistic", "tanh", "relu") | algorithm == "MLP"
+
+n_neighbors			"--n_neighbors "		i (1, 50) | algorithm == "KNeighbors"
+weights				"--weights "			c ("uniform", "distance") | algorithm == "KNeighbors"
+
+n_estimators		"--n_estimators "		i (10, 100) | algorithm == "Adaboost"
+learning_rate 		"--learning_rate "		r (0.001, 1.0) | algorithm == "Adaboost"
+loss				"--loss "				c ("linear", "square", "exponential") | algorithm == "Adaboost"
