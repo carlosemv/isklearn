@@ -1,0 +1,35 @@
+lags				"--lags "				i (1, 10)
+
+f_eng1				"--f_eng1 "				c ("Extraction", "Selection", "None")
+f_eng2				"--f_eng2 "				c ("Extraction", "Selection", "None")
+pre_scaling			"--pre_scaling "		c ("True", "False") | f_eng1 != "None" || f_eng2 != "None"
+extraction 			"--extraction "			c () | f_eng1 == "Extraction" || f_eng2 == "Extraction"
+selection 			"--selection "			c ("SelectPercentile", "SelectFromModel") | f_eng1 == "Selection" || f_eng2 == "Selection"
+selection_score		"--selection_score "	c ("f_classif", "chi2", "mutual_info_classif") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile"
+selection_percentile "--selection_percentile "	i (1, 99) | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile"
+
+scaling 			"--scaling"				c ("True", "False")
+algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors")
+
+C					"--C "					r (-3, 5) | algorithm == "SVM"
+kernel				"--kernel "				c ("linear", "poly", "rbf", "sigmoid") | algorithm == "SVM"
+degree				"--degree "				i (1, 5) | algorithm == "SVM" && kernel == "poly"
+gamma 				"--gamma "				r (-5, 1) | algorithm == "SVM" && kernel != "linear"
+
+max_features		"--max_features "		r (0.01, 1.0) | algorithm == "RandomForest"
+rf_estimators		"--rf_estimators "		i (3, 300) | algorithm == "RandomForest"
+max_depth 			"--max_depth "			c ("none", "value") | algorithm == "RandomForest"
+max_depth_value		"--max_depth_value "	i (2, 50) | algorithm == "RandomForest" && max_depth=="value"
+min_samples_leaf	"--min_samples_leaf "	r (0.01, 0.5) | algorithm == "RandomForest"
+
+solver				"--solver "				c ("lbfgs", "sgd", "adam") | algorithm == "MLP"
+alpha				"--alpha "				r (-5, 4) | algorithm == "MLP"
+learning_rate_init	"--learning_rate_init "	r (-6, 0) | algorithm == "MLP" && solver %in% c("sgd", "adam")
+hidden_layers		"--hidden_layers "		i (1, 3) | algorithm == "MLP"
+neurons1			"--neurons1 "			i (3, 500) | algorithm == "MLP"
+neurons2			"--neurons2 "			i (3, 500) | algorithm == "MLP" && hidden_layers >= 2
+neurons3			"--neurons3 "			i (3, 500) | algorithm == "MLP" && hidden_layers >= 3
+activation			"--activation "			c ("identity", "logistic", "tanh", "relu") | algorithm == "MLP"
+
+n_neighbors			"--n_neighbors "		i (1, 100) | algorithm == "KNeighbors"
+weights				"--weights "			c ("uniform", "distance") | algorithm == "KNeighbors"
