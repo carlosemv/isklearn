@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import time
 import argparse
 import numpy as np
@@ -8,8 +9,8 @@ from mnist import MNIST
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import accuracy_score
-from sklearn.feature_selection import SelectPercentile, SelectFromModel, \
-    f_classif, mutual_info_classif, chi2
+from sklearn.feature_selection import SelectPercentile, \
+    SelectFromModel, RFE, f_classif, mutual_info_classif, chi2
 from sklearn.model_selection import StratifiedKFold
 
 from sklearn.svm import SVC
@@ -22,6 +23,7 @@ class Selector(BaseEstimator, TransformerMixin):
         parser = argparse.ArgumentParser()
         parser.add_argument('--sel_score', type=str)
         parser.add_argument('--sel_percentile', type=int)
+        parser.add_argument('--sel_threshold', type=str)
 
         args = parser.parse_known_args()[0]
         if (conf == "SelectPercentile"):
@@ -34,17 +36,24 @@ class Selector(BaseEstimator, TransformerMixin):
             else:
                 raise ValueError("Invalid Selector.score_func argument")
             self.score_func = score_func
+
+        if (conf == "SelectFromModel"):
+            self.threshold = args.sel_threshold
+        else:
             self.percentile = args.sel_percentile
         self.conf = conf
 
     def fit(self, X, y=None):
-        if self.conf=="SelectFromModel":
-            sel = SelectFromModel(RandomForestClassifier())
+        if self.conf=="RFE":
+            n_features = int(X.shape[1] * (self.percentile/100.0))
+            sel = RFE(RandomForestClassifier(), n_features_to_select=n_features)
+        elif self.conf=="SelectFromModel":
+            sel = SelectFromModel(RandomForestClassifier(), threshold=self.threshold)
         elif self.conf=="SelectPercentile":
             sel = SelectPercentile(score_func=self.score_func,
                 percentile=self.percentile)
         else:
-            raise ValueError("Invalid Selector.conf argument")
+            raise ValueError("Invalid Selector.conf argument: "+str(self.conf))
 
         self.selection_model = sel
         self.selection_model.fit(X, y)
@@ -145,7 +154,7 @@ def validation(X, y):
         X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
         y_train, y_test = y.iloc[train_idx].values.ravel(), y.iloc[test_idx].values.ravel()
 
-        if args.pre_scaling:            
+        if args.pre_scaling:          
             scaler = MinMaxScaler(feature_range=(1, 2))
             X_train = scaler.fit_transform(X_train)
             X_test = scaler.transform(X_test)
@@ -177,38 +186,25 @@ def validation(X, y):
     return acc_scores
 
 if __name__=="__main__":
-    t0 = time.time()
+    print(sys.argv)
 
     mndata = MNIST('./data')
-
-    # todo: check for memory file before loading
-    mem_file = "data/mnist_results.csv"
-    mem_types = {'fold':str,'config_id':str,'result':float}
-    mem_df = pd.read_csv(mem_file, dtype=mem_types).set_index(['fold','config_id'])
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)
     parser.add_argument('--config_id', type=str)
-
     args = parser.parse_known_args()[0]
 
     folds = [x for x in args.instance.split(',')]
     config_id = args.config_id
 
-    accs = []
-    new_value = False
-    for fold in folds:
-        if (fold, config_id) in mem_df.index:
-            accs.append(mem_df.loc[fold, config_id]['result'])
-        else:
-            X, y = ingestion(mndata, int(fold))
-            acc_scores = validation(X, y)
-            result = np.mean(acc_scores)
-            accs.append(result)
-            mem_df.loc[(fold, config_id), 'result'] = result
-            new_value = True
+    t0 = time.time()
 
-    if new_value:
-        mem_df.to_csv(mem_file)
+    accs = []
+    for fold in folds:
+        X, y = ingestion(mndata, int(fold))
+        acc_scores = validation(X, y)
+        result = np.mean(acc_scores)
+        accs.append(result)
 
     print(-1*np.mean(accs), time.time()-t0)

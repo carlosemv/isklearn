@@ -1,19 +1,20 @@
 dataset				"--dataset "			c ("mnist")
 
-f_eng1				"--f_eng1 "				c ("Extraction", "Selection", "None")
-f_eng2				"--f_eng2 "				c ("Extraction", "Selection", "None")
+f_eng1				"--f_eng1 "				c ("Selection", "None")
+f_eng2				"--f_eng2 "				c ("Selection", "None")
 pre_scaling			"--pre_scaling "		c ("True", "False") | f_eng1 != "None" || f_eng2 != "None"
 extraction 			"--extraction "			c ("none") | f_eng1 == "Extraction" || f_eng2 == "Extraction"
-selection 			"--selection "			c ("SelectPercentile", "SelectFromModel") | f_eng1 == "Selection" || f_eng2 == "Selection"
+selection 			"--selection "			c ("SelectPercentile", "SelectFromModel", "RFE") | f_eng1 == "Selection" || f_eng2 == "Selection"
 sel_score		"--sel_score "	c ("f_classif", "chi2", "mutual_info_classif") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile"
-sel_percentile "--sel_percentile "	i (1, 99) | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile"
+sel_percentile "--sel_percentile "	i (1, 99) | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection %in% c("SelectPercentile", "RFE")
+sel_threshold	"--sel_threshold "	c ("mean", "median") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectFromModel"
 
-scaling 			"--scaling "				c ("True", "False")
+scaling 			"--scaling "			c ("True", "False")
 algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors")
 
 C					"--C "					r (-3, 5) | algorithm == "SVM"
 kernel				"--kernel "				c ("linear", "poly", "rbf", "sigmoid") | algorithm == "SVM"
-degree				"--degree "				i (1, 5) | algorithm == "SVM" && kernel == "poly"
+degree				"--degree "				i (1, 10) | algorithm == "SVM" && kernel == "poly"
 gamma 				"--gamma "				r (-5, 1) | algorithm == "SVM" && kernel != "linear"
 
 max_features		"--max_features "		r (0.01, 1.0) | algorithm == "RandomForest"

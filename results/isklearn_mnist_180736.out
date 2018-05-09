@@ -1,0 +1,368 @@
+Warning message:
+package ‘irace’ was built under R version 3.3.3 
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 2.4.1844
+* Copyright (C) 2010-2017
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt -p mnist/parameters.txt --parallel 32 --train-instances-file mnist/instances.txt --log-file ./output/mnist_irace.Rdata
+# 2 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2018-05-03 21:19:16 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 6
+# minNbSurvival: 6
+# nbParameters: 28
+# seed: 1469299520
+# confidence level: 0.95
+# budget: 1000
+# mu: 5
+# deterministic: TRUE
+
+# 2018-05-03 21:19:16 BRT: Iteration 1 of 6
+# experimentsUsedSoFar: 0
+# remainingBudget: 1000
+# currentBudget: 166
+# nbConfigurations: 27
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         27|         18|  -0.9128607513|         27|00:15:00|   NA|  NA|    NA|
+|x|          2|         27|         18|  -0.9131224669|         54|00:15:00|+1.00|1.00|0.0000|
+|x|          3|         27|         18|  -0.9134141140|         81|00:15:00|+1.00|1.00|0.0000|
+|x|          4|         27|         18|  -0.9123811699|        108|00:15:00|+1.00|1.00|0.0000|
+|-|          5|          1|         18|  -0.9107838350|        135|00:15:00|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          18    mean value:   -0.9107838350
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+18   18   mnist   None   None    True       SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA       NA
+
+# 2018-05-03 22:34:18 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset f_eng1 f_eng2 scaling algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+18   mnist   None   None    True       SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-03 22:34:18 BRT: Iteration 2 of 6
+# experimentsUsedSoFar: 135
+# remainingBudget: 865
+# currentBudget: 173
+# nbConfigurations: 25
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|         25|         43|  -0.9136967845|         25|00:15:00|   NA|  NA|    NA|
+|x|          1|         25|         43|  -0.9146113552|         49|00:15:00|+0.99|1.00|0.0000|
+|x|          2|         25|         43|  -0.9147141929|         73|00:15:00|+1.00|1.00|0.0000|
+|x|          4|         25|         43|  -0.9144950130|         97|00:15:00|+1.00|1.00|0.0000|
+|!|          5|          3|         43|  -0.9146272759|        121|00:15:00|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          43    mean value:   -0.9146272759
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+43   43   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       18
+
+# 2018-05-03 23:49:20 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+43   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44   mnist   None   None    True KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18   mnist   None   None    True        SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-03 23:49:20 BRT: Iteration 3 of 6
+# experimentsUsedSoFar: 256
+# remainingBudget: 744
+# currentBudget: 186
+# nbConfigurations: 25
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         25|         43|  -0.9097343644|         25|00:15:00|   NA|  NA|    NA|
+|x|          1|         25|         43|  -0.9126301451|         47|00:15:00|+1.00|1.00|0.0000|
+|x|          3|         25|         43|  -0.9159019653|         71|00:15:00|+1.00|1.00|0.0000|
+|x|          5|         25|         43|  -0.9157155559|         93|00:15:00|+1.00|1.00|0.0000|
+|!|          4|          3|         43|  -0.9153399394|        115|00:15:00|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          43    mean value:   -0.9153399394
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+43   43   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       18
+
+# 2018-05-04 01:04:21 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+43   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44   mnist   None   None    True KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18   mnist   None   None    True        SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 01:04:21 BRT: Iteration 4 of 6
+# experimentsUsedSoFar: 371
+# remainingBudget: 629
+# currentBudget: 209
+# nbConfigurations: 25
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         25|         18|  -0.9161406676|         25|00:12:20|   NA|  NA|    NA|
+|x|          1|         25|         87|  -0.9165091802|         47|00:11:50|+0.96|0.98|0.0025|
+|x|          2|         25|         87|  -0.9174280884|         69|00:12:13|+0.97|0.98|0.0019|
+|x|          3|         25|         87|  -0.9189873472|         91|00:12:08|+0.97|0.98|0.0030|
+|!|          6|          4|         87|  -0.9185995787|        113|00:12:20|+0.47|0.57|0.4344|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9185995787
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 02:05:16 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+43   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44   mnist   None   None    True KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18   mnist   None   None    True        SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 02:05:16 BRT: Iteration 5 of 6
+# experimentsUsedSoFar: 484
+# remainingBudget: 516
+# currentBudget: 258
+# nbConfigurations: 29
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         29|         87|  -0.9015133160|         29|00:15:00|   NA|  NA|    NA|
+|x|          8|         29|         87|  -0.9083895165|         54|00:15:00|+0.99|0.99|0.0000|
+|x|          6|         29|         87|  -0.9112758460|         79|00:15:00|+0.99|0.99|0.0000|
+|x|          4|         29|         87|  -0.9122515170|        105|00:15:00|+0.99|0.99|0.0000|
+|!|          7|          4|         87|  -0.9121034205|        131|00:15:00|+0.47|0.57|0.4082|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9121034205
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 03:20:18 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+43   mnist   None   None   False KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44   mnist   None   None    True KNeighbors        <NA>         NA      <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18   mnist   None   None    True        SVM        <NA>         NA      <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 03:20:18 BRT: Iteration 6 of 6
+# experimentsUsedSoFar: 615
+# remainingBudget: 385
+# currentBudget: 385
+# nbConfigurations: 42
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|         42|        132|  -0.9115795621|         42|00:15:49|   NA|  NA|    NA|
+|x|          9|         42|         87|  -0.9057684260|         80|00:15:28|+0.99|1.00|0.0002|
+|x|          1|         42|         87|  -0.9097631651|        118|00:15:22|+1.00|1.00|0.0002|
+|x|          6|         42|         87|  -0.9115845000|        156|00:15:17|+1.00|1.00|0.0004|
+|!|          4|          5|         87|  -0.9123033060|        194|00:15:23|+0.94|0.95|0.0616|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9123033060
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 04:37:40 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 04:37:40 BRT: Iteration 7 of 7
+# experimentsUsedSoFar: 809
+# remainingBudget: 191
+# currentBudget: 191
+# nbConfigurations: 21
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|         21|        132|  -0.9242013229|         21|00:02:55|   NA|  NA|    NA|
+|x|          1|         21|         87|  -0.9206484835|         37|00:02:37|+0.99|0.99|0.0003|
+|x|          7|         21|         87|  -0.9176026673|         54|00:02:29|+0.99|0.99|0.0002|
+|x|          2|         21|         87|  -0.9180184767|         71|00:02:39|+0.99|0.99|0.0002|
+|!|          3|          5|         87|  -0.9191478060|         88|00:02:32|+0.77|0.81|0.1596|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9191478060
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 04:50:54 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 04:50:54 BRT: Iteration 8 of 8
+# experimentsUsedSoFar: 897
+# remainingBudget: 103
+# currentBudget: 103
+# nbConfigurations: 13
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         12|         13|         87|  -0.9111132915|         13|00:01:38|   NA|  NA|    NA|
+|x|          5|         13|         87|  -0.9149748022|         23|00:01:34|+0.96|0.98|0.0060|
+|x|          4|         13|        132|  -0.9153677724|         31|00:01:27|+0.97|0.98|0.0036|
+|x|          1|         13|         87|  -0.9157201943|         39|00:01:27|+0.97|0.98|0.0030|
+|!|          9|          5|         87|  -0.9128788187|         47|00:01:29|+0.94|0.95|0.0544|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9128788187
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 04:58:31 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 04:58:31 BRT: Iteration 9 of 9
+# experimentsUsedSoFar: 944
+# remainingBudget: 56
+# currentBudget: 56
+# nbConfigurations: 8
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|          8|         87|  -0.9209758796|          8|00:01:29|   NA|  NA|    NA|
+|x|          8|          8|         87|  -0.9181207984|         12|00:00:50|+0.76|0.88|0.0301|
+|x|          1|          8|         87|  -0.9179980800|         15|00:00:47|+0.84|0.89|0.0156|
+|x|          4|          8|         87|  -0.9172931924|         18|00:00:47|+0.87|0.90|0.0110|
+|!|          2|          5|         87|  -0.9176877349|         21|00:00:47|+0.54|0.63|0.4779|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9176877349
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 05:03:15 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 05:03:15 BRT: Iteration 10 of 10
+# experimentsUsedSoFar: 965
+# remainingBudget: 35
+# currentBudget: 35
+# nbConfigurations: 7
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         14|          7|         87|  -0.9133945578|          7|00:01:24|   NA|  NA|    NA|
+|x|         12|          7|         87|  -0.9122539247|          9|00:01:13|+1.00|1.00|0.0006|
+|x|          6|          7|         87|  -0.9138521181|         11|00:01:12|+0.99|1.00|0.0015|
+|x|          5|          7|         87|  -0.9150981668|         13|00:01:14|+0.98|0.98|0.0081|
+|!|          1|          5|         87|  -0.9156290621|         15|00:01:12|+0.96|0.97|0.0292|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          87    mean value:   -0.9156290621
+Description of the best configuration:
+   .ID. dataset f_eng1 f_eng2 scaling  algorithm pre_scaling extraction selection  C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+87   87   mnist   None   None   False KNeighbors        <NA>         NA      <NA> NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA       43
+
+# 2018-05-04 05:09:32 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# 2018-05-04 05:09:32 BRT: Stopped because there is not enough budget left to race more than the minimum (6)
+# You may either increase the budget or set 'minNbSurvival' to a lower value
+# Iteration: 11
+# nbIterations: 11
+# experimentsUsedSoFar: 980
+# timeUsed: 0
+# remainingBudget: 20
+# currentBudget: 20
+# number of elites: 5
+# nbConfigurations: 6
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+87    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+132   mnist Selection   None    True KNeighbors        True         NA SelectFromModel   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           4 distance      <NA>             NA        median     NA    NA              NA                 NA       NA       NA
+43    mnist      None   None   False KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+44    mnist      None   None    True KNeighbors        <NA>         NA            <NA>   NA   <NA>           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           3 distance      <NA>             NA          <NA>     NA    NA              NA                 NA       NA       NA
+18    mnist      None   None    True        SVM        <NA>         NA            <NA> 2.41   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>      <NA>             NA          <NA>      5  0.26              NA                 NA       NA       NA
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+87   --dataset mnist --f_eng1 None --f_eng2 None --scaling False --algorithm KNeighbors --n_neighbors 4 --weights distance
+132  --dataset mnist --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_threshold median --scaling True --algorithm KNeighbors --n_neighbors 4 --weights distance
+43   --dataset mnist --f_eng1 None --f_eng2 None --scaling False --algorithm KNeighbors --n_neighbors 3 --weights distance
+44   --dataset mnist --f_eng1 None --f_eng2 None --scaling True --algorithm KNeighbors --n_neighbors 3 --weights distance
+18   --dataset mnist --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 2.41 --kernel poly --degree 5 --gamma 0.26

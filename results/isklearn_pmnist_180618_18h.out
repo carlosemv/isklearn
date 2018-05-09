@@ -1,0 +1,86 @@
+Warning message:
+package ‘irace’ was built under R version 3.3.3 
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 2.4.1844
+* Copyright (C) 2010-2017
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt -p pmnist/parameters.txt --parallel 16 --train-instances-file pmnist/instances.txt --log-file ./output/pmnist_irace.Rdata
+# 2 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2018-05-02 21:08:38 BRT: Estimating execution time using 2% of 64800 = 1296
+# 2018-05-02 21:38:13 BRT: Estimated execution time is 38.4325138339996 based on 12 configurations and 5 instances. Used time: 2305.95083003998 .
+# 2018-05-02 21:38:13 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 6
+# minNbSurvival: 6
+# nbParameters: 28
+# seed: 742550780
+# confidence level: 0.95
+# budget: 1626
+# time budget: 62494.04916996
+# mu: 5
+# deterministic: TRUE
+
+# 2018-05-02 21:38:13 BRT: Iteration 1 of 6
+# experimentsUsedSoFar: 60
+# timeUsed: 2305.95083003998
+# timeEstimate: 38.4325138339996
+# remainingBudget: 1626
+# currentBudget: 271
+# nbConfigurations: 45
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          3|         45|         31|  -0.9043923140|         33|00:43:46|   NA|  NA|    NA|
+|x|          5|         45|         31|  -0.9019273133|         66|00:25:03|+0.85|0.93|0.0838|
+|x|          4|         45|         31|  -0.9026126240|         99|00:46:19|+0.78|0.85|0.1793|
+|x|          2|         45|         31|  -0.9014478529|        132|00:31:53|+0.79|0.85|0.1692|
+|-|          1|          7|         31|  -0.8997710152|        165|00:40:19|+0.21|0.37|0.8147|
+|-|          6|          2|         31|  -0.8996702304|        172|00:10:15|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          31    mean value:   -0.8996702304
+Description of the best configuration:
+   .ID. dataset f_eng1    f_eng2 scaling algorithm pre_scaling extraction       selection    C kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3 .PARENT.
+31   31   mnist   None Selection   False       SVM       False         NA SelectFromModel 3.84   poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             NA          mean      4  -1.4              NA                 NA       NA       NA       NA
+
+# 2018-05-03 00:55:51 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset    f_eng1    f_eng2 scaling algorithm pre_scaling extraction       selection     C  kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+31   mnist      None Selection   False       SVM       False         NA SelectFromModel  3.84    poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             NA          mean      4 -1.40              NA                 NA       NA       NA
+40   mnist Selection      None   False       SVM        True         NA             RFE -1.99 sigmoid           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             77          <NA>     NA -3.28              NA                 NA       NA       NA
+# 2018-05-03 00:55:51 BRT: Stopped because budget is exhausted
+# Iteration: 2
+# nbIterations: 6
+# experimentsUsedSoFar: 232
+# timeUsed: 83726.89
+# remainingBudget: -52
+# currentBudget: 271
+# number of elites: 2
+# nbConfigurations: 45
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset    f_eng1    f_eng2 scaling algorithm pre_scaling extraction       selection     C  kernel max_features rf_estimators max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights sel_score sel_percentile sel_threshold degree gamma max_depth_value learning_rate_init neurons2 neurons3
+31   mnist      None Selection   False       SVM       False         NA SelectFromModel  3.84    poly           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             NA          mean      4 -1.40              NA                 NA       NA       NA
+40   mnist Selection      None   False       SVM        True         NA             RFE -1.99 sigmoid           NA            NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>      <NA>             77          <NA>     NA -3.28              NA                 NA       NA       NA
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+31  --dataset mnist --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_threshold mean --scaling False --algorithm SVM --C 3.84 --kernel poly --degree 4 --gamma -1.4
+40  --dataset mnist --f_eng1 Selection --f_eng2 None --pre_scaling True --selection RFE --sel_percentile 77 --scaling False --algorithm SVM --C -1.99 --kernel sigmoid --gamma -3.28
