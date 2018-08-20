@@ -9,6 +9,7 @@ import pandas as pd
 from isklearn.isklearn import ISKLEARN
 
 from ingestion import Ingestion
+from sklearn.model_selection import train_test_split
 
 def ingestion(df, series):
     parser = argparse.ArgumentParser()
@@ -26,6 +27,7 @@ if __name__=="__main__":
 
     ts_file = "data/crime_districts_daily.csv"
     ts_df = pd.read_csv(ts_file, index_col=0)
+    ts_df, _ = train_test_split(ts_df, test_size=0.2, shuffle=False)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)

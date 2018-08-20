@@ -11,7 +11,12 @@ from sklearn.datasets import load_svmlight_file
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection import StratifiedKFold
 
-def ingestion(X, y, fold):
+def ingestion(fold):
+    X, y = load_svmlight_file("./data/lmrd/train/labeledBow.feat")
+    X = TfidfTransformer().fit_transform(X)
+    y[y <= 4] = 0
+    y[y >= 7] = 1
+
     skf = StratifiedKFold(n_splits=10, shuffle=False)
     skf_idxs = list(skf.split(X, y))
     kfold_idxs = skf_idxs[fold][1]
@@ -24,10 +29,6 @@ if __name__=="__main__":
     t0 = time.time()
 
     # large movie review dataset
-    X, y = load_svmlight_file("./data/lmrd/train/labeledBow.feat")
-    X = TfidfTransformer().fit_transform(X)
-    y[y <= 4] = 0
-    y[y >= 7] = 1
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)
@@ -42,7 +43,7 @@ if __name__=="__main__":
     accs = []
     isk = ISKLEARN(task=task, sparse=True)
     for fold in folds:
-        X, y = ingestion(X, y, int(fold))
+        X, y = ingestion(int(fold))
         acc_scores = isk.validation(X, y)
         result = np.mean(acc_scores)
         accs.append(result)

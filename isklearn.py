@@ -1,11 +1,12 @@
 import argparse
 import numpy as np
 import pandas as pd
+import scipy
 
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler, Imputer
 from sklearn.metrics import accuracy_score, r2_score
-from sklearn.decomposition import FastICA, PCA, DictionaryLearning
+from sklearn.decomposition import FastICA, PCA, DictionaryLearning, TruncatedSVD
 from sklearn.feature_selection import SelectPercentile, SelectFromModel, RFE, \
     f_classif, f_regression, mutual_info_classif, mutual_info_regression
 from sklearn.model_selection import StratifiedKFold, TimeSeriesSplit
@@ -18,7 +19,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, \
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 
-def str_to_bool(v):
+def _str_to_bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True
     elif v.lower() in ('no', 'false', 'f', 'n', '0'):
@@ -31,13 +32,14 @@ class Selector(BaseEstimator, TransformerMixin):
         parser = argparse.ArgumentParser()
         parser.add_argument('--sel_score_classification', type=str)
         parser.add_argument('--sel_score_regression', type=str)
+        parser.add_argument('--sel_model', type=str)
         parser.add_argument('--sel_percentile', type=int)
         parser.add_argument('--sel_threshold', type=str)
         args = parser.parse_known_args()[0]
 
         self.task = task
 
-        if (conf == "SelectPercentile"):
+        if conf == "SelectPercentile":
             sel_score = args.sel_score_classification if task == 'classification' \
                 else args.sel_score_regression
             selection_score_map = {'f_regression': f_regression, 
@@ -50,24 +52,32 @@ class Selector(BaseEstimator, TransformerMixin):
                 error = "Invalid Selector.score_func argument "+str(sel_score)
                 raise ValueError(error)
 
-        if (conf == "SelectFromModel"):
+        if conf == "SelectFromModel":
             self.threshold = args.sel_threshold
         else:
             self.percentile = args.sel_percentile
+
+        if conf in ("SelectFromModel", "RFE"):
+            self.sel_model = args.sel_model
+
         self.conf = conf
 
     def fit(self, X, y=None):
+        sel_model_map = {('RandomForest', 'classification'): RandomForestClassifier,
+                        ('RandomForest', 'regression'): RandomForestRegressor,
+                        ('SVM', 'classification'): SVC,
+                        ('SVM', 'regression'): SVR,
+                        ('DecisionTree', 'classification'): DecisionTreeClassifier,
+                        ('DecisionTree', 'regression'): DecisionTreeRegressor}
         if self.conf=="RFE":
             n_features = int(X.shape[1] * (self.percentile/100.0))
             if not n_features:
                 n_features = 1
-            selector_model = RandomForestClassifier() if self.task == 'classification' \
-                else RandomForestRegressor()
-            selection = RFE(selector_model, n_features_to_select=n_features)
+            selector_model = sel_model_map[(self.sel_model, self.task)]
+            selection = RFE(selector_model(), n_features_to_select=n_features)
         elif self.conf=="SelectFromModel":
-            selector_model = RandomForestClassifier() if self.task == 'classification' \
-                else RandomForestRegressor()
-            selection = SelectFromModel(selector_model, threshold=self.threshold)
+            selector_model = sel_model_map[(self.sel_model, self.task)]
+            selection = SelectFromModel(selector_model(), threshold=self.threshold)
         elif self.conf=="SelectPercentile":
             if int(X.shape[1] * (self.percentile/100.0)) == 0:
                 self.percentile = 100*max(int(1. / X.shape[1]), 1)
@@ -88,7 +98,7 @@ class Extractor(BaseEstimator, TransformerMixin):
     def __init__(self, conf, task):
         parser = argparse.ArgumentParser()
         parser.add_argument("--ext_components", type=float)
-        parser.add_argument("--whiten", type=str_to_bool)
+        parser.add_argument("--whiten", type=_str_to_bool)
         parser.add_argument("--svd_solver", type=str)
         parser.add_argument("--ica_algorithm", type=str)
         parser.add_argument("--ica_fun", type=str)
@@ -125,6 +135,9 @@ class Extractor(BaseEstimator, TransformerMixin):
             extraction = DictionaryLearning(n_components=n_components,
                 fit_algorithm=self.dl_fit_algorithm,
                 transform_algorithm=self.dl_transform_algorithm)
+        elif self.conf == "TruncatedSVD":
+            n_components = min(n_components, (X.shape[0]-1))
+            extraction = TruncatedSVD(n_components=n_components, algorithm='arpack')
         else:
             raise ValueError("Invalid Extractor.conf argument: "+str(self.conf))
 
@@ -145,7 +158,33 @@ class ISKLEARN:
         self.task = task
         self.sparse = sparse
 
-    def build_model(self, algorithm):
+    def impute(self, X):
+        if self.sparse and X.ndim > 1:
+            X = Imputer().fit_transform(X)
+            return X
+
+        if X.ndim == 1:
+            X = X.reshape(X.shape[0], 1)
+
+        max32 = np.finfo(np.float32).max
+        min32 = np.finfo(np.float32).min
+
+        for col in X.T:
+            mean = np.nanmean(col)
+            col[np.isnan(col)] = mean if not np.isnan(mean) else max32
+
+            col[np.logical_or(col > max32, col == np.inf)] = max32
+            col[np.logical_or(col < min32, col == -np.inf)] = min32
+
+        return X
+
+
+    def build_model(self):
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--algorithm', type=str)
+        args = parser.parse_known_args()[0]
+        algorithm = args.algorithm
+
         model = None
         parser = argparse.ArgumentParser()
 
@@ -166,6 +205,7 @@ class ISKLEARN:
         elif algorithm == "MLP":
             parser.add_argument('--solver', type=str)
             parser.add_argument('--alpha', type=float)
+            parser.add_argument('--mlp_learning_rate', type=str)
             parser.add_argument('--learning_rate_init', type=float)
             parser.add_argument('--hidden_layers', type=int)
             parser.add_argument('--neurons1', type=int)
@@ -185,10 +225,16 @@ class ISKLEARN:
                 learning_rate_init = 10**args.learning_rate_init
             else:
                 learning_rate_init = 0.001
+
+            if args.mlp_learning_rate:
+                mlp_learning_rate = args.mlp_learning_rate
+            else:
+                mlp_learning_rate = 'constant'
+
             obj = MLPClassifier if self.task == 'classification' else MLPRegressor
-            model = obj(solver=args.solver, learning_rate_init=learning_rate_init,
-                alpha=10**args.alpha, hidden_layer_sizes=hidden_layer_sizes, 
-                activation=args.activation)
+            model = obj(solver=args.solver, learning_rate=mlp_learning_rate,
+                learning_rate_init=learning_rate_init, alpha=10**args.alpha,
+                hidden_layer_sizes=hidden_layer_sizes, activation=args.activation)
         elif algorithm == "RandomForest":
             parser.add_argument('--criterion_classification', type=str)
             parser.add_argument('--criterion_regression', type=str)
@@ -247,17 +293,56 @@ class ISKLEARN:
 
         return model
 
-    def validation(self, X, y, cv="StratifiedKFold"):
+    def preprocess(self, X_train, y_train, X_test, y_test):
         parser = argparse.ArgumentParser()
         parser.add_argument('--f_eng1', type=str)
         parser.add_argument('--f_eng2', type=str)
-        parser.add_argument('--pre_scaling', type=str_to_bool)
+        parser.add_argument('--pre_scaling', type=_str_to_bool)
         parser.add_argument('--extraction', type=str)
         parser.add_argument('--selection', type=str)
-        parser.add_argument('--scaling', type=str_to_bool)
-        parser.add_argument('--algorithm', type=str)
+        parser.add_argument('--scaling', type=_str_to_bool)
         args = parser.parse_known_args()[0]
 
+        if args.pre_scaling:
+            with_mean = not self.sparse
+            scaler = StandardScaler(with_mean=with_mean)
+            X_train = scaler.fit_transform(X_train)
+            X_test = scaler.transform(X_test)
+
+            X_train = self.impute(X_train)
+            X_test = self.impute(X_test)
+
+        f_eng1, f_eng2 = args.f_eng1, args.f_eng2
+        if (f_eng1 == f_eng2) and (f_eng1 != "None"):
+            err_details = "f_eng1 = " + f_eng1 + ", f_eng2 = " + f_eng2
+            raise ValueError("Invalid feature engineering parameters: " + err_details)
+
+        for f_eng in (f_eng1, f_eng2):
+            if f_eng == "Selection" and X_train.shape[1] > 1:
+                selector = Selector(args.selection, self.task)
+                X_train = selector.fit_transform(X_train, y_train)
+                X_test = selector.transform(X_test)
+            elif f_eng == "Extraction" and X_train.shape[1] > 1:
+                extractor = Extractor(args.extraction, self.task) if not self.sparse else \
+                    Extractor("TruncatedSVD", self.task)
+                X_train = extractor.fit_transform(X_train, y_train)
+                X_test = extractor.transform(X_test)
+
+                X_train = self.impute(X_train)
+                X_test = self.impute(X_test)
+
+        if args.scaling:
+            with_mean = not self.sparse
+            scaler = StandardScaler(with_mean=with_mean)
+            X_train = scaler.fit_transform(X_train)
+            X_test = scaler.transform(X_test)
+
+            X_train = self.impute(X_train)
+            X_test = self.impute(X_test)
+
+        return X_train, y_train, X_test, y_test
+
+    def validation(self, X, y, cv="StratifiedKFold"):
         if cv == "TimeSeriesSplit":
             cv = TimeSeriesSplit
         elif cv == "StratifiedKFold":
@@ -274,44 +359,12 @@ class ISKLEARN:
                 X_train, X_test = X[train_idx], X[test_idx]
                 y_train, y_test = y[train_idx], y[test_idx]
 
-            if args.pre_scaling:
-                with_mean = not self.sparse
-                scaler = StandardScaler(with_mean=with_mean)
-                X_train = scaler.fit_transform(X_train)
-                X_test = scaler.transform(X_test)
-
-            f_eng1, f_eng2 = args.f_eng1, args.f_eng2
-            if (f_eng1 == f_eng2) and (f_eng1 != "None"):
-                err_details = "f_eng1 = " + f_eng1 + ", f_eng2 = " + f_eng2
-                raise ValueError("Invalid feature engineering parameters: " + err_details)
-
-            for f_eng in (f_eng1, f_eng2):
-                if f_eng == "Selection":
-                    selector = Selector(args.selection, self.task)
-                    X_train = selector.fit_transform(X_train, y_train)
-                    X_test = selector.transform(X_test)
-                elif f_eng == "Extraction":
-                    extractor = Extractor(args.extraction, self.task)
-                    X_train = extractor.fit_transform(X_train, y_train)
-                    X_test = extractor.transform(X_test)
-
-                    X_train = Imputer().fit_transform(X_train)
-                    X_test = Imputer().fit_transform(X_test)
-                    for matrix in (X_train, X_test):
-                        for col in matrix:
-                            col[col == np.inf] = 10*col.max()
-                            col[col == -np.inf] = -10*col.max()
-
-            if args.scaling:
-                with_mean = not self.sparse
-                scaler = StandardScaler(with_mean=with_mean)
-                X_train = scaler.fit_transform(X_train)
-                X_test = scaler.transform(X_test)
+            X_train, y_train, X_test, y_test = self.preprocess(X_train, y_train, X_test, y_test)
 
             scorer = accuracy_score if self.task == 'classification' else r2_score
-            model = self.build_model(args.algorithm)
+            model = self.build_model()
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-            y_pred[np.isnan(y_pred)] = np.nanmean(y_pred)
+            y_pred = self.impute(y_pred)
             scores.append(scorer(y_test, y_pred))
         return scores
