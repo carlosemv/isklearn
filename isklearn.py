@@ -65,8 +65,8 @@ class Selector(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         sel_model_map = {('RandomForest', 'classification'): RandomForestClassifier,
                         ('RandomForest', 'regression'): RandomForestRegressor,
-                        ('SVM', 'classification'): SVC,
-                        ('SVM', 'regression'): SVR,
+                        ('SVM', 'classification'): SVC(kernel='linear'),
+                        ('SVM', 'regression'): SVR(kernel='linear'),
                         ('DecisionTree', 'classification'): DecisionTreeClassifier,
                         ('DecisionTree', 'regression'): DecisionTreeRegressor}
         if self.conf=="RFE":
