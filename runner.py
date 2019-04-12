@@ -18,6 +18,7 @@
 ###############################################################################
 
 import datetime
+import os
 import os.path
 import re
 import subprocess
@@ -42,11 +43,12 @@ cand_params = sys.argv[7:]
 
 # Define the stdout and stderr files.
 output_prefix = "output/" + dataset
+os.makedirs(output_prefix)
 out_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stdout"
 err_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stderr"
 
 exe = dataset + "/target.py"
-cutoff = 15*60
+cutoff = 30*60
 
 if not os.path.isfile(exe):
     target_runner_error(str(exe) + " not found")
