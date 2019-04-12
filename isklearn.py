@@ -4,7 +4,8 @@ import pandas as pd
 import scipy
 
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.preprocessing import StandardScaler, Imputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
 from sklearn.metrics import accuracy_score, r2_score
 from sklearn.decomposition import FastICA, PCA, DictionaryLearning, TruncatedSVD
 from sklearn.feature_selection import SelectPercentile, SelectFromModel, RFE, \
@@ -63,21 +64,19 @@ class Selector(BaseEstimator, TransformerMixin):
         self.conf = conf
 
     def fit(self, X, y=None):
-        sel_model_map = {('RandomForest', 'classification'): RandomForestClassifier,
-                        ('RandomForest', 'regression'): RandomForestRegressor,
-                        ('SVM', 'classification'): SVC,
-                        ('SVM', 'regression'): SVR,
-                        ('DecisionTree', 'classification'): DecisionTreeClassifier,
-                        ('DecisionTree', 'regression'): DecisionTreeRegressor}
+        sel_model_map = {('RandomForest', 'classification'): RandomForestClassifier(),
+                        ('RandomForest', 'regression'): RandomForestRegressor(),
+                        ('SVM', 'classification'): SVC(kernel='linear'),
+                        ('SVM', 'regression'): SVR(kernel='linear'),
+                        ('DecisionTree', 'classification'): DecisionTreeClassifier(),
+                        ('DecisionTree', 'regression'): DecisionTreeRegressor()}
         if self.conf=="RFE":
-            n_features = int(X.shape[1] * (self.percentile/100.0))
-            if not n_features:
-                n_features = 1
+            n_features = max(1, int(X.shape[1] * (self.percentile/100.0)))
             selector_model = sel_model_map[(self.sel_model, self.task)]
-            selection = RFE(selector_model(), n_features_to_select=n_features)
+            selection = RFE(selector_model, n_features_to_select=n_features)
         elif self.conf=="SelectFromModel":
             selector_model = sel_model_map[(self.sel_model, self.task)]
-            selection = SelectFromModel(selector_model(), threshold=self.threshold)
+            selection = SelectFromModel(selector_model, threshold=self.threshold)
         elif self.conf=="SelectPercentile":
             if int(X.shape[1] * (self.percentile/100.0)) == 0:
                 self.percentile = 100*max(int(1. / X.shape[1]), 1)
@@ -160,7 +159,7 @@ class ISKLEARN:
 
     def impute(self, X):
         if self.sparse and X.ndim > 1:
-            X = Imputer().fit_transform(X)
+            X = SimpleImputer().fit_transform(X)
             return X
 
         if X.ndim == 1:
@@ -325,7 +324,15 @@ class ISKLEARN:
             elif f_eng == "Extraction" and X_train.shape[1] > 1:
                 extractor = Extractor(args.extraction, self.task) if not self.sparse else \
                     Extractor("TruncatedSVD", self.task)
-                X_train = extractor.fit_transform(X_train, y_train)
+                try:
+                    X_train = extractor.fit_transform(X_train, y_train)
+                except ValueError as e:
+                    if 'array must not contain infs or NaNs' in e.args[0]:
+                        raise ValueError("Bug in scikit-learn: \
+                            https://github.com/scikit-learn/scikit-learn/pull/2738")
+                    else:
+                        raise e
+
                 X_test = extractor.transform(X_test)
 
                 X_train = self.impute(X_train)

@@ -5,7 +5,7 @@ sys.path.append('..')
 import time
 import argparse
 import numpy as np
-from isklearn import ISKLEARN
+from isklearn.isklearn import ISKLEARN
 
 from sklearn.datasets import load_svmlight_file
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -17,8 +17,8 @@ def ingestion(fold):
     #X = TfidfTransformer().fit_transform(X)
     #y[y <= 4] = 0
     #y[y >= 7] = 1
-    X = np.load("training_samples.npy")
-    y = np.load("training_labels.npy")
+    X = np.load("lmrd/embeddings/training_samples.npy")
+    y = np.load("lmrd/embeddings/training_labels.npy")
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
     skf_idxs = list(skf.split(X, y))
