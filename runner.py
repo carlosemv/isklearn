@@ -24,6 +24,8 @@ import re
 import subprocess
 import sys
 
+assert sys.version_info >= (3, 6), "Python >= 3.6 required"
+
 def target_runner_error(msg):
     now = datetime.datetime.now()
     print(str(now) + " error: " + msg)
