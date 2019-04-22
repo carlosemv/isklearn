@@ -45,7 +45,7 @@ cand_params = sys.argv[7:]
 
 # Define the stdout and stderr files.
 output_prefix = "output/" + dataset
-os.makedirs(output_prefix)
+os.makedirs(output_prefix, exist_ok=True)
 out_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stdout"
 err_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stderr"
 
