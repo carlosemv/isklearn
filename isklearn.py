@@ -125,6 +125,7 @@ class Extractor(BaseEstimator, TransformerMixin):
         if not n_components:
             n_components = 1
         if self.conf == "PCA":
+            n_components = min(X.shape[0]-1, n_components)
             extraction = PCA(n_components=n_components, whiten=self.whiten,
                 svd_solver=self.svd_solver)
         elif self.conf == "FastICA":
@@ -197,7 +198,7 @@ class ISKLEARN:
             degree = args.degree if args.kernel == "poly" else 0
 
             gamma = 10**args.gamma if args.gamma != None else 'auto'
-            C = (10**5) - (10**args.C) + (10**-3)
+            C = 10**args.C
             obj = SVC if self.task == 'classification' else SVR
             model = obj(C=C, kernel=args.kernel, degree=degree,
                 gamma=gamma, cache_size=600)
@@ -328,8 +329,11 @@ class ISKLEARN:
                     X_train = extractor.fit_transform(X_train, y_train)
                 except ValueError as e:
                     if 'array must not contain infs or NaNs' in e.args[0]:
-                        raise ValueError("Bug in scikit-learn: \
-                            https://github.com/scikit-learn/scikit-learn/pull/2738")
+                        X_train.drop(X_train.columns, axis=1, inplace=True)
+                        X_test.drop(X_test.columns, axis=1, inplace=True)
+                        break
+                        # raise ValueError("Bug in scikit-learn: "
+                            # +"https://github.com/scikit-learn/scikit-learn/pull/2738")
                     else:
                         raise e
 
@@ -357,6 +361,7 @@ class ISKLEARN:
         else:
             raise ValueError("Invalid validation.cv argument: "+str(cv))
 
+        fail = -2**32
         scores = []
         for train_idx, test_idx in cv(n_splits=5).split(X, y):
             if isinstance(X, pd.DataFrame):
@@ -367,6 +372,10 @@ class ISKLEARN:
                 y_train, y_test = y[train_idx], y[test_idx]
 
             X_train, y_train, X_test, y_test = self.preprocess(X_train, y_train, X_test, y_test)
+
+            if X_train.shape[1] == 0:
+                scores.append(fail)
+                continue
 
             scorer = accuracy_score if self.task == 'classification' else r2_score
             model = self.build_model()

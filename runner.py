@@ -23,6 +23,7 @@ import os.path
 import re
 import subprocess
 import sys
+from random import randint
 
 assert sys.version_info >= (3, 6), "Python >= 3.6 required"
 
@@ -46,11 +47,12 @@ cand_params = sys.argv[7:]
 # Define the stdout and stderr files.
 output_prefix = "output/" + dataset
 os.makedirs(output_prefix, exist_ok=True)
-out_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stdout"
-err_file = output_prefix + "/c" + str(candidate_id) + "-" + str(instance_id) + ".stderr"
+filename = output_prefix + "/c{}-{}-{}".format(candidate_id, instance_id, randint(0,1e6))
+out_file = filename + ".stdout"
+err_file = filename + ".stderr"
 
-exe = dataset + "/target.py"
-cutoff = 30*60
+exe = dataset + "/alt-target.py"
+cutoff = 15*60
 
 if not os.path.isfile(exe):
     target_runner_error(str(exe) + " not found")
