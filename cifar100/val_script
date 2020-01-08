@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH --time=0-8:40
+#SBATCH --job-name=vc100-fdef
+#SBATCH --cpus-per-task=1
+#SBATCH --output=cifar100-fdef-val_%j.out
+#SBATCH --mem=120G
+#
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py  --task classification --sparse False --f_eng1 None --f_eng2 None --pre_scaling False --scaling False --algorithm SVM --C 1 --kernel poly --degree 3

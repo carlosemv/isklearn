@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=0-8:40
+#SBATCH --job-name=vc10-RN56-1f5k
+#SBATCH --cpus-per-task=1
+#SBATCH --output=cifar10-RN56v1-1f5k-val_%j.out
+#SBATCH --array=0-6
+
+CONFIGS=("691  --dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 1.99 --kernel rbf --gamma -3.5"
+"452  --dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 2.2 --kernel rbf --gamma -2.68"
+"97   --dataset cifar10 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 4 --scaling False --algorithm SVM --C 4.16 --kernel rbf --gamma -4.94"
+"578  --dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 2.29 --kernel rbf --gamma -3.07"
+"599  --dataset cifar10 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 3 --scaling False --algorithm SVM --C 3.72 --kernel rbf --gamma -4.17"
+"490  --dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 2.93 --kernel rbf --gamma -4.86"
+"621  --dataset cifar10 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 5 --scaling False --algorithm SVM --C 4.43 --kernel rbf --gamma -4.93"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

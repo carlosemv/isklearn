@@ -1,0 +1,8 @@
+#!/bin/bash
+#SBATCH --time=0-8:40
+#SBATCH --job-name=vfm-fdef
+#SBATCH --cpus-per-task=1
+#SBATCH --output=fashion-mnist-fdef-val_%j.out
+#
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py --task classification --sparse False --f_eng1 None --f_eng2 None --pre_scaling False --scaling False --algorithm SVM --C 1 --kernel poly --degree 3

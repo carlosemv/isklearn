@@ -1,0 +1,6 @@
+#!/bin/bash
+#SBATCH --time=0-05:00
+#SBATCH --job-name=viskl
+#SBATCH --cpus-per-task=1
+#SBATCH --output=cifar10-30m-val_%j.out
+python /home/cemvieira/isklearn/cifar10/validation.py 321 --dataset cifar10 --task classification --sparse False --f_eng1 Extraction --pre_scaling True --extraction PCA --ext_components 0.043 --whiten False --svd_solver auto --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 1000 --criterion_classification gini --max_features 0.018 --max_depth none --min_samples_leaf 0.0001
