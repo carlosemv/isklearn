@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --time=0-8:40
+#SBATCH --job-name=valiskl
+#SBATCH --cpus-per-task=1
+#SBATCH --output=validation-isklearn-weekly-natal-crimes_%j.out
+#SBATCH --array=0-1
+
+CONFIGS=(
+"111 --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --scaling False --algorithm KNeighbors --pre_scaling True --selection SelectFromModel --n_neighbors 74 --weights distance --sel_model RandomForest --sel_threshold mean"
+)
+
+srun python /home/addaraujo2/isklearn/nyc-houses/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

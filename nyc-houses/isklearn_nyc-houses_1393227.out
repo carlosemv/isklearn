@@ -1,0 +1,233 @@
+During startup - Warning message:
+Setting LC_CTYPE failed, using "C" 
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 3.3.2238:2239
+# Copyright (C) 2010-2019
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste  
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/addaraujo2/R/x86_64-pc-linux-gnu-library/3.5/irace
+# called with: -s scenario.txt -p nyc-houses/parameters.txt --parallel 32 --train-instances-file nyc-houses/instances.txt --log-file ./output/nyc-houses_irace.Rdata
+# 6 expression(s) specifying forbidden configurations read from '/home/addaraujo2/isklearn/forbidden.txt'
+# 2020-02-06 07:59:20 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 7
+# minNbSurvival: 7
+# nbParameters: 44
+# seed: 2019075637
+# confidence level: 0.95
+# budget: 2000
+# mu: 5
+# deterministic: TRUE
+
+# 2020-02-06 07:59:20 BRT: Iteration 1 of 7
+# experimentsUsedSoFar: 0
+# remainingBudget: 2000
+# currentBudget: 285
+# nbConfigurations: 47
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         47|         38|  -0.1027640179|         47|00:24:42|   NA|  NA|    NA|
+|x|          2|         47|         38| -0.08840870226|         94|00:24:42|+0.94|0.97|0.0000|
+|x|          3|         47|          1| -0.09648529572|        141|00:21:32|+0.90|0.93|0.7467|
+|x|          4|         47|         38| -0.02897633967|        188|00:25:03|+0.87|0.90|0.7467|
+|-|          5|          6|          1| -0.04124417978|        235|00:21:51|+0.28|0.42|0.4689|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           1    mean value:  -0.04124417978
+Description of the best-so-far configuration:
+  .ID.    dataset       task sparse f_eng1     f_eng2 scaling  algorithm pre_scaling extraction ext_components selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 .PARENT.
+1    1 nyc-houses regression  False   None Extraction   False KNeighbors       False        PCA         0.9903      <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          63 distance            NA               NA    <NA>   True randomized          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA       NA
+
+# 2020-02-06 09:57:13 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+      dataset       task sparse    f_eng1     f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate     ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3
+1  nyc-houses regression  False      None Extraction   False   KNeighbors       False        PCA         0.9903             <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          63 distance            NA               NA        <NA>   True randomized          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+30 nyc-houses regression  False      None Extraction    True RandomForest        True        PCA         0.7058             <NA> NA   <NA>            17                       NA                  mse       0.1597      none           0.0775   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA        <NA>  False     arpack          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+38 nyc-houses regression  False      None       None    True     AdaBoost        <NA>       <NA>             NA             <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>           137           0.1077      square   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+22 nyc-houses regression  False Selection Extraction   False RandomForest       False        PCA         0.4748 SelectPercentile NA   <NA>           233                       NA                  mse       0.8552     value           0.1280   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA        <NA>   True       full          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA         f_regression             38          <NA>     NA    NA              14              <NA>                 NA       NA       NA
+10 nyc-houses regression  False      None       None   False     AdaBoost        <NA>       <NA>             NA             <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>           204           0.3096 exponential   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+21 nyc-houses regression  False Selection Extraction   False     AdaBoost       False        PCA         0.3503 SelectPercentile NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>            62           0.7221      linear  False randomized          <NA>    <NA>             <NA>                   <NA>      <NA>                       NA         f_regression             64          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+# 2020-02-06 09:57:14 BRT: Iteration 2 of 7
+# experimentsUsedSoFar: 235
+# remainingBudget: 1765
+# currentBudget: 294
+# nbConfigurations: 46
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|         46|          1|  -0.2240030926|         46|00:17:30|   NA|  NA|    NA|
+|x|          3|         46|          1|  -0.1881252751|         86|00:16:30|+0.99|1.00|0.0000|
+|x|          5|         46|          1|  -0.1317979609|        126|00:16:31|+0.97|0.98|0.0000|
+|x|          2|         46|         83|  -0.1140864836|        166|00:16:28|+0.96|0.97|0.0000|
+|-|          1|          9|         83|  -0.1182172652|        206|00:33:43|+0.45|0.56|0.6674|
+|-|          4|          4|         83|  -0.1025818418|        209|00:01:08|+0.00|0.17|0.8327|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          83    mean value:   -0.1025818418
+Description of the best-so-far configuration:
+   .ID.    dataset       task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 .PARENT.
+83   83 nyc-houses regression  False Selection   None    True KNeighbors       False       <NA>             NA       RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          40 uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             79          <NA>     NA    NA              NA              <NA>                 NA       NA       NA        1
+
+# 2020-02-06 11:39:09 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+      dataset       task sparse    f_eng1     f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3
+83 nyc-houses regression  False Selection       None    True   KNeighbors       False       <NA>             NA             RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          40  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             79          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+1  nyc-houses regression  False      None Extraction   False   KNeighbors       False        PCA         0.9903            <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          63 distance            NA               NA    <NA>   True randomized          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+73 nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          38  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA        median     NA    NA              NA              <NA>                 NA       NA       NA
+84 nyc-houses regression  False      None       None   False DecisionTree        <NA>       <NA>             NA            <NA> NA   <NA>            NA                       NA                  mse       0.7819     value           0.0166   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA               9              <NA>                 NA       NA       NA
+# 2020-02-06 11:39:09 BRT: Iteration 3 of 7
+# experimentsUsedSoFar: 444
+# remainingBudget: 1556
+# currentBudget: 311
+# nbConfigurations: 41
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         41|        111|  -0.1244847184|         41|00:17:30|   NA|  NA|    NA|
+|x|          3|         41|        111|  -0.1568561433|         78|00:15:45|+0.90|0.95|0.0000|
+|x|          2|         41|        111|  -0.1556563466|        115|00:15:45|+0.90|0.94|0.0000|
+|x|          4|         41|        111|  -0.1413394628|        152|00:15:44|+0.91|0.94|0.0000|
+|-|          1|          8|        111|  -0.1500915321|        189|00:15:54|+0.35|0.48|0.6075|
+|-|          5|          5|        111|  -0.1325579710|        193|00:01:10|+0.35|0.46|0.6126|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          83    mean value:  -0.09556329724
+Description of the best-so-far configuration:
+   .ID.    dataset       task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 .PARENT.
+83   83 nyc-houses regression  False Selection   None    True KNeighbors       False       <NA>             NA       RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          40 uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             79          <NA>     NA    NA              NA              <NA>                 NA       NA       NA        1
+
+# 2020-02-06 13:01:00 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+       dataset       task sparse    f_eng1     f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3
+83  nyc-houses regression  False Selection       None    True   KNeighbors       False       <NA>             NA             RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          40  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             79          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+1   nyc-houses regression  False      None Extraction   False   KNeighbors       False        PCA         0.9903            <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          63 distance            NA               NA    <NA>   True randomized          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+73  nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          38  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA        median     NA    NA              NA              <NA>                 NA       NA       NA
+84  nyc-houses regression  False      None       None   False DecisionTree        <NA>       <NA>             NA            <NA> NA   <NA>            NA                       NA                  mse       0.7819     value           0.0166   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA               9              <NA>                 NA       NA       NA
+111 nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          74 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA
+# 2020-02-06 13:01:00 BRT: Iteration 4 of 7
+# experimentsUsedSoFar: 637
+# remainingBudget: 1363
+# currentBudget: 340
+# nbConfigurations: 41
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         41|        111|  -0.1212626258|         41|00:16:25|   NA|  NA|    NA|
+|x|          6|         41|        111|  -0.1773947548|         78|00:15:43|+0.72|0.86|0.0000|
+|x|          1|         41|        111|  -0.1799631062|        114|00:15:49|+0.79|0.86|0.0000|
+|x|          3|         41|        111|  -0.1822792217|        150|00:15:23|+0.82|0.86|0.0000|
+|-|          7|          7|        111|  -0.1707203210|        186|00:15:43|+0.64|0.71|0.5138|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         111    mean value:   -0.1437671670
+Description of the best-so-far configuration:
+    .ID.    dataset       task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 .PARENT.
+111  111 nyc-houses regression  False Selection   None   False KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          74 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA       83
+
+# 2020-02-06 14:20:07 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+       dataset       task sparse    f_eng1     f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3
+111 nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          74 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA
+83  nyc-houses regression  False Selection       None    True   KNeighbors       False       <NA>             NA             RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          40  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             79          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+73  nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          38  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA        median     NA    NA              NA              <NA>                 NA       NA       NA
+1   nyc-houses regression  False      None Extraction   False   KNeighbors       False        PCA         0.9903            <NA> NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          63 distance            NA               NA    <NA>   True randomized          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+84  nyc-houses regression  False      None       None   False DecisionTree        <NA>       <NA>             NA            <NA> NA   <NA>            NA                       NA                  mse       0.7819     value           0.0166   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                       NA                 <NA>             NA          <NA>     NA    NA               9              <NA>                 NA       NA       NA
+141 nyc-houses regression  False Selection       None   False   KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          47  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA
+139 nyc-houses regression  False Selection       None    True   KNeighbors       False       <NA>             NA             RFE NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          32  uniform            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> DecisionTree                       NA                 <NA>             18          <NA>     NA    NA              NA              <NA>                 NA       NA       NA
+# 2020-02-06 14:20:07 BRT: Iteration 5 of 7
+# experimentsUsedSoFar: 823
+# remainingBudget: 1177
+# currentBudget: 392
+# nbConfigurations: 44
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         44|        176|  -0.1605324397|         44|00:15:58|   NA|  NA|    NA|
+|x|          5|         44|        176|  -0.1089970353|         83|00:15:44|+0.66|0.83|0.0000|
+|x|          4|         44|        111|  -0.1002553693|        122|00:15:41|+0.71|0.80|0.0000|
+|x|          1|         44|        111|  -0.1214664793|        159|00:15:34|+0.72|0.79|0.0707|
+|-|          7|         11|        111|  -0.1220701271|        196|00:15:37|+0.70|0.76|0.6096|
+|-|          2|          8|        111|  -0.1272678981|        202|00:01:23|+0.62|0.69|0.5606|
+|!|          6|          8|        111|  -0.1424477532|        203|00:00:07|+0.60|0.66|0.5620|
+|!|          8|          8|        111|  -0.1397996123|        204|00:00:07|+0.64|0.69|0.5003|
+|-|          3|          2|        111|  -0.1452916074|        205|00:00:07|+0.00|0.11|0.5000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         111    mean value:   -0.1452916074
+Description of the best-so-far configuration:
+    .ID.    dataset       task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 .PARENT.
+111  111 nyc-houses regression  False Selection   None   False KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          74 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA       83
+
+# 2020-02-06 15:40:31 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+       dataset       task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3
+111 nyc-houses regression  False Selection   None   False KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          74 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA
+176 nyc-houses regression  False Selection   None   False KNeighbors        True       <NA>             NA SelectFromModel NA   <NA>            NA                       NA                 <NA>           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>         100 distance            NA               NA    <NA>   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                       NA                 <NA>             NA          mean     NA    NA              NA              <NA>                 NA       NA       NA
+# 2020-02-06 15:40:31 BRT: Iteration 6 of 7
+# experimentsUsedSoFar: 1028
+# remainingBudget: 972
+# currentBudget: 486
+# nbConfigurations: 50
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|         50|        206|  -0.1558489368|         50|00:15:01|   NA|  NA|    NA|
+|x|          3|         50|        206|  -0.1684533791|         98|00:15:01|+0.89|0.95|0.0000|
+|x|          6|         50|        206|  -0.1915299935|        146|00:15:01|+0.91|0.94|0.0000|
+Error : == irace == running command ''/home/addaraujo2/isklearn/runner.py' 205 36 975079347 1,2,8   --dataset nyc-houses --task regression --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling True --extraction FastICA --ext_components 0.8879 --ica_algorithm parallel --ica_fun logcosh --scaling False --algorithm AdaBoost --ab_estimators 411 --ab_learning_rate 0.2226 --ab_loss square 2>&1' had status 1
+== irace == The call to targetRunner was:
+/home/addaraujo2/isklearn/runner.py 205 36 975079347 1,2,8   --dataset nyc-houses --task regression --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling True --extraction FastICA --ext_components 0.8879 --ica_algorithm parallel --ica_fun logcosh --scaling False --algorithm AdaBoost --ab_estimators 411 --ab_learning_rate 0.2226 --ab_loss square
+== irace == The output was:
+2020-02-06 16:37:15.329238 error: command returned code 1
+== irace == This is not a bug in irace, but means that something failed when running the command(s) above or they were terminated before completion. Try to run the command(s) above from the execution directory '/home/addaraujo2/isklearn' to investigate the issue. See also Appendix B (targetRunner troubleshooting checklist) of the User Guide (https://cran.r-project.org/package=irace/vignettes/irace-package.pdf).
+Error: == irace == A child process triggered a fatal error
+In addition: Warning message:
+In parallel::mclapply(experiments, exec.target.runner, mc.preschedule = !scenario$loadBalancing,  :
+  1 function calls resulted in an error
+Execution halted
