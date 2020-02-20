@@ -6,7 +6,13 @@
 #SBATCH --array=0-1
 
 CONFIGS=(
-"111 --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --scaling False --algorithm KNeighbors --pre_scaling True --selection SelectFromModel --n_neighbors 74 --weights distance --sel_model RandomForest --sel_threshold mean"
+"210  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 69 --weights distance" 
+"324  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 60 --weights distance" 
+"282  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 81 --weights distance" 
+"272  --dataset nyc-houses --task regression --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 70 --weights distance" 
+"296  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 90 --weights distance" 
+"328  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 99 --weights distance" 
+"285  --dataset nyc-houses --task regression --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 96 --weights distance"  
 )
 
 srun python /home/addaraujo2/isklearn/nyc-houses/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

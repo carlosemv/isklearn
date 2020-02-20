@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --time=0-10:40
+#SBATCH --job-name=vakiskl
+#SBATCH --cpus-per-task=1
+#SBATCH --output=validation-isklearn-boston-crimes%j.out
+#SBATCH --array=0-2
+
+CONFIGS=(
+"315  --dataset boston-crimes --task regression --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction FastICA --ext_components 0.505 --ica_algorithm deflation --ica_fun exp --selection SelectPercentile --sel_score_regression mutual_info_regression --sel_percentile 63 --scaling True --algorithm LinearRegression" 
+"318  --dataset boston-crimes --task regression --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction FastICA --ext_components 0.529 --ica_algorithm deflation --ica_fun exp --selection SelectPercentile --sel_score_regression mutual_info_regression --sel_percentile 58 --scaling True --algorithm LinearRegression" 
+"348  --dataset boston-crimes --task regression --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction FastICA --ext_components 0.4496 --ica_algorithm deflation --ica_fun exp --selection SelectPercentile --sel_score_regression mutual_info_regression --sel_percentile 58 --scaling True --algorithm LinearRegression" 
+)
+
+srun python /home/addaraujo2/isklearn/boston-crimes/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

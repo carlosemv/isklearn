@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 sys.path.append('..')
 
@@ -32,8 +33,8 @@ if __name__=="__main__":
 
     datapath = 'data/crime_data/'
 
-    X = pd.read_csv(os.path.join(datapath,'natal_X.csv'), index_col=[0,1])
-    y = pd.read_csv(os.path.join(datapath,'natal_y.csv'), index_col=[0,1])
+    X = pd.read_csv(os.path.join(datapath,'weekly-natal_X.csv'), index_col=[0,1])
+    y = pd.read_csv(os.path.join(datapath,'weekly-natal_y.csv'), index_col=[0,1])
     data = (X, y)
 
     parser = argparse.ArgumentParser()

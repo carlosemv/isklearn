@@ -54,4 +54,4 @@ if __name__=="__main__":
         result = np.mean(r2)
         r2s.append(result)
 
-    print(np.mean(result), time.time()-t0)
+    print(-1*np.mean(r2s), time.time()-t0)
