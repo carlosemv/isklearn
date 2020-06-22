@@ -1,0 +1,56 @@
+dataset			"--dataset "			c ("boston-crimes")
+task			"--task "				c ("regression")
+sparse			"--sparse "				c ("False")
+
+f_eng1			"--f_eng1 "				c ("Selection", "Extraction", "None")
+f_eng2			"--f_eng2 "				c ("Selection", "Extraction", "None")
+pre_scaling		"--pre_scaling "		c ("True", "False") | f_eng1 != "None" || f_eng2 != "None"
+
+extraction 		"--extraction "			c ("PCA", "FastICA", "DictionaryLearning") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && (sparse != "True")
+ext_components	"--ext_components "		r (0.01, 1.0) | (f_eng1 == "Extraction" || f_eng2 == "Extraction")
+whiten 			"--whiten "				c ("True", "False") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && (extraction == "PCA")
+svd_solver		"--svd_solver "			c ("auto", "full", "arpack", "randomized") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && extraction == "PCA"
+ica_algorithm	"--ica_algorithm "		c ("parallel", "deflation") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && extraction == "FastICA"
+ica_fun			"--ica_fun "			c ("logcosh", "exp", "cube") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && extraction == "FastICA"
+dl_fit_algorithm "--dl_fit_algorithm "	c ("lars", "cd") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && extraction == "DictionaryLearning"
+dl_transform_algorithm "--dl_transform_algorithm "	c ("lasso_lars", "lasso_cd", "lars", "omp", "threshold") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && extraction == "DictionaryLearning"
+
+selection 		"--selection "			c ("SelectPercentile", "SelectFromModel", "RFE") | f_eng1 == "Selection" || f_eng2 == "Selection"
+sel_model	"--sel_model "	c ("SVM", "RandomForest", "DecisionTree") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection %in% c("SelectFromModel", "RFE")
+sel_score_classification	"--sel_score_classification "	c ("f_classif", "mutual_info_classif") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile" && task == "classification"
+sel_score_regression		"--sel_score_regression "	c ("f_regression", "mutual_info_regression") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectPercentile" && task == "regression"
+sel_percentile "--sel_percentile "	i (1, 99) | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection %in% c("SelectPercentile", "RFE")
+sel_threshold	"--sel_threshold "	c ("mean", "median") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectFromModel"
+
+scaling 			"--scaling "			c ("True", "False")
+algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors", "DecisionTree", "AdaBoost", "LinearRegression")
+
+C					"--C "					r (-3, 5) | algorithm == "SVM"
+kernel				"--kernel "				c ("linear", "poly", "rbf", "sigmoid") | algorithm == "SVM"
+degree				"--degree "				i (1, 10) | algorithm == "SVM" && kernel == "poly"
+gamma 				"--gamma "				r (-5, 1) | algorithm == "SVM" && kernel != "linear"
+
+rf_estimators		"--rf_estimators "		i (2, 300) | algorithm == "RandomForest"
+criterion_classification			"--criterion_classification "			c ("gini", "entropy") | (algorithm == "DecisionTree" || algorithm == "RandomForest") && (task == "classification")
+criterion_regression			"--criterion_regression "			c ("mse", "mae") | (algorithm == "DecisionTree" || algorithm == "RandomForest") && (task == "regression")
+max_features		"--max_features "		r (0.01, 1.0) | algorithm == "DecisionTree" || algorithm == "RandomForest"
+max_depth 			"--max_depth "			c ("none", "value") | algorithm == "DecisionTree" || algorithm == "RandomForest"
+max_depth_value		"--max_depth_value "	i (2, 50) | algorithm == "DecisionTree" || algorithm == "RandomForest" && max_depth=="value"
+min_samples_leaf	"--min_samples_leaf "	r (0.01, 0.5) | algorithm == "DecisionTree" || algorithm == "RandomForest"
+
+solver				"--solver "				c ("lbfgs", "sgd", "adam") | algorithm == "MLP"
+alpha				"--alpha "				r (-5, 4) | algorithm == "MLP"
+mlp_learning_rate	"--mlp_learning_rate "	c ("constant", "invscaling", "adaptive") | algorithm == "MLP" && solver == "sgd"
+learning_rate_init	"--learning_rate_init "	r (-6, 0) | algorithm == "MLP" && solver %in% c("sgd", "adam")
+hidden_layers		"--hidden_layers "		i (1, 3) | algorithm == "MLP"
+neurons1			"--neurons1 "			i (3, 500) | algorithm == "MLP"
+neurons2			"--neurons2 "			i (3, 500) | algorithm == "MLP" && hidden_layers >= 2
+neurons3			"--neurons3 "			i (3, 500) | algorithm == "MLP" && hidden_layers >= 3
+activation			"--activation "			c ("identity", "logistic", "tanh", "relu") | algorithm == "MLP"
+
+n_neighbors			"--n_neighbors "		i (1, 100) | algorithm == "KNeighbors"
+weights				"--weights "			c ("uniform", "distance") | algorithm == "KNeighbors"
+
+ab_estimators		"--ab_estimators "		i (2, 500) | algorithm == "AdaBoost"
+ab_learning_rate	"--ab_learning_rate "	r (0.01, 1.0) | algorithm == "AdaBoost"
+ab_loss				"--ab_loss "			c ("linear", "square", "exponential") | algorithm == "AdaBoost" && task == "regression"

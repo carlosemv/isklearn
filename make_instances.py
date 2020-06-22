@@ -20,5 +20,3 @@ df = pd.DataFrame(instances)
 df.to_csv("instances.txt", header=False, index=False)
 
 instances = single_instances(10)
-df = pd.DataFrame(instances)
-df.to_csv("new-instances.txt", header=False, index=False)
