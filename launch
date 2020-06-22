@@ -1,3 +1,38 @@
-#!/bin/bash
-DATASET="$1"
-sbatch --output isklearn_${DATASET}_%j.out batch_script ${DATASET}
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+import sys
+
+assert sys.version_info >= (3, 6), "Python >= 3.6 required"
+
+exp_def = 2000
+cutoff_def = 15
+mf_def = 3
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--dataset', '-d', type=str, required=True,
+	help="dataset directory")
+parser.add_argument('--experiments', '-e', type=int, default=exp_def,
+	help="experiment cutoff time in minutes")
+parser.add_argument('--cutoff', '-c', type=int, default=cutoff_def,
+	help="experiment cutoff time in minutes")
+parser.add_argument('--metafolds', '-m', type=int,
+	choices=(1,3), default=mf_def,
+	help="number of metafolds provided for bottom-level sampling")
+
+args = parser.parse_args()
+ds = args.dataset
+exp = args.experiments
+cutoff = args.cutoff
+mf = args.metafolds
+
+print("launching {}: {} experiments, {}m cutoff, {} MFs".format(
+	ds, exp, cutoff, mf))
+
+log_name = "{}-{}f{}k{}m-irace".format(ds, mf, exp//1000, cutoff)
+
+cmd = ["sbatch", "--output", "isklearn-{}-%j.out".format(log_name), "batch_script",
+	ds] + list(map(str, [exp, cutoff, mf])) + [log_name]
+
+subprocess.run(cmd)

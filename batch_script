@@ -1,9 +1,45 @@
 #!/bin/bash
-#SBATCH --time=0-22:00
+#SBATCH --time=1-0:00
 #SBATCH --job-name=isklearn
 #SBATCH --cpus-per-task=32
 
 DATASET="$1"
-irace -s scenario.txt -p ${DATASET}/parameters.txt --parallel 32 --train-instances-file ${DATASET}/instances.txt --log-file "./output/${DATASET}_irace.Rdata"
-# sbatch --output isklearn_mnist_%j.out batch_script mnist
-# --recovery-file "./output/${DATASET}_irace.Rdata"
+
+EXPERIMENTS="$2"
+CUTOFF="$3"
+METAFOLDS="$4"
+LOG_NAME="$5"
+
+# choose instance file
+INSTANCES="${DATASET}/instances.txt"
+if [ $METAFOLDS = "1" ]; then
+   INSTANCES="${DATASET}/new-instances.txt"
+fi
+
+# define Rdata log file
+RDATA="./output/${DATASET}/${LOG_NAME}-${SLURM_JOB_ID}.Rdata"
+
+# prepare temporary config space file with constant params
+BASE_PARAMS="./${DATASET}/parameters.txt"
+TEMP_PARAMS="./${DATASET}/parameters-${SLURM_JOB_ID}.txt"
+
+echo -e "dataset\t\"--dataset \"\tc (\"${DATASET}\")" > ${TEMP_PARAMS}
+echo -e "job_id\t\"--job_id \"\tc (\"${SLURM_JOB_ID}\")" >> ${TEMP_PARAMS}
+echo -e "cutoff\t\"--cutoff \"\tc (\"${CUTOFF}\")" >> ${TEMP_PARAMS}
+echo -e "metafolds\t\"--metafolds \"\tc (\"${METAFOLDS}\")" >> ${TEMP_PARAMS}
+cat ${BASE_PARAMS} >> ${TEMP_PARAMS}
+
+# prepare logging dir
+OUT_PATH="./output/${DATASET}/${SLURM_JOB_ID}"
+mkdir -p ${OUT_PATH}
+
+# run irace
+irace -s scenario.txt --max-experiments ${EXPERIMENTS} -p ${TEMP_PARAMS} --parallel ${SLURM_CPUS_PER_TASK} --train-instances-file ${INSTANCES} --log-file ${RDATA}
+
+# remove remp config space file
+rm ${TEMP_PARAMS}
+
+# remove logging dir if empty
+if ! rmdir ${OUT_PATH}; then
+    echo "Error running target. Check output in ${OUT_PATH}"
+fi

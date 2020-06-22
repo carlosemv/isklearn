@@ -23,7 +23,6 @@ import os.path
 import re
 import subprocess
 import sys
-from random import randint
 
 assert sys.version_info >= (3, 6), "Python >= 3.6 required"
 
@@ -42,28 +41,31 @@ instance_id = sys.argv[2]
 seed = sys.argv[3]
 instance = sys.argv[4]
 dataset = sys.argv[6]
-cand_params = sys.argv[7:]
+job_id = sys.argv[8]
+cutoff = 60*int(sys.argv[10])
+metafolds = sys.argv[12]
+cand_params = sys.argv[13:]
 
 # Define the stdout and stderr files.
-output_prefix = "output/" + dataset
-os.makedirs(output_prefix, exist_ok=True)
-filename = output_prefix + "/c{}-{}-{}".format(candidate_id, instance_id, randint(0,1e6))
+output_prefix = "output/{}/{}".format(dataset, job_id)
+filename = output_prefix + "/c{}-{}".format(candidate_id, instance_id)
 out_file = filename + ".stdout"
 err_file = filename + ".stderr"
 
-exe = dataset + "/alt-target.py"
-cutoff = 15*60
+exe = dataset + "/target.py"
 
 if not os.path.isfile(exe):
     target_runner_error(str(exe) + " not found")
 if not os.access(exe, os.X_OK):
     target_runner_error(str(exe) + " is not executable")
 
-command = [exe] + ["--instance"] + [instance] + \
-    ["--config_id"] + [candidate_id] + cand_params
+command = [exe, "--instance", instance, "--config_id", candidate_id,
+    "--metafolds", metafolds] + cand_params
 
 outf = open(out_file, "w")
 errf = open(err_file, "w")
+
+print("cutoff = {}s".format(cutoff), file=outf, flush=True)
 try:
     completed = subprocess.run(command, stdout=outf, stderr=errf, timeout=cutoff)
 except subprocess.TimeoutExpired:

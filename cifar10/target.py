@@ -27,21 +27,38 @@ if __name__=="__main__":
     print(sys.argv)
     t0 = time.time()
 
-    X = np.load('data/cifar10/cifar10_ResNet56v1_train_data.npy')
+    X = np.load('data/cifar10/imagenet_ResNet56v1_13l_train_data.npy')
     y = np.load('data/cifar10/train_labels.npy')
     cifar_data = (X, y)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)
     parser.add_argument('--task', type=str)
+    parser.add_argument('--metafolds', type=int)
     args = parser.parse_known_args()[0]
 
-    fold = args.instance
-    task = args.task
+    if args.metafolds == 1:
+        print("using 1 MF")
+        fold = args.instance
+        task = args.task
 
-    isk = ISKLEARN(task)
-    X, y = ingestion(cifar_data, int(fold))
-    acc_scores = isk.validation(X, y)
-    result = np.mean(acc_scores)
+        isk = ISKLEARN(task)
+        X, y = ingestion(cifar_data, int(fold))
+        acc_scores = isk.validation(X, y)
+        result = np.mean(acc_scores)
 
-    print(-1*np.mean(result), time.time()-t0)
+        print(-1*np.mean(result), time.time()-t0)
+    else:
+        print("using {} metafolds".format(args.metafolds))
+        folds = [x for x in args.instance.split(',')]
+        task = args.task
+
+        accs = []
+        isk = ISKLEARN(task)
+        for fold in folds:
+            X, y = ingestion(cifar_data, int(fold))
+            acc_scores = isk.validation(X, y)
+            result = np.mean(acc_scores)
+            accs.append(result)
+
+        print(-1*np.mean(accs), time.time()-t0)
