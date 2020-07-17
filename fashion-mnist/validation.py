@@ -46,20 +46,21 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--algorithm', type=str)
     args = parser.parse_known_args()[0]
-    stochastic = ("DecisionTree", "RandomForest",  "MLP")
-    reps = 10 if args.algorithm in stochastic else 1
+    stochastic = ("DecisionTree", "RandomForest",  "MLP",
+        "AdaBoost", "LogisticRegression")
+    reps = 5 if args.algorithm in stochastic else 1
 
-    X_train = np.load('data/fashion-mnist/cifar10_ResNet56v1_train_data.npy')
-    _, y_train = load_fashion(data_path)
+    # X_train = np.load('data/fashion-mnist/imagenet_ResNet56v1_13l_train_data.npy')
+    X_train, y_train = load_fashion(data_path)
     X_train = pd.DataFrame(X_train)
     y_train = pd.Series(y_train).values.ravel()
 
-    X_test = np.load('data/fashion-mnist/cifar10_ResNet56v1_test_data.npy')
-    _, y_test = load_fashion(data_path, 't10k')
+    # X_test = np.load('data/fashion-mnist/imagenet_ResNet56v1_13l_test_data.npy')
+    X_test, y_test = load_fashion(data_path, 't10k')
     X_test = pd.DataFrame(X_test)
     y_test = pd.Series(y_test).values.ravel()
 
-    acc_sum = 0.
+    accs = []
     for i in range(reps):
         Xi_train, yi_train, Xi_test, yi_test = isk.preprocess(
             X_train, y_train, X_test, y_test)
@@ -68,7 +69,7 @@ if __name__=="__main__":
         model.fit(Xi_train, yi_train)
         yi_pred = model.predict(Xi_test)
         yi_pred = isk.impute(yi_pred)
-        acc_sum += accuracy_score(yi_test, yi_pred)
-    print(acc_sum/reps)
+        accs.append(accuracy_score(yi_test, yi_pred))
+    print(accs, np.mean(accs))
     print(" ".join(sys.argv[1:]))
     print()

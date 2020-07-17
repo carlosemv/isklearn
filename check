@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+import os
+import stat
+import re
+import argparse
+import subprocess
+import sys
+
+assert sys.version_info >= (3, 6), "Python >= 3.6 required"
+
+exp_def = 2000
+cutoff_def = 15
+mf_def = 3
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--dataset', '-d', type=str, required=True,
+	help="dataset directory")
+parser.add_argument('--experiments', '-e', type=int, default=exp_def,
+	help="experiment cutoff time in minutes")
+parser.add_argument('--cutoff', '-c', type=int, default=cutoff_def,
+	help="experiment cutoff time in minutes")
+parser.add_argument('--metafolds', '-m', type=int,
+	choices=(1,3), default=mf_def,
+	help="number of metafolds provided for bottom-level sampling")
+parser.add_argument('--repeat', '-r', type=int, default=1,
+	help="launch or validate n repetitions")
+parser.add_argument('--verify', '-v', type=int,
+	help="verify specific run (pass job id of run)")
+
+args = parser.parse_args()
+ds = args.dataset
+exp = args.experiments
+cutoff = args.cutoff
+mf = args.metafolds
+
+log_name = "{}-{}f{}k{}m-irace".format(ds, mf, exp//1000, cutoff)
+log_filenames = re.compile("isklearn-" + log_name + r"-(\d+)\.out")
+out_dir = "output/{}/".format(ds)
+logs = [(r.group(0), r.group(1)) for r in (log_filenames.search(f)
+	for f in os.listdir(out_dir)) if r is not None]
+logs = sorted(logs, key=lambda x:x[1])
+
+running_states = ("PENDING", "RUNNING",
+	"REQUEUED", "RESIZING", "SUSPENDED")
+
+check_cmd = ["sacct", "-nX", "--format=state%-20", "-j"]
+print(log_name, "")
+for log_file, job_id in logs:
+	status = subprocess.check_output(
+		check_cmd + [job_id]).rstrip().decode()
+	if status in running_states:
+		print(job_id, status)
+		continue
+
+	print(job_id, status, end=" ")
+	if not os.path.exists(out_dir+log_file):
+		print("with no output")
+		continue
+
+	with open(out_dir+log_file, 'r') as log:
+		config_re = r'^\d+\s+--dataset.+'
+		results = [re.findall(config_re, line) for line in log]
+		configs = [config for result in results for config in result]
+	print("successfully" if configs else "with errors")
+
+print()

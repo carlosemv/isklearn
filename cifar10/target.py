@@ -27,7 +27,7 @@ if __name__=="__main__":
     print(sys.argv)
     t0 = time.time()
 
-    X = np.load('data/cifar10/imagenet_ResNet56v1_13l_train_data.npy')
+    X = np.load('data/cifar10/train_data.npy')
     y = np.load('data/cifar10/train_labels.npy')
     cifar_data = (X, y)
 
