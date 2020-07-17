@@ -13,7 +13,7 @@ from sklearn.feature_selection import SelectPercentile, SelectFromModel, RFE, \
 from sklearn.model_selection import StratifiedKFold, TimeSeriesSplit
 
 from sklearn.svm import SVC, SVR
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.neural_network import MLPClassifier, MLPRegressor
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, \
     AdaBoostClassifier, AdaBoostRegressor
@@ -106,6 +106,7 @@ class Extractor(BaseEstimator, TransformerMixin):
         args = parser.parse_known_args()[0]
 
         self.task = task
+        self.fitted = False
 
         self.components = args.ext_components
         if conf == "PCA":
@@ -142,11 +143,16 @@ class Extractor(BaseEstimator, TransformerMixin):
             raise ValueError("Invalid Extractor.conf argument: "+str(self.conf))
 
         self.extraction_model = extraction
-        self.extraction_model.fit(X, y)
+        try:
+            self.extraction_model.fit(X, y)
+        except np.linalg.LinAlgError:
+            self.fitted = False
+        else:
+            self.fitted = True
         return self
 
     def transform(self, X, y=None):
-        return self.extraction_model.transform(X) 
+        return self.extraction_model.transform(X) if self.fitted else X
 
 class ISKLEARN:
     def __init__(self, task, sparse=False):
@@ -248,10 +254,11 @@ class ISKLEARN:
             criterion = args.criterion_classification if self.task == 'classification' else \
                 args.criterion_regression
             max_depth = args.max_depth_value if args.max_depth == 'value' else None
+            min_samples_leaf = args.min_samples_leaf if args.min_samples_leaf > 0 else 1
             obj = RandomForestClassifier if self.task == 'classification' else RandomForestRegressor
             model = obj(criterion=criterion, max_features=args.max_features,
                     n_estimators=args.rf_estimators, max_depth=max_depth, 
-                    min_samples_leaf=args.min_samples_leaf, n_jobs=-1)
+                    min_samples_leaf=min_samples_leaf)
         elif algorithm == "KNeighbors":
             parser.add_argument('--n_neighbors', type=int)
             parser.add_argument('--weights', type=str)
@@ -259,7 +266,7 @@ class ISKLEARN:
 
             obj = KNeighborsClassifier if self.task == 'classification' else KNeighborsRegressor
             model = obj(n_neighbors=args.n_neighbors, 
-                weights=args.weights, n_jobs=-1)
+                weights=args.weights)
         elif algorithm == "DecisionTree":
             parser.add_argument('--criterion_classification', type=str)
             parser.add_argument('--criterion_regression', type=str)
@@ -272,9 +279,10 @@ class ISKLEARN:
             criterion = args.criterion_classification if self.task == 'classification' else \
                 args.criterion_regression
             max_depth = args.max_depth_value if args.max_depth == 'value' else None
+            min_samples_leaf = args.min_samples_leaf if args.min_samples_leaf > 0 else 1
             obj = DecisionTreeClassifier if self.task == 'classification' else DecisionTreeRegressor
             model = obj(criterion=criterion, max_features=args.max_features, 
-                max_depth=max_depth, min_samples_leaf=args.min_samples_leaf)
+                max_depth=max_depth, min_samples_leaf=min_samples_leaf)
         elif algorithm == "AdaBoost":
             parser.add_argument('--ab_estimators', type=int)
             parser.add_argument('--ab_learning_rate', type=float)
@@ -289,7 +297,18 @@ class ISKLEARN:
                     learning_rate=args.ab_learning_rate, loss=args.ab_loss)
         elif algorithm == "LinearRegression":
             model = LinearRegression()
+        elif algorithm == "LogisticRegression":
+            parser.add_argument('--lr_C', type=float)
+            parser.add_argument('--lr_solver', type=str)
+            parser.add_argument('--multi_class', type=str)
+            parser.add_argument('--max_iter', type=int, default=100)
+            parser.add_argument('--lr_penalty', type=str, default='l2')
+            parser.add_argument('--lr_dual', type=_str_to_bool, default=False)
+            args = parser.parse_known_args()[0]
 
+            model = LogisticRegression(C=10**args.lr_C, solver=args.lr_solver,
+                multi_class=args.multi_class, max_iter=args.max_iter,
+                penalty=args.lr_penalty, dual=args.lr_dual)
 
         return model
 

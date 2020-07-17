@@ -1,4 +1,3 @@
-dataset			"--dataset "			c ("cifar10")
 task			"--task "				c ("classification")
 sparse			"--sparse "				c ("False")
 
@@ -23,9 +22,16 @@ sel_percentile "--sel_percentile "	i (1, 99) | (f_eng1 == "Selection" || f_eng2 
 sel_threshold	"--sel_threshold "	c ("mean", "median") | (f_eng1 == "Selection" || f_eng2 == "Selection") && selection == "SelectFromModel"
 
 scaling 			"--scaling "			c ("True", "False")
-algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors", "DecisionTree", "AdaBoost", "LinearRegression")
+algorithm			"--algorithm "			c ("SVM", "MLP", "RandomForest", "KNeighbors", "DecisionTree", "AdaBoost", "LinearRegression", "LogisticRegression")
 
-C					"--C "					r (-3, 5) | algorithm == "SVM"
+lr_C				"--lr_C "				r (-4, 5) | algorithm == "LogisticRegression"
+lr_solver			"--lr_solver "			c ("newton-cg", "lbfgs", "liblinear", "sag", "saga") | algorithm == "LogisticRegression"
+multi_class			"--multi_class "		c ("ovr", "multinomial") | algorithm == "LogisticRegression"
+max_iter			"--max_iter "			i (100, 1000) | algorithm == "LogisticRegression" && lr_solver %in% c("newton-cg", "lbfgs", "sag")
+lr_penalty			"--lr_penalty "			c ("l1", "l2") | algorithm == "LogisticRegression" && lr_solver %in% c("liblinear", "saga")
+lr_dual				"--lr_dual "			c ("True", "False") | algorithm == "LogisticRegression" && lr_solver == "liblinear" && lr_penalty == "l2"
+
+C					"--C "					r (-4, 5) | algorithm == "SVM"
 kernel				"--kernel "				c ("linear", "poly", "rbf", "sigmoid") | algorithm == "SVM"
 degree				"--degree "				i (1, 10) | algorithm == "SVM" && kernel == "poly"
 gamma 				"--gamma "				r (-5, 1) | algorithm == "SVM" && kernel != "linear"
