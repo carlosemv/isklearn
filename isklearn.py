@@ -332,8 +332,8 @@ class ISKLEARN:
             X_test = self.impute(X_test)
 
         f_eng1, f_eng2 = args.f_eng1, args.f_eng2
-         if (f_eng1 == f_eng2) and (f_eng1 != "none"):
-             err_details = "f_eng1 = {}, f_eng2 = {}".format(f_eng1, f_eng2)
+        if (f_eng1 == f_eng2) and (f_eng1 != "none"):
+            err_details = "f_eng1 = {}, f_eng2 = {}".format(f_eng1, f_eng2)
             raise ValueError("Invalid feature engineering parameters: " + err_details)
 
         for f_eng in (f_eng1, f_eng2):
