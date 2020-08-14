@@ -1,9 +1,9 @@
 task			"--task "				c ("classification")
 sparse			"--sparse "				c ("False")
 
-f_eng1			"--f_eng1 "				c ("Selection", "Extraction", "None")
-f_eng2			"--f_eng2 "				c ("Selection", "Extraction", "None")
-pre_scaling		"--pre_scaling "		c ("True", "False") | f_eng1 != "None" || f_eng2 != "None"
+f_eng1			"--f_eng1 "				c ("Selection", "Extraction", "none")
+f_eng2			"--f_eng2 "				c ("Selection", "Extraction", "none")
+pre_scaling		"--pre_scaling "		c ("True", "False") | f_eng1 != "none" || f_eng2 != "none"
 
 extraction 		"--extraction "			c ("PCA", "FastICA", "DictionaryLearning") | (f_eng1 == "Extraction" || f_eng2 == "Extraction") && (sparse != "True")
 ext_components	"--ext_components "		r (0.01, 1.0) | (f_eng1 == "Extraction" || f_eng2 == "Extraction")
