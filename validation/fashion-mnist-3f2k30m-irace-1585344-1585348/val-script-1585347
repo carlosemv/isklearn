@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-3
+#SBATCH --job-name=fashion-mnist-3f2k30m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f2k30m-irace-1585344-1585348/fashion-mnist-3f2k30m-irace-1585347-val-%A-%a
+
+CONFIGS=("326  --dataset fashion-mnist --job_id 1585347 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 80 --scaling False --algorithm MLP --solver lbfgs --alpha -0.6536 --hidden_layers 1 --neurons1 309 --activation logistic"
+"173  --dataset fashion-mnist --job_id 1585347 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 89 --scaling False --algorithm MLP --solver lbfgs --alpha -1.1471 --hidden_layers 1 --neurons1 216 --activation logistic"
+"311  --dataset fashion-mnist --job_id 1585347 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.5317 --whiten False --svd_solver auto --scaling False --algorithm SVM --C 0.9856 --kernel poly --degree 2 --gamma -0.568"
+"231  --dataset fashion-mnist --job_id 1585347 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.5909 --whiten False --svd_solver auto --scaling False --algorithm SVM --C 3.0726 --kernel poly --degree 2 --gamma -0.8339"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

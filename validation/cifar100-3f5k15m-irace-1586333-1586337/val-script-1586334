@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-3f5k15m-irace-val
+#SBATCH --output=validation/cifar100-3f5k15m-irace-1586333-1586337/cifar100-3f5k15m-irace-1586334-val-%A-%a
+
+CONFIGS=("762  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.011 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -1.2184 --lr_solver lbfgs --multi_class multinomial --max_iter 192"
+"638  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.02 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -1.5539 --lr_solver lbfgs --multi_class multinomial --max_iter 483"
+"727  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0104 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -0.5 --lr_solver lbfgs --multi_class multinomial --max_iter 227"
+"725  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0115 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -0.9923 --lr_solver lbfgs --multi_class multinomial --max_iter 461"
+"465  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0212 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -1.2982 --lr_solver lbfgs --multi_class multinomial --max_iter 108"
+"549  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0206 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -3.1978 --lr_solver lbfgs --multi_class multinomial --max_iter 559"
+"923  --dataset cifar100 --job_id 1586334 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0173 --whiten True --svd_solver randomized --scaling False --algorithm LogisticRegression --lr_C -1.577 --lr_solver lbfgs --multi_class multinomial --max_iter 296"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

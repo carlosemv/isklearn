@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-3f2k30m-irace-val
+#SBATCH --output=validation/svhn-3f2k30m-irace-1585223-1585227/svhn-3f2k30m-irace-1585224-val-%A-%a
+
+CONFIGS=("336  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0465 --whiten True --svd_solver auto --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 21 --scaling False --algorithm MLP --solver lbfgs --alpha -1.3744 --hidden_layers 3 --neurons1 111 --neurons2 159 --neurons3 163 --activation relu"
+"247  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.1684 --whiten True --svd_solver auto --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 18 --scaling False --algorithm MLP --solver lbfgs --alpha -0.0779 --hidden_layers 3 --neurons1 205 --neurons2 147 --neurons3 65 --activation relu"
+"324  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.2419 --whiten True --svd_solver auto --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 8 --scaling False --algorithm MLP --solver lbfgs --alpha -3.7154 --hidden_layers 3 --neurons1 107 --neurons2 149 --neurons3 277 --activation relu"
+"339  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.1391 --whiten True --svd_solver auto --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 30 --scaling False --algorithm MLP --solver lbfgs --alpha -0.866 --hidden_layers 2 --neurons1 57 --neurons2 105 --activation relu"
+"269  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.3193 --max_depth none --max_depth_value 17 --min_samples_leaf 0.0128"
+"260  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.2657 --max_depth none --max_depth_value 9 --min_samples_leaf 0.0173"
+"275  --dataset svhn --job_id 1585224 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.824 --max_depth none --max_depth_value 11 --min_samples_leaf 0.0219"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

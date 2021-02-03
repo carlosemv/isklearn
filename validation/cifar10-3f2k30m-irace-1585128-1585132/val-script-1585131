@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-4
+#SBATCH --job-name=cifar10-3f2k30m-irace-val
+#SBATCH --output=validation/cifar10-3f2k30m-irace-1585128-1585132/cifar10-3f2k30m-irace-1585131-val-%A-%a
+
+CONFIGS=("308  --dataset cifar10 --job_id 1585131 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling True --extraction PCA --ext_components 0.0316 --whiten True --svd_solver randomized --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -3.1189 --hidden_layers 2 --neurons1 222 --neurons2 367 --activation identity"
+"276  --dataset cifar10 --job_id 1585131 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling True --extraction PCA --ext_components 0.0522 --whiten True --svd_solver randomized --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha 1.5654 --hidden_layers 1 --neurons1 230 --activation identity"
+"354  --dataset cifar10 --job_id 1585131 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling True --extraction PCA --ext_components 0.0279 --whiten True --svd_solver randomized --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha 1.0866 --hidden_layers 2 --neurons1 228 --neurons2 346 --activation identity"
+"365  --dataset cifar10 --job_id 1585131 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling True --extraction PCA --ext_components 0.0137 --whiten True --svd_solver randomized --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -0.4614 --hidden_layers 1 --neurons1 163 --activation identity"
+"363  --dataset cifar10 --job_id 1585131 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling True --extraction PCA --ext_components 0.0284 --whiten True --svd_solver randomized --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha 0.0737 --hidden_layers 1 --neurons1 193 --activation identity"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

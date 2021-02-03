@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f2k20m-irace-val
+#SBATCH --output=validation/cifar10-1f2k20m-irace-1585143-1585147/cifar10-1f2k20m-irace-1585145-val-%A-%a
+
+CONFIGS=("339  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.3873 --lr_solver newton-cg --multi_class multinomial --max_iter 295"
+"357  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.0992 --lr_solver newton-cg --multi_class multinomial --max_iter 173"
+"205  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.4345 --lr_solver newton-cg --multi_class multinomial --max_iter 240"
+"287  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -2.9047 --lr_solver newton-cg --multi_class multinomial --max_iter 159"
+"252  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.2855 --lr_solver newton-cg --multi_class multinomial --max_iter 522"
+"338  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.1898 --lr_solver newton-cg --multi_class multinomial --max_iter 798"
+"346  --dataset cifar10 --job_id 1585145 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.5142 --lr_solver newton-cg --multi_class multinomial --max_iter 149"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

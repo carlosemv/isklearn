@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-3f2k30m-irace-val
+#SBATCH --output=validation/svhn-3f2k30m-irace-1585223-1585227/svhn-3f2k30m-irace-1585226-val-%A-%a
+
+CONFIGS=("209  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.067 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -0.5157 --hidden_layers 1 --neurons1 385 --activation relu"
+"345  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0321 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -2.6609 --hidden_layers 1 --neurons1 410 --activation relu"
+"316  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.021 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -2.3738 --hidden_layers 1 --neurons1 459 --activation relu"
+"338  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0461 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -1.22 --hidden_layers 1 --neurons1 113 --activation relu"
+"263  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0777 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -2.7241 --hidden_layers 1 --neurons1 318 --activation relu"
+"362  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0468 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -0.0414 --hidden_layers 1 --neurons1 496 --activation relu"
+"359  --dataset svhn --job_id 1585226 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0435 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha -2.2456 --hidden_layers 2 --neurons1 399 --neurons2 85 --activation relu"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

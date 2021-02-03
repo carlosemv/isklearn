@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1547604-1547608/svhn-1f2k20m-irace-1547604-val-%A-%a
+
+CONFIGS=("345  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 27 --scaling False --algorithm KNeighbors --n_neighbors 12 --weights distance"
+"258  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 20 --scaling False --algorithm KNeighbors --n_neighbors 12 --weights distance"
+"166  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 24 --scaling False --algorithm KNeighbors --n_neighbors 12 --weights distance"
+"337  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 23 --scaling False --algorithm KNeighbors --n_neighbors 11 --weights distance"
+"216  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 25 --scaling False --algorithm KNeighbors --n_neighbors 10 --weights distance"
+"219  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 25 --scaling False --algorithm KNeighbors --n_neighbors 11 --weights distance"
+"341  --dataset svhn --job_id 1547604 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 24 --scaling False --algorithm KNeighbors --n_neighbors 14 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

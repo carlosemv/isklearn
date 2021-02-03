@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-5
+#SBATCH --job-name=svhn-3f2k15m-irace-val
+#SBATCH --output=validation/svhn-3f2k15m-irace-1585213-1585217/svhn-3f2k15m-irace-1585213-val-%A-%a
+
+CONFIGS=("273  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 7 --scaling True --algorithm SVM --C 0.4146 --kernel poly --degree 2 --gamma 0.3563"
+"296  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm KNeighbors --n_neighbors 7 --weights uniform"
+"244  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 11 --scaling True --algorithm KNeighbors --n_neighbors 6 --weights uniform"
+"325  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 28 --scaling True --algorithm SVM --C 4.0543 --kernel poly --degree 2 --gamma -2.6972"
+"328  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 25 --scaling True --algorithm SVM --C -2.5283 --kernel poly --degree 2 --gamma 0.3248"
+"365  --dataset svhn --job_id 1585213 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 34 --scaling True --algorithm SVM --C 1.4199 --kernel poly --degree 2 --gamma -1.5647"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

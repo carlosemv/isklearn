@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-3f5k15m-irace-val
+#SBATCH --output=validation/cifar10-3f5k15m-irace-1585123-1585126/cifar10-3f5k15m-irace-1585123-val-%A-%a
+
+CONFIGS=("834  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0186 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 18 --weights uniform"
+"880  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.02 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 14 --weights uniform"
+"794  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0163 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 63 --weights uniform"
+"746  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0164 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 71 --weights uniform"
+"837  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0207 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 72 --weights uniform"
+"812  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0393 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 31 --weights uniform"
+"855  --dataset cifar10 --job_id 1585123 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0286 --whiten False --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 70 --weights uniform"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

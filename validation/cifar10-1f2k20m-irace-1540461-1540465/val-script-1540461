@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f2k20m-irace-val
+#SBATCH --output=validation/cifar10-1f2k20m-irace-1540461-1540465/cifar10-1f2k20m-irace-1540461-val-%A-%a
+
+CONFIGS=("303  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 91 --scaling False --algorithm LogisticRegression --lr_C -2.9707 --lr_solver lbfgs --multi_class multinomial --max_iter 165"
+"345  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 96 --scaling False --algorithm LogisticRegression --lr_C -3.377 --lr_solver lbfgs --multi_class multinomial --max_iter 487"
+"353  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 96 --scaling False --algorithm LogisticRegression --lr_C -3.0257 --lr_solver lbfgs --multi_class multinomial --max_iter 366"
+"316  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 78 --scaling False --algorithm LogisticRegression --lr_C -3.1463 --lr_solver lbfgs --multi_class multinomial --max_iter 311"
+"315  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 85 --scaling False --algorithm LogisticRegression --lr_C -2.8745 --lr_solver lbfgs --multi_class multinomial --max_iter 353"
+"343  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 93 --scaling False --algorithm LogisticRegression --lr_C -2.7228 --lr_solver lbfgs --multi_class multinomial --max_iter 336"
+"366  --dataset cifar10 --job_id 1540461 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 79 --scaling False --algorithm LogisticRegression --lr_C -3.3433 --lr_solver lbfgs --multi_class multinomial --max_iter 263"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

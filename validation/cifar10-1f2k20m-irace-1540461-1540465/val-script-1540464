@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-3
+#SBATCH --job-name=cifar10-1f2k20m-irace-val
+#SBATCH --output=validation/cifar10-1f2k20m-irace-1540461-1540465/cifar10-1f2k20m-irace-1540464-val-%A-%a
+
+CONFIGS=("20   --dataset cifar10 --job_id 1540464 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 952 --criterion_classification gini --max_features 0.1621 --max_depth value --max_depth_value 45 --min_samples_leaf 0.011"
+"306  --dataset cifar10 --job_id 1540464 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 818 --criterion_classification gini --max_features 0.2831 --max_depth value --max_depth_value 39 --min_samples_leaf 0.016"
+"347  --dataset cifar10 --job_id 1540464 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 512 --criterion_classification gini --max_features 0.2265 --max_depth value --max_depth_value 45 --min_samples_leaf 0.0148"
+"337  --dataset cifar10 --job_id 1540464 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 521 --criterion_classification gini --max_features 0.2352 --max_depth none --min_samples_leaf 0.0175"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-3
+#SBATCH --job-name=cifar100-3f5k15m-irace-val
+#SBATCH --output=validation/cifar100-3f5k15m-irace-1586333-1586337/cifar100-3f5k15m-irace-1586335-val-%A-%a
+
+CONFIGS=("855  --dataset cifar100 --job_id 1586335 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0121 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 38 --scaling False --algorithm KNeighbors --n_neighbors 54 --weights distance"
+"927  --dataset cifar100 --job_id 1586335 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0285 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 50 --scaling False --algorithm KNeighbors --n_neighbors 44 --weights distance"
+"729  --dataset cifar100 --job_id 1586335 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0173 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 50 --scaling False --algorithm KNeighbors --n_neighbors 72 --weights distance"
+"859  --dataset cifar100 --job_id 1586335 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0311 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 41 --scaling False --algorithm KNeighbors --n_neighbors 52 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

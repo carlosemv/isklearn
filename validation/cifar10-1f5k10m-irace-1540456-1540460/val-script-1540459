@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f5k10m-irace-val
+#SBATCH --output=validation/cifar10-1f5k10m-irace-1540456-1540460/cifar10-1f5k10m-irace-1540459-val-%A-%a
+
+CONFIGS=("860  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.2648 --lr_solver lbfgs --multi_class multinomial --max_iter 232"
+"695  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.2763 --lr_solver lbfgs --multi_class ovr --max_iter 655"
+"649  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.3263 --lr_solver lbfgs --multi_class multinomial --max_iter 254"
+"792  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.4731 --lr_solver lbfgs --multi_class multinomial --max_iter 697"
+"879  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.0694 --lr_solver lbfgs --multi_class multinomial --max_iter 356"
+"934  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.4034 --lr_solver lbfgs --multi_class multinomial --max_iter 138"
+"916  --dataset cifar10 --job_id 1540459 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm LogisticRegression --lr_C -3.248 --lr_solver lbfgs --multi_class multinomial --max_iter 422"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

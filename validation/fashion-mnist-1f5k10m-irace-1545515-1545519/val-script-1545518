@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-4
+#SBATCH --job-name=fashion-mnist-1f5k10m-irace-val
+#SBATCH --output=validation/fashion-mnist-1f5k10m-irace-1545515-1545519/fashion-mnist-1f5k10m-irace-1545518-val-%A-%a
+
+CONFIGS=("408  --dataset fashion-mnist --job_id 1545518 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 0.7816 --kernel rbf --gamma -3.0469"
+"661  --dataset fashion-mnist --job_id 1545518 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 0.6611 --kernel rbf --gamma -2.869"
+"853  --dataset fashion-mnist --job_id 1545518 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 1.0704 --kernel rbf --gamma -3.3317"
+"918  --dataset fashion-mnist --job_id 1545518 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 0.6199 --kernel rbf --gamma -3.1069"
+"949  --dataset fashion-mnist --job_id 1545518 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm SVM --C 0.6864 --kernel rbf --gamma -3.0216"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

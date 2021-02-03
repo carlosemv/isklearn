@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-5
+#SBATCH --job-name=cifar10-3f2k15m-irace-val
+#SBATCH --output=validation/cifar10-3f2k15m-irace-1540436-1540440/cifar10-3f2k15m-irace-1540439-val-%A-%a
+
+CONFIGS=("350  --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 95 --scaling True --algorithm LogisticRegression --lr_C -3.4903 --lr_solver newton-cg --multi_class multinomial --max_iter 505"
+"347  --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 83 --scaling True --algorithm LogisticRegression --lr_C -3.2772 --lr_solver newton-cg --multi_class multinomial --max_iter 386"
+"174  --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 82 --scaling True --algorithm LogisticRegression --lr_C -3.572 --lr_solver newton-cg --multi_class multinomial --max_iter 313"
+"59   --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 73 --scaling True --algorithm LogisticRegression --lr_C -2.0827 --lr_solver newton-cg --multi_class multinomial --max_iter 584"
+"160  --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 81 --scaling True --algorithm LogisticRegression --lr_C -1.9875 --lr_solver newton-cg --multi_class ovr --max_iter 433"
+"2    --dataset cifar10 --job_id 1540439 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm KNeighbors --n_neighbors 87 --weights uniform"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

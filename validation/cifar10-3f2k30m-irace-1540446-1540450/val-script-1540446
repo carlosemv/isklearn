@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-5
+#SBATCH --job-name=cifar10-3f2k30m-irace-val
+#SBATCH --output=validation/cifar10-3f2k30m-irace-1540446-1540450/cifar10-3f2k30m-irace-1540446-val-%A-%a
+
+CONFIGS=("215  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 61 --scaling False --algorithm RandomForest --rf_estimators 548 --criterion_classification gini --max_features 0.2251 --max_depth value --max_depth_value 47 --min_samples_leaf 0.0291"
+"230  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 50 --scaling True --algorithm RandomForest --rf_estimators 299 --criterion_classification gini --max_features 0.0303 --max_depth value --max_depth_value 41 --min_samples_leaf 0.0315"
+"301  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 84 --scaling False --algorithm RandomForest --rf_estimators 353 --criterion_classification gini --max_features 0.2295 --max_depth value --max_depth_value 45 --min_samples_leaf 0.0126"
+"292  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 68 --scaling False --algorithm RandomForest --rf_estimators 294 --criterion_classification gini --max_features 0.5612 --max_depth value --max_depth_value 25 --min_samples_leaf 0.0178"
+"316  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 51 --scaling False --algorithm RandomForest --rf_estimators 176 --criterion_classification gini --max_features 0.3837 --max_depth value --max_depth_value 5 --min_samples_leaf 0.0143"
+"334  --dataset cifar10 --job_id 1540446 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 65 --scaling False --algorithm RandomForest --rf_estimators 204 --criterion_classification gini --max_features 0.5439 --max_depth value --max_depth_value 26 --min_samples_leaf 0.0455"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-3f2k15m-irace-val
+#SBATCH --output=validation/svhn-3f2k15m-irace-1585213-1585217/svhn-3f2k15m-irace-1585216-val-%A-%a
+
+CONFIGS=("201  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.0472 --max_depth value --max_depth_value 37 --min_samples_leaf 0.0117"
+"307  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.2596 --max_depth value --max_depth_value 31 --min_samples_leaf 0.0134"
+"321  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.4125 --max_depth value --max_depth_value 44 --min_samples_leaf 0.0148"
+"264  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.5683 --max_depth value --max_depth_value 36 --min_samples_leaf 0.0151"
+"256  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.2549 --max_depth value --max_depth_value 38 --min_samples_leaf 0.0163"
+"262  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.1477 --max_depth value --max_depth_value 35 --min_samples_leaf 0.0146"
+"346  --dataset svhn --job_id 1585216 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification entropy --max_features 0.3573 --max_depth value --max_depth_value 50 --min_samples_leaf 0.0132"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

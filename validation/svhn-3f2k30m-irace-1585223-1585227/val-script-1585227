@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-1
+#SBATCH --job-name=svhn-3f2k30m-irace-val
+#SBATCH --output=validation/svhn-3f2k30m-irace-1585223-1585227/svhn-3f2k30m-irace-1585227-val-%A-%a
+
+CONFIGS=("329  --dataset svhn --job_id 1585227 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 25 --weights distance"
+"365  --dataset svhn --job_id 1585227 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 14 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

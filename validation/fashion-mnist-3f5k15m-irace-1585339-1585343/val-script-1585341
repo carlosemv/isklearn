@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=fashion-mnist-3f5k15m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f5k15m-irace-1585339-1585343/fashion-mnist-3f5k15m-irace-1585341-val-%A-%a
+
+CONFIGS=("597  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.1668 --kernel linear"
+"903  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.2129 --kernel linear"
+"549  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.2538 --kernel linear"
+"842  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.3421 --kernel linear"
+"928  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.2971 --kernel linear"
+"555  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.3366 --kernel linear"
+"754  --dataset fashion-mnist --job_id 1585341 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.3447 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

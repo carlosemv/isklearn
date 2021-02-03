@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-1f5k10m-irace-val
+#SBATCH --output=validation/cifar100-1f5k10m-irace-1586348-1586352/cifar100-1f5k10m-irace-1586349-val-%A-%a
+
+CONFIGS=("905  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 94 --scaling True --algorithm SVM --C -3.0406 --kernel linear"
+"585  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 83 --scaling True --algorithm SVM --C -3.04 --kernel linear"
+"892  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 81 --scaling True --algorithm SVM --C -2.8501 --kernel linear"
+"792  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 79 --scaling True --algorithm SVM --C -2.9672 --kernel linear"
+"796  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 94 --scaling True --algorithm SVM --C -2.9415 --kernel linear"
+"694  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 76 --scaling True --algorithm SVM --C -2.9316 --kernel linear"
+"768  --dataset cifar100 --job_id 1586349 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 81 --scaling False --algorithm SVM --C -3.0548 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

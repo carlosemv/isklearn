@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-3
+#SBATCH --job-name=cifar10-3f2k30m-irace-val
+#SBATCH --output=validation/cifar10-3f2k30m-irace-1585128-1585132/cifar10-3f2k30m-irace-1585128-val-%A-%a
+
+CONFIGS=("319  --dataset cifar10 --job_id 1585128 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0482 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 22 --scaling True --algorithm LogisticRegression --lr_C -2.2198 --lr_solver sag --multi_class multinomial --max_iter 900"
+"211  --dataset cifar10 --job_id 1585128 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0292 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 23 --scaling True --algorithm LogisticRegression --lr_C 2.5884 --lr_solver sag --multi_class multinomial --max_iter 259"
+"295  --dataset cifar10 --job_id 1585128 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0467 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 14 --scaling True --algorithm LogisticRegression --lr_C -1.479 --lr_solver sag --multi_class multinomial --max_iter 538"
+"350  --dataset cifar10 --job_id 1585128 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 Selection --pre_scaling False --extraction PCA --ext_components 0.0119 --whiten False --svd_solver randomized --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 43 --scaling True --algorithm LogisticRegression --lr_C 1.8426 --lr_solver sag --multi_class multinomial --max_iter 233"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-3f2k30m-irace-val
+#SBATCH --output=validation/cifar10-3f2k30m-irace-1540446-1540450/cifar10-3f2k30m-irace-1540449-val-%A-%a
+
+CONFIGS=("196  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0306 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -4.1331 --mlp_learning_rate invscaling --learning_rate_init -0.3632 --hidden_layers 1 --neurons1 81 --activation identity"
+"240  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0373 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -4.1083 --mlp_learning_rate invscaling --learning_rate_init -0.1783 --hidden_layers 2 --neurons1 203 --neurons2 66 --activation identity"
+"226  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0468 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -1.2474 --mlp_learning_rate invscaling --learning_rate_init -0.9939 --hidden_layers 1 --neurons1 365 --activation identity"
+"299  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.015 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -4.5929 --mlp_learning_rate invscaling --learning_rate_init -0.0418 --hidden_layers 2 --neurons1 37 --neurons2 42 --activation identity"
+"269  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0142 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -4.4174 --mlp_learning_rate invscaling --learning_rate_init -0.2229 --hidden_layers 1 --neurons1 6 --activation identity"
+"255  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0185 --whiten True --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -2.5538 --mlp_learning_rate invscaling --learning_rate_init -0.7795 --hidden_layers 1 --neurons1 141 --activation identity"
+"340  --dataset cifar10 --job_id 1540449 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0146 --whiten False --svd_solver randomized --scaling True --algorithm MLP --solver sgd --alpha -3.4212 --mlp_learning_rate invscaling --learning_rate_init -1.0017 --hidden_layers 1 --neurons1 181 --activation identity"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

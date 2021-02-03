@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-3f2k15m-irace-val
+#SBATCH --output=validation/cifar100-3f2k15m-irace-1554114-1554118/cifar100-3f2k15m-irace-1554116-val-%A-%a
+
+CONFIGS=("186  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.1167 --max_depth none --max_depth_value 30 --min_samples_leaf 0.0116"
+"138  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.0736 --max_depth none --max_depth_value 18 --min_samples_leaf 0.0142"
+"199  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.451 --max_depth none --max_depth_value 25 --min_samples_leaf 0.0146"
+"225  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.0783 --max_depth none --max_depth_value 22 --min_samples_leaf 0.0188"
+"160  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.0923 --max_depth none --max_depth_value 8 --min_samples_leaf 0.0198"
+"128  --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.2245 --max_depth none --max_depth_value 43 --min_samples_leaf 0.0288"
+"62   --dataset cifar100 --job_id 1554116 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm DecisionTree --criterion_classification gini --max_features 0.1589 --max_depth none --max_depth_value 26 --min_samples_leaf 0.0668"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

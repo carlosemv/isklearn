@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-3f5k15m-irace-val
+#SBATCH --output=validation/cifar10-3f5k15m-irace-1540441-1540445/cifar10-3f5k15m-irace-1540443-val-%A-%a
+
+CONFIGS=("608  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 448 --criterion_classification gini --max_features 0.1558 --max_depth value --max_depth_value 9 --min_samples_leaf 0.0333"
+"821  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 192 --criterion_classification gini --max_features 0.0398 --max_depth value --max_depth_value 19 --min_samples_leaf 0.0357"
+"851  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 202 --criterion_classification gini --max_features 0.093 --max_depth value --max_depth_value 18 --min_samples_leaf 0.0385"
+"780  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 52 --criterion_classification gini --max_features 0.0348 --max_depth value --max_depth_value 6 --min_samples_leaf 0.0451"
+"696  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 246 --criterion_classification gini --max_features 0.08 --max_depth value --max_depth_value 18 --min_samples_leaf 0.0568"
+"912  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 127 --criterion_classification gini --max_features 0.3072 --max_depth value --max_depth_value 23 --min_samples_leaf 0.0112"
+"900  --dataset cifar10 --job_id 1540443 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm RandomForest --rf_estimators 344 --criterion_classification gini --max_features 0.0294 --max_depth value --max_depth_value 15 --min_samples_leaf 0.0195"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

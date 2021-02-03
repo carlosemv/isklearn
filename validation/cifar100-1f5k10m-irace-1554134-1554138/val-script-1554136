@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-5
+#SBATCH --job-name=cifar100-1f5k10m-irace-val
+#SBATCH --output=validation/cifar100-1f5k10m-irace-1554134-1554138/cifar100-1f5k10m-irace-1554136-val-%A-%a
+
+CONFIGS=("906  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 47 --scaling False --algorithm LogisticRegression --lr_C -2.2116 --lr_solver newton-cg --multi_class multinomial --max_iter 525"
+"907  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 80 --scaling False --algorithm LogisticRegression --lr_C -2.1208 --lr_solver newton-cg --multi_class multinomial --max_iter 113"
+"618  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 84 --scaling False --algorithm LogisticRegression --lr_C -3.2653 --lr_solver newton-cg --multi_class multinomial --max_iter 234"
+"654  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0127 --whiten True --svd_solver arpack --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 55 --scaling False --algorithm SVM --C -1.4298 --kernel linear"
+"937  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 89 --scaling False --algorithm LogisticRegression --lr_C -2.4833 --lr_solver newton-cg --multi_class multinomial --max_iter 112"
+"933  --dataset cifar100 --job_id 1554136 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 95 --scaling False --algorithm LogisticRegression --lr_C -2.4228 --lr_solver newton-cg --multi_class multinomial --max_iter 260"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

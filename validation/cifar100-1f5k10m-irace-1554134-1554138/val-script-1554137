@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-0
+#SBATCH --job-name=cifar100-1f5k10m-irace-val
+#SBATCH --output=validation/cifar100-1f5k10m-irace-1554134-1554138/cifar100-1f5k10m-irace-1554137-val-%A-%a
+
+CONFIGS=("903  --dataset cifar100 --job_id 1554137 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 79 --scaling True --algorithm SVM --C 1.1808 --kernel rbf --gamma -3.7395"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

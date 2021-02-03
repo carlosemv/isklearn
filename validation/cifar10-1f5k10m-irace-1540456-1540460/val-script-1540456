@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f5k10m-irace-val
+#SBATCH --output=validation/cifar10-1f5k10m-irace-1540456-1540460/cifar10-1f5k10m-irace-1540456-val-%A-%a
+
+CONFIGS=("520  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0259 --whiten False --svd_solver randomized --scaling True --algorithm SVM --C 0.8156 --kernel rbf --gamma -3.0057"
+"616  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0323 --whiten False --svd_solver randomized --scaling True --algorithm SVM --C 4.3377 --kernel rbf --gamma -2.3921"
+"789  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.0247 --whiten False --svd_solver full --scaling True --algorithm LogisticRegression --lr_C -3.6514 --lr_solver saga --multi_class multinomial --lr_penalty l2"
+"395  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.0307 --whiten False --svd_solver full --scaling True --algorithm LogisticRegression --lr_C -1.8559 --lr_solver saga --multi_class multinomial --lr_penalty l2"
+"240  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.03 --whiten False --svd_solver full --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -3.5114 --lr_solver sag --multi_class ovr --max_iter 216"
+"224  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0346 --whiten False --svd_solver arpack --scaling True --algorithm SVM --C 3.139 --kernel rbf --gamma -2.8977"
+"264  --dataset cifar10 --job_id 1540456 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0268 --whiten False --svd_solver randomized --scaling True --algorithm SVM --C 3.6099 --kernel rbf --gamma -4.2702"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

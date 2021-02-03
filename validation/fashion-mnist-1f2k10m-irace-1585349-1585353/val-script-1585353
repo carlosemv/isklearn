@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=fashion-mnist-1f2k10m-irace-val
+#SBATCH --output=validation/fashion-mnist-1f2k10m-irace-1585349-1585353/fashion-mnist-1f2k10m-irace-1585353-val-%A-%a
+
+CONFIGS=("355  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.6586 --lr_solver lbfgs --multi_class ovr --max_iter 860"
+"288  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.6475 --lr_solver lbfgs --multi_class ovr --max_iter 930"
+"185  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.5493 --lr_solver lbfgs --multi_class ovr --max_iter 612"
+"347  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.7841 --lr_solver lbfgs --multi_class ovr --max_iter 821"
+"232  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.5652 --lr_solver lbfgs --multi_class ovr --max_iter 671"
+"275  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.703 --lr_solver lbfgs --multi_class ovr --max_iter 568"
+"264  --dataset fashion-mnist --job_id 1585353 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.5569 --lr_solver lbfgs --multi_class ovr --max_iter 668"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

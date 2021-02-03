@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1585238-1585242/svhn-1f2k20m-irace-1585239-val-%A-%a
+
+CONFIGS=("260  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0205 --whiten False --svd_solver arpack --scaling True --algorithm KNeighbors --n_neighbors 23 --weights uniform"
+"213  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0347 --whiten False --svd_solver arpack --scaling True --algorithm KNeighbors --n_neighbors 16 --weights uniform"
+"257  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0188 --whiten False --svd_solver full --scaling False --algorithm KNeighbors --n_neighbors 27 --weights distance"
+"163  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0121 --whiten False --svd_solver full --scaling False --algorithm KNeighbors --n_neighbors 34 --weights distance"
+"291  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0375 --whiten False --svd_solver full --scaling False --algorithm KNeighbors --n_neighbors 28 --weights distance"
+"279  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0501 --whiten False --svd_solver full --scaling False --algorithm KNeighbors --n_neighbors 6 --weights distance"
+"237  --dataset svhn --job_id 1585239 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.138 --whiten False --svd_solver full --scaling False --algorithm KNeighbors --n_neighbors 23 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

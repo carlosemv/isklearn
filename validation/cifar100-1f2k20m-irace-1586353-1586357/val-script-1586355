@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-1f2k20m-irace-val
+#SBATCH --output=validation/cifar100-1f2k20m-irace-1586353-1586357/cifar100-1f2k20m-irace-1586355-val-%A-%a
+
+CONFIGS=("286  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 2.5515 --kernel rbf --gamma -3.4602"
+"350  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 0.3747 --kernel rbf --gamma -3.3504"
+"334  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 0.8589 --kernel rbf --gamma -3.363"
+"250  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 2.4452 --kernel rbf --gamma -3.4885"
+"213  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 1.2613 --kernel rbf --gamma -3.3529"
+"341  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 0.6892 --kernel rbf --gamma -3.8987"
+"214  --dataset cifar100 --job_id 1586355 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model SVM --sel_threshold median --scaling True --algorithm SVM --C 4.7801 --kernel rbf --gamma -3.1432"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

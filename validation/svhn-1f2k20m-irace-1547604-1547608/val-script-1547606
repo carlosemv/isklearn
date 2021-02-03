@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-2
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1547604-1547608/svhn-1f2k20m-irace-1547606-val-%A-%a
+
+CONFIGS=("339  --dataset svhn --job_id 1547606 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification mutual_info_classif --sel_percentile 51 --scaling True --algorithm SVM --C 2.3293 --kernel poly --degree 2 --gamma 0.4782"
+"338  --dataset svhn --job_id 1547606 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification mutual_info_classif --sel_percentile 58 --scaling True --algorithm SVM --C 2.0951 --kernel poly --degree 2 --gamma -2.1904"
+"354  --dataset svhn --job_id 1547606 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification mutual_info_classif --sel_percentile 37 --scaling True --algorithm SVM --C 1.8415 --kernel poly --degree 2 --gamma -1.8828"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

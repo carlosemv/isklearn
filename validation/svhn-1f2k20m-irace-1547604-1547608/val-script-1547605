@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-0
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1547604-1547608/svhn-1f2k20m-irace-1547605-val-%A-%a
+
+CONFIGS=("339  --dataset svhn --job_id 1547605 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling False --extraction FastICA --ext_components 0.0276 --ica_algorithm parallel --ica_fun logcosh --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 17 --scaling True --algorithm KNeighbors --n_neighbors 39 --weights uniform"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-5
+#SBATCH --job-name=fashion-mnist-3f2k30m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f2k30m-irace-1585344-1585348/fashion-mnist-3f2k30m-irace-1585345-val-%A-%a
+
+CONFIGS=("245  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model SVM --sel_threshold mean --scaling True --algorithm SVM --C 0.4652 --kernel rbf --gamma -2.711"
+"189  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 0.9548 --kernel rbf --gamma -3.1648"
+"248  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model SVM --sel_threshold mean --scaling True --algorithm SVM --C 1.2307 --kernel rbf --gamma -2.2385"
+"286  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 1.4063 --kernel rbf --gamma -3.7576"
+"350  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C 1.003 --kernel rbf --gamma -3.1619"
+"365  --dataset fashion-mnist --job_id 1585345 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model SVM --sel_threshold mean --scaling True --algorithm SVM --C 4.5299 --kernel rbf --gamma -2.6481"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

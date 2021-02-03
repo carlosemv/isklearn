@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1585238-1585242/svhn-1f2k20m-irace-1585238-val-%A-%a
+
+CONFIGS=("295  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm MLP --solver lbfgs --alpha 0.0492 --hidden_layers 1 --neurons1 177 --activation relu"
+"304  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 23 --weights distance"
+"333  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 15 --weights distance"
+"214  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 5 --weights distance"
+"219  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 13 --weights uniform"
+"206  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 8 --weights uniform"
+"190  --dataset svhn --job_id 1585238 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 15 --weights uniform"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

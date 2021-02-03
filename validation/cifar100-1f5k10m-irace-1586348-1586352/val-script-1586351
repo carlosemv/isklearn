@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-1f5k10m-irace-val
+#SBATCH --output=validation/cifar100-1f5k10m-irace-1586348-1586352/cifar100-1f5k10m-irace-1586351-val-%A-%a
+
+CONFIGS=("832  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 59 --scaling False --algorithm KNeighbors --n_neighbors 16 --weights distance"
+"707  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 67 --scaling False --algorithm KNeighbors --n_neighbors 20 --weights distance"
+"819  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 66 --scaling False --algorithm KNeighbors --n_neighbors 12 --weights distance"
+"734  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 74 --scaling False --algorithm KNeighbors --n_neighbors 18 --weights distance"
+"796  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 59 --scaling False --algorithm KNeighbors --n_neighbors 11 --weights distance"
+"750  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 47 --scaling False --algorithm KNeighbors --n_neighbors 24 --weights distance"
+"756  --dataset cifar100 --job_id 1586351 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 47 --scaling False --algorithm KNeighbors --n_neighbors 25 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

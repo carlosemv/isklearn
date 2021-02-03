@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-1f5k10m-irace-val
+#SBATCH --output=validation/cifar100-1f5k10m-irace-1554134-1554138/cifar100-1f5k10m-irace-1554135-val-%A-%a
+
+CONFIGS=("688  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 2.7414 --kernel linear"
+"698  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C -3.5058 --kernel linear"
+"700  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C -2.5612 --kernel linear"
+"702  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C -2.1943 --kernel linear"
+"706  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 2.5017 --kernel linear"
+"708  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 0.4223 --kernel linear"
+"710  --dataset cifar100 --job_id 1554135 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 3.812 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

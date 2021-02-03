@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-3
+#SBATCH --job-name=svhn-3f5k15m-irace-val
+#SBATCH --output=validation/svhn-3f5k15m-irace-1585218-1585222/svhn-3f5k15m-irace-1585220-val-%A-%a
+
+CONFIGS=("663  --dataset svhn --job_id 1585220 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0215 --whiten True --svd_solver randomized --scaling False --algorithm KNeighbors --n_neighbors 31 --weights distance"
+"849  --dataset svhn --job_id 1585220 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0212 --whiten True --svd_solver randomized --scaling False --algorithm KNeighbors --n_neighbors 11 --weights distance"
+"815  --dataset svhn --job_id 1585220 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0262 --whiten True --svd_solver auto --scaling True --algorithm KNeighbors --n_neighbors 34 --weights distance"
+"909  --dataset svhn --job_id 1585220 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 none --pre_scaling False --extraction PCA --ext_components 0.0283 --whiten True --svd_solver randomized --scaling False --algorithm KNeighbors --n_neighbors 10 --weights distance"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

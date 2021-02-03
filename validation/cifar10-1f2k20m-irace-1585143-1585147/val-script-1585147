@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f2k20m-irace-val
+#SBATCH --output=validation/cifar10-1f2k20m-irace-1585143-1585147/cifar10-1f2k20m-irace-1585147-val-%A-%a
+
+CONFIGS=("349  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0489 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -2.4718 --lr_solver newton-cg --multi_class ovr --max_iter 190"
+"260  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0434 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -2.9358 --lr_solver newton-cg --multi_class ovr --max_iter 885"
+"287  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0451 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -3.6319 --lr_solver newton-cg --multi_class ovr --max_iter 662"
+"333  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.04 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -2.0264 --lr_solver newton-cg --multi_class ovr --max_iter 675"
+"213  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.064 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -3.7617 --lr_solver newton-cg --multi_class ovr --max_iter 658"
+"185  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0382 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -3.1519 --lr_solver newton-cg --multi_class ovr --max_iter 452"
+"189  --dataset cifar10 --job_id 1585147 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 Extraction --pre_scaling True --extraction PCA --ext_components 0.0162 --whiten True --svd_solver auto --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm LogisticRegression --lr_C -0.6793 --lr_solver newton-cg --multi_class ovr --max_iter 782"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

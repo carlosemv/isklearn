@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-3
+#SBATCH --job-name=cifar10-3f5k15m-irace-val
+#SBATCH --output=validation/cifar10-3f5k15m-irace-1540441-1540445/cifar10-3f5k15m-irace-1540441-val-%A-%a
+
+CONFIGS=("763  --dataset cifar10 --job_id 1540441 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C 3.5539 --lr_solver lbfgs --multi_class multinomial --max_iter 106"
+"909  --dataset cifar10 --job_id 1540441 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C 2.5251 --lr_solver lbfgs --multi_class multinomial --max_iter 120"
+"943  --dataset cifar10 --job_id 1540441 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C -1.5938 --lr_solver lbfgs --multi_class multinomial --max_iter 110"
+"955  --dataset cifar10 --job_id 1540441 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C 3.9017 --lr_solver lbfgs --multi_class multinomial --max_iter 100"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

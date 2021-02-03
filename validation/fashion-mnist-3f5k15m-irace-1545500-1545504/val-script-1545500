@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=fashion-mnist-3f5k15m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f5k15m-irace-1545500-1545504/fashion-mnist-3f5k15m-irace-1545500-val-%A-%a
+
+CONFIGS=("905  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.7598 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C -0.3809 --kernel poly --degree 2 --gamma 0.1768"
+"932  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.7586 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 2.438 --kernel poly --degree 2 --gamma -1.4713"
+"917  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.3423 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C -0.5798 --kernel poly --degree 3 --gamma -1.4265"
+"912  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.2839 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 1.1992 --kernel poly --degree 3 --gamma -1.5935"
+"933  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.6005 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 0.5329 --kernel poly --degree 2 --gamma -0.7448"
+"784  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.7681 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 3.9281 --kernel poly --degree 2 --gamma -0.4835"
+"778  --dataset fashion-mnist --job_id 1545500 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.2915 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 0.784 --kernel poly --degree 3 --gamma -1.4729"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

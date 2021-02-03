@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-5
+#SBATCH --job-name=fashion-mnist-3f2k15m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f2k15m-irace-1545495-1545499/fashion-mnist-3f2k15m-irace-1545498-val-%A-%a
+
+CONFIGS=("343  --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 86 --scaling True --algorithm SVM --C -2.0503 --kernel linear"
+"346  --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 73 --scaling True --algorithm SVM --C -2.1034 --kernel linear"
+"101  --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 88 --scaling True --algorithm SVM --C -2.5999 --kernel linear"
+"8    --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.1051 --whiten True --svd_solver randomized --scaling True --algorithm LogisticRegression --lr_C -0.7773 --lr_solver liblinear --multi_class ovr --lr_penalty l1"
+"376  --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 97 --scaling True --algorithm SVM --C -2.2214 --kernel linear"
+"373  --dataset fashion-mnist --job_id 1545498 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 78 --scaling True --algorithm SVM --C -2.0552 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

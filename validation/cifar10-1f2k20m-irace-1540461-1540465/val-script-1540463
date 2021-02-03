@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-1f2k20m-irace-val
+#SBATCH --output=validation/cifar10-1f2k20m-irace-1540461-1540465/cifar10-1f2k20m-irace-1540463-val-%A-%a
+
+CONFIGS=("207  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm LogisticRegression --lr_C -2.9926 --lr_solver lbfgs --multi_class ovr --max_iter 756"
+"153  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model DecisionTree --sel_threshold mean --scaling False --algorithm LogisticRegression --lr_C -3.2215 --lr_solver lbfgs --multi_class ovr --max_iter 502"
+"191  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 2.4597 --kernel poly --degree 4 --gamma -2.5593"
+"189  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Extraction --f_eng2 None --pre_scaling False --extraction PCA --ext_components 0.0853 --whiten True --svd_solver auto --scaling False --algorithm LogisticRegression --lr_C -3.8134 --lr_solver lbfgs --multi_class multinomial --max_iter 781"
+"113  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm KNeighbors --n_neighbors 8 --weights distance"
+"47   --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm KNeighbors --n_neighbors 12 --weights distance"
+"349  --dataset cifar10 --job_id 1540463 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling True --selection SelectFromModel --sel_model DecisionTree --sel_threshold mean --scaling False --algorithm LogisticRegression --lr_C -2.5159 --lr_solver lbfgs --multi_class ovr --max_iter 610"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

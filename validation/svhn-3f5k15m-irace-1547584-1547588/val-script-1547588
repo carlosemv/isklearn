@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=svhn-3f5k15m-irace-val
+#SBATCH --output=validation/svhn-3f5k15m-irace-1547584-1547588/svhn-3f5k15m-irace-1547588-val-%A-%a
+
+CONFIGS=("551  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.8343 --max_depth none --max_depth_value 25 --min_samples_leaf 0.0105"
+"697  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.6091 --max_depth none --max_depth_value 3 --min_samples_leaf 0.0106"
+"870  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.9142 --max_depth none --max_depth_value 5 --min_samples_leaf 0.0146"
+"832  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.74 --max_depth none --max_depth_value 18 --min_samples_leaf 0.0147"
+"799  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.6148 --max_depth none --max_depth_value 33 --min_samples_leaf 0.014"
+"868  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.3614 --max_depth none --max_depth_value 24 --min_samples_leaf 0.0148"
+"839  --dataset svhn --job_id 1547588 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.769 --max_depth none --max_depth_value 23 --min_samples_leaf 0.018"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import pandas as pd
 import stat
 import re
 import argparse
@@ -106,6 +107,7 @@ else:
 		best_file = "{}/{}-best.out".format(val_dir, log_name)
 		open(best_file, 'w').close()
 
+		all_best_args = []
 		for job_id in range(first_id, first_id+args.repeat):
 			val_base = "{}-{}-val".format(
 				log_name, job_id)
@@ -127,7 +129,33 @@ else:
 					if not results:
 						print("WARNING: No validation results in", full_file)
 						continue
-					best.write(sorted(results, key=lambda r: float(r[1]),
-						reverse=True)[0][0] + "\n\n")
+					br = sorted(results, key=lambda r: float(r[1]),
+						reverse=True)[0][0]
+					best_args = br.split('\n')[1].split(' ')
+
+					parser = argparse.ArgumentParser()
+					parser.add_argument('--pre_scaling', default="False")
+					parser.add_argument('--f_eng1', required=True)
+					parser.add_argument('--f_eng2', required=True)
+					parser.add_argument('--scaling', required=True)
+					parser.add_argument('--algorithm', required=True)
+					best_args = parser.parse_known_args(args=best_args)[0]
+
+					for i, a in enumerate(('pre_scaling', 'f_eng1',
+							'f_eng2', 'scaling', 'algorithm')):
+						best_args_dict = {
+							'dataset': ds,
+							'metafolds': mf,
+							'experiments': exp,
+							'cutoff': cutoff,
+							'seed': job_id,
+							'stage': 'preprocessing' if i < 3 else 'prediction',
+							'component': a,
+							'value': getattr(best_args, a)
+						}
+						all_best_args.append(best_args_dict)
+					best.write(br + "\n\n")
+		best_df = pd.DataFrame(all_best_args)
+		best_df.to_csv("{}/{}-best-args.csv".format(val_dir, log_name), index=False)
 		print("Results compiled in", best_file)
 

@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-1f2k20m-irace-val
+#SBATCH --output=validation/cifar100-1f2k20m-irace-1586353-1586357/cifar100-1f2k20m-irace-1586357-val-%A-%a
+
+CONFIGS=("278  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 4.4088 --kernel linear"
+"282  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 1.0015 --kernel linear"
+"306  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 54 --scaling True --algorithm SVM --C -2.7934 --kernel linear"
+"315  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 1.785 --kernel linear"
+"259  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 0.7425 --kernel linear"
+"288  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 91 --scaling True --algorithm SVM --C -2.2363 --kernel linear"
+"292  --dataset cifar100 --job_id 1586357 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 1.7287 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

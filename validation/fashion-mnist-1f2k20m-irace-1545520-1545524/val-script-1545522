@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-5
+#SBATCH --job-name=fashion-mnist-1f2k20m-irace-val
+#SBATCH --output=validation/fashion-mnist-1f2k20m-irace-1545520-1545524/fashion-mnist-1f2k20m-irace-1545522-val-%A-%a
+
+CONFIGS=("297  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.0194 --learning_rate_init -2.6327 --hidden_layers 1 --neurons1 395 --activation relu"
+"344  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -1.5446 --learning_rate_init -3.8835 --hidden_layers 1 --neurons1 324 --activation relu"
+"310  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.2984 --learning_rate_init -2.766 --hidden_layers 2 --neurons1 224 --neurons2 489 --activation relu"
+"356  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.0979 --learning_rate_init -2.8624 --hidden_layers 1 --neurons1 375 --activation relu"
+"358  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -1.7177 --learning_rate_init -4.0195 --hidden_layers 1 --neurons1 195 --activation relu"
+"361  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -4.3133 --learning_rate_init -3.2747 --hidden_layers 1 --neurons1 345 --activation relu"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

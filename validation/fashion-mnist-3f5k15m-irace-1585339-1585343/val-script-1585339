@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=fashion-mnist-3f5k15m-irace-val
+#SBATCH --output=validation/fashion-mnist-3f5k15m-irace-1585339-1585343/fashion-mnist-3f5k15m-irace-1585339-val-%A-%a
+
+CONFIGS=("619  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 0.1708 --kernel rbf --gamma -1.9654"
+"449  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.1995 --kernel linear"
+"301  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 Selection --pre_scaling True --selection SelectFromModel --sel_model DecisionTree --sel_threshold mean --scaling False --algorithm SVM --C 1.7812 --kernel rbf --gamma -2.9734"
+"259  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm SVM --C -1.3093 --kernel linear"
+"3    --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm SVM --C 0.7441 --kernel linear"
+"124  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm SVM --C 1.4724 --kernel linear"
+"871  --dataset fashion-mnist --job_id 1585339 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm SVM --C -2.0799 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/fashion-mnist/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

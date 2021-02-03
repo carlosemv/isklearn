@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar10-3f2k15m-irace-val
+#SBATCH --output=validation/cifar10-3f2k15m-irace-1585118-1585122/cifar10-3f2k15m-irace-1585122-val-%A-%a
+
+CONFIGS=("348  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -3.0602 --lr_solver lbfgs --multi_class multinomial --max_iter 507"
+"265  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm LogisticRegression --lr_C -1.8838 --lr_solver lbfgs --multi_class multinomial --max_iter 548"
+"211  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm KNeighbors --n_neighbors 9 --weights distance"
+"236  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm KNeighbors --n_neighbors 9 --weights uniform"
+"170  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling True --algorithm KNeighbors --n_neighbors 78 --weights uniform"
+"166  --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.4399 --max_depth none --max_depth_value 47 --min_samples_leaf 0.0141"
+"51   --dataset cifar10 --job_id 1585122 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 0.8101 --max_depth none --max_depth_value 47 --min_samples_leaf 0.0435"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

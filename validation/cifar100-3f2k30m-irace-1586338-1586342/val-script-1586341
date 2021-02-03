@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=16G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-3f2k30m-irace-val
+#SBATCH --output=validation/cifar100-3f2k30m-irace-1586338-1586342/cifar100-3f2k30m-irace-1586341-val-%A-%a
+
+CONFIGS=("180  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 10 --weights distance"
+"184  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm KNeighbors --n_neighbors 20 --weights distance"
+"175  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 25 --weights distance"
+"169  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm KNeighbors --n_neighbors 29 --weights distance"
+"338  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm SVM --C -2.6909 --kernel linear"
+"308  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling False --algorithm SVM --C -2.8979 --kernel linear"
+"250  --dataset cifar100 --job_id 1586341 --cutoff 30 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling True --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling False --algorithm SVM --C 2.6591 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-6
+#SBATCH --job-name=cifar100-3f5k15m-irace-val
+#SBATCH --output=validation/cifar100-3f5k15m-irace-1554119-1554123/cifar100-3f5k15m-irace-1554121-val-%A-%a
+
+CONFIGS=("912  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.1017 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 3.7 --kernel linear"
+"914  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0894 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 0.0977 --kernel linear"
+"949  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0263 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 3.1207 --kernel linear"
+"956  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.1685 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C -0.5421 --kernel linear"
+"952  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.1966 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 4.4717 --kernel linear"
+"954  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.3539 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 0.36 --kernel linear"
+"951  --dataset cifar100 --job_id 1554121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 None --f_eng2 Extraction --pre_scaling False --extraction PCA --ext_components 0.0891 --whiten False --svd_solver randomized --scaling False --algorithm SVM --C 1.0584 --kernel linear"
+)
+
+srun python /home/cemvieira/isklearn/cifar100/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

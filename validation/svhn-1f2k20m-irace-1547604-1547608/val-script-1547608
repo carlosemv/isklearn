@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --time=1-0:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --array=0-4
+#SBATCH --job-name=svhn-1f2k20m-irace-val
+#SBATCH --output=validation/svhn-1f2k20m-irace-1547604-1547608/svhn-1f2k20m-irace-1547608-val-%A-%a
+
+CONFIGS=("245  --dataset svhn --job_id 1547608 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -4.1828 --learning_rate_init -3.5729 --hidden_layers 2 --neurons1 217 --neurons2 430 --activation relu"
+"243  --dataset svhn --job_id 1547608 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha 0.0086 --learning_rate_init -4.3023 --hidden_layers 1 --neurons1 32 --activation relu"
+"221  --dataset svhn --job_id 1547608 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -0.9685 --learning_rate_init -2.3478 --hidden_layers 2 --neurons1 91 --neurons2 195 --activation relu"
+"149  --dataset svhn --job_id 1547608 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -1.3489 --learning_rate_init -2.3834 --hidden_layers 1 --neurons1 181 --activation relu"
+"360  --dataset svhn --job_id 1547608 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -0.062 --learning_rate_init -4.2682 --hidden_layers 2 --neurons1 129 --neurons2 489 --activation relu"
+)
+
+srun python /home/cemvieira/isklearn/svhn/validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}
