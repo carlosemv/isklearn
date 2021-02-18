@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
+import pandas as pd
 import os
 import stat
 import re
 import argparse
 import subprocess
+from datetime import timedelta
 import sys
 
 assert sys.version_info >= (3, 6), "Python >= 3.6 required"
@@ -45,7 +47,12 @@ running_states = ("PENDING", "RUNNING",
 	"REQUEUED", "RESIZING", "SUSPENDED")
 
 check_cmd = ["sacct", "-nX", "--format=state%-20", "-j"]
+time_cmd = 'sacct -j {} -n --format=elapsed'
+delta_params = ('days', 'hours', 'minutes', 'seconds')
+time_re = re.compile(r'(?:(\d)-)?(\d+):(\d+):(\d+)')
+
 print(log_name, "")
+time_log = []
 for log_file, job_id in logs:
 	status = subprocess.check_output(
 		check_cmd + [job_id]).rstrip().decode()
@@ -62,6 +69,27 @@ for log_file, job_id in logs:
 		config_re = r'^\d+\s+--dataset.+'
 		results = [re.findall(config_re, line) for line in log]
 		configs = [config for result in results for config in result]
-	print("successfully" if configs else "with errors")
+	print("successfully" if configs else "with errors", end=" ")
+
+	elapsed = subprocess.getoutput(time_cmd.format(job_id))
+	match = time_re.match(elapsed.strip())
+	time_args = map(int, [a or 0 for a in match.group(*range(1,5))])
+	δ = timedelta(**dict(zip(delta_params, time_args)))
+	print(f"in {δ}")
+
+	if configs:
+		time_dict = {
+			'dataset': ds,
+			'metafolds': mf,
+			'experiments': exp,
+			'cutoff': cutoff,
+			'seed': job_id,
+			'time': int(δ.total_seconds())
+		}
+		time_log.append(time_dict)
+
+log_dir = "time-logs/"
+os.makedirs(log_dir, exist_ok=True)
+pd.DataFrame(time_log).to_csv(f"{log_dir}{log_name}-times.csv", index=False)
 
 print()
