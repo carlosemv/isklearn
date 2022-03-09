@@ -29,6 +29,8 @@ parser.add_argument('--metafolds', '-m', type=int,
 	help="number of metafolds provided for bottom-level sampling")
 parser.add_argument('--repeat', '-r', type=int, default=1,
 	help="launch or validate n repetitions")
+parser.add_argument('--parallel', '-p', type=int, default=4,
+	help="how many model evaluations to be performed in parallel at a time")
 parser.add_argument('--slurm', action='store_true',
 	help="run in slurm-controlled environment using sbatch (default False)")
 parser.set_defaults(slurm=False)
@@ -44,6 +46,7 @@ ds = args.dataset
 exp = args.experiments
 cutoff = args.cutoff
 mf = args.metafolds
+parallel = args.parallel
 slurm = args.slurm
 
 log_name = "{}-{}f{}k{}m-irace".format(ds, mf, exp//1000, cutoff)
@@ -62,17 +65,18 @@ if not args.validate and not args.integrate:
 		output = "output/{}/isklearn-{}-%j.out".format(ds, log_name)
 	else:
 		job_id = ''.join([str(randrange(10)) for _ in range(6)])
-		output = ["output/{}/isklearn-{}-{}{}.out".format(ds, log_name,
-			job_id, repetition) for repetition in range(args.repeat)]
+		job_ids = [job_id+r for r in range(args.repeat)]
+		output = ["output/{}/isklearn-{}-{}.out".format(ds, log_name,
+			jid) for jid in job_ids]
 
 	for r in range(args.repeat):
 		if slurm:
 			cmd = ["sbatch", "--output", output, "batch_script",
-				ds] + list(map(str, [exp, cutoff, mf])) + [log_name]
+				ds] + list(map(str, [exp, cutoff, mf, parallel])) + [log_name]
 			subprocess.run(cmd)
 		else:
 			cmd = ["./batch_script", ds] + list(map(str,
-				[exp, cutoff, mf])) + [log_name]
+				[exp, cutoff, mf, parallel])) + [log_name, job_ids[r]]
 			with open(output[r], 'w') as output_file:
 				subprocess.run(cmd, stdout=output_file, stderr=output_file)
 		

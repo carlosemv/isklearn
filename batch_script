@@ -8,7 +8,13 @@ DATASET="$1"
 EXPERIMENTS="$2"
 CUTOFF="$3"
 METAFOLDS="$4"
-LOG_NAME="$5"
+PARALLEL="$5"
+LOG_NAME="$6"
+
+JOB_ID="$7"
+if [ -z "$JOB_ID" ]; then
+   JOB_ID="${SLURM_JOB_ID}"
+fi
 
 # choose instance file
 INSTANCES="${DATASET}/instances.txt"
@@ -17,24 +23,24 @@ if [ $METAFOLDS = "1" ]; then
 fi
 
 # define Rdata log file
-RDATA="./output/${DATASET}/${LOG_NAME}-${SLURM_JOB_ID}.Rdata"
+RDATA="./output/${DATASET}/${LOG_NAME}-${JOB_ID}.Rdata"
 
 # prepare temporary config space file with constant params
 BASE_PARAMS="./${DATASET}/parameters.txt"
-TEMP_PARAMS="./${DATASET}/parameters-${SLURM_JOB_ID}.txt"
+TEMP_PARAMS="./${DATASET}/parameters-${JOB_ID}.txt"
 
 echo -e "dataset\t\"--dataset \"\tc (\"${DATASET}\")" > ${TEMP_PARAMS}
-echo -e "job_id\t\"--job_id \"\tc (\"${SLURM_JOB_ID}\")" >> ${TEMP_PARAMS}
+echo -e "job_id\t\"--job_id \"\tc (\"${JOB_ID}\")" >> ${TEMP_PARAMS}
 echo -e "cutoff\t\"--cutoff \"\tc (\"${CUTOFF}\")" >> ${TEMP_PARAMS}
 echo -e "metafolds\t\"--metafolds \"\tc (\"${METAFOLDS}\")" >> ${TEMP_PARAMS}
 cat ${BASE_PARAMS} >> ${TEMP_PARAMS}
 
 # prepare logging dir
-OUT_PATH="./output/${DATASET}/${SLURM_JOB_ID}"
+OUT_PATH="./output/${DATASET}/${JOB_ID}"
 mkdir -p ${OUT_PATH}
 
 # run irace
-irace -s scenario.txt --max-experiments ${EXPERIMENTS} -p ${TEMP_PARAMS} --parallel ${SLURM_CPUS_PER_TASK} --train-instances-file ${INSTANCES} --log-file ${RDATA}
+irace -s scenario.txt --max-experiments ${EXPERIMENTS} -p ${TEMP_PARAMS} --parallel ${PARALLEL} --train-instances-file ${INSTANCES} --log-file ${RDATA}
 
 # remove remp config space file
 rm ${TEMP_PARAMS}
