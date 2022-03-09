@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --time=0-11:30
+#SBATCH --job-name=vc10-default-params
+#SBATCH --output=cifar10-default-params-val_%j.out
+#SBATCH --array=0-5
+
+CONFIGS=(
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm KNeighbors --n_neighbors 5 --weights uniform"
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm DecisionTree --criterion_classification gini --max_features 1.0 --max_depth none --min_samples_leaf 0.00002"
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm RandomForest --rf_estimators 10 --criterion_classification gini --max_features 1.0 --max_depth none --min_samples_leaf 0.00002"
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm AdaBoost --ab_estimators 50 --ab_learning_rate 1.0"
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm MLP --solver adam 0.0001 --alpha -4 --learning_rate_init -3 --hidden_layers 1 --neurons1 100 --activation relu"
+"--dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm SVM --C 0 --kernel rbf"
+)
+
+srun python /home/cemvieira/isklearn/cifar10/alt-validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

@@ -1,35 +1,28 @@
 #!/usr/bin/env python
-import sys
-sys.path.append('..')
-
-import os
 import time
 import argparse
 import numpy as np
 import pandas as pd
-from isklearn.isklearn import ISKLEARN
+from isklearn import ISKLEARN
 from sklearn.model_selection import StratifiedKFold
+from ingestion import ingestion
 
-def ingestion(data, fold):
-    X, y = data
+def metafold(X, y, fold, k=20):
     X = pd.DataFrame(X)
     y = pd.Series(y).to_frame()
 
-    skf = StratifiedKFold(n_splits=20, shuffle=False)
+    skf = StratifiedKFold(n_splits=k, shuffle=False)
     skf_idxs = list(skf.split(X, y))
     kfold_idxs = skf_idxs[fold][1]
     Xk, yk = X.iloc[kfold_idxs], y.iloc[kfold_idxs]
 
     return (Xk, yk)
-
     
 if __name__=="__main__":
     print(sys.argv)
     t0 = time.time()
 
-    X = np.load('data/svhn/train_data.npy')
-    y = np.load('data/svhn/train_labels.npy')
-    svhn_data = (X, y)
+    X, _, y, _ = ingestion()
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)
@@ -43,8 +36,8 @@ if __name__=="__main__":
         task = args.task
 
         isk = ISKLEARN(task)
-        X, y = ingestion(svhn_data, int(fold))
-        acc_scores = isk.validation(X, y)
+        X_fold, y_fold = metafold(X, y, int(fold))
+        acc_scores = isk.validation(X_fold, y_fold)
         result = np.mean(acc_scores)
 
         print(-1*np.mean(result), time.time()-t0)
@@ -56,8 +49,8 @@ if __name__=="__main__":
         accs = []
         isk = ISKLEARN(task)
         for fold in folds:
-            X, y = ingestion(svhn_data, int(fold))
-            acc_scores = isk.validation(X, y)
+            X_fold, y_fold = metafold(X, y, int(fold))
+            acc_scores = isk.validation(X_fold, y_fold)
             result = np.mean(acc_scores)
             accs.append(result)
 

@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --time=0-0:50
+#SBATCH --job-name=vsvhn-variance-RN56v1-13l
+#SBATCH --cpus-per-task=1
+#SBATCH --output=svhn-variance-RN56v1-13l-val_%j.out
+#SBATCH --array=0-1
+
+CONFIGS=("348 --dataset svhn --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling True --algorithm MLP --solver lbfgs --alpha 1.2717 --hidden_layers 1 --neurons1 108 --activation relu"
+"348 --dataset svhn --task classification --sparse False --f_eng1 None --f_eng2 Selection --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling True --algorithm MLP --solver lbfgs --alpha 1.2717 --hidden_layers 1 --neurons1 108 --activation relu"
+)
+
+srun python /home/cemvieira/isklearn/svhn/alt-validation.py ${CONFIGS[$SLURM_ARRAY_TASK_ID]}

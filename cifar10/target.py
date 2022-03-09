@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import sys
-sys.path.append('..')
+sys.path.append('.')
 
 import os
 import time
 import argparse
 import numpy as np
 import pandas as pd
-from isklearn.isklearn import ISKLEARN
+from isklearn import ISKLEARN
 from sklearn.model_selection import StratifiedKFold
 
 def ingestion(data, fold):

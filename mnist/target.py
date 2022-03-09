@@ -31,20 +31,32 @@ if __name__=="__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--instance', type=str)
-    parser.add_argument('--config_id', type=str)
     parser.add_argument('--task', type=str)
+    parser.add_argument('--metafolds', type=int)
     args = parser.parse_known_args()[0]
 
-    folds = [x for x in args.instance.split(',')]
-    config_id = args.config_id
-    task = args.task
+    if args.metafolds == 1:
+        print("using 1 MF")
+        fold = args.instance
+        task = args.task
 
-    accs = []
-    isk = ISKLEARN(task)
-    for fold in folds:
+        isk = ISKLEARN(task)
         X, y = ingestion(mndata, int(fold))
         acc_scores = isk.validation(X, y)
         result = np.mean(acc_scores)
-        accs.append(result)
 
-    print(-1*np.mean(accs), time.time()-t0)
+        print(-1*np.mean(result), time.time()-t0)
+    else:
+        print("using {} metafolds".format(args.metafolds))
+        folds = [x for x in args.instance.split(',')]
+        task = args.task
+
+        accs = []
+        isk = ISKLEARN(task)
+        for fold in folds:
+            X, y = ingestion(mndata, int(fold))
+            acc_scores = isk.validation(X, y)
+            result = np.mean(acc_scores)
+            accs.append(result)
+
+        print(-1*np.mean(accs), time.time()-t0)

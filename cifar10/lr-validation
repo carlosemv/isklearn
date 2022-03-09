@@ -1,0 +1,6 @@
+#!/bin/bash
+#SBATCH --time=0-12:30
+#SBATCH --job-name=c10-dp-lr
+#SBATCH --output=cifar10-default-params-lr-val_%j.out
+
+srun python /home/cemvieira/isklearn/cifar10/validation.py --dataset cifar10 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C 0 --lr_solver lbfgs --multi_class auto --max_iter 100 --lr_penalty l2 --dual False

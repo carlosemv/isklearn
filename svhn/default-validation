@@ -1,0 +1,6 @@
+#!/bin/bash
+#SBATCH --time=0-12:30
+#SBATCH --job-name=svhn-dp-lr
+#SBATCH --output=svhn-default-params-lr-val_%j.out
+
+srun python /home/cemvieira/isklearn/svhn/validation.py --dataset svhn --task classification --sparse False --f_eng1 None --f_eng2 None --scaling False --algorithm LogisticRegression --lr_C 0 --lr_solver lbfgs --multi_class auto --max_iter 100 --lr_penalty l2 --dual False

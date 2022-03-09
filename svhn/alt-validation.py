@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 import sys
+sys.path.append('..')
+
 import argparse
 import numpy as np
+import pandas as pd
 
-from isklearn import ISKLEARN
+from isklearn.isklearn import ISKLEARN
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
-from ingestion import ingestion
+
 
 if __name__=="__main__":
     isk = ISKLEARN('classification')
@@ -13,11 +17,19 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--algorithm', type=str)
     args = parser.parse_known_args()[0]
-    stochastic = ("DecisionTree", "RandomForest",  "MLP",
-        "AdaBoost", "LogisticRegression")
-    reps = 1 if args.algorithm in stochastic else 1
+    stochastic = ("DecisionTree", "RandomForest",  "MLP", "AdaBoost")
+    reps = 5 if args.algorithm in stochastic else 1
 
-    X_train, X_test, y_train, y_test = ingestion()
+
+    X_train = np.load('data/svhn/imagenet_ResNet56v1_train_data.npy')
+    y_train = np.load('data/svhn/train_labels.npy')
+    X_train = pd.DataFrame(X_train)
+    y_train = pd.Series(y_train).values.ravel()
+
+    X_test = np.load('data/svhn/imagenet_ResNet56v1_test_data.npy')
+    y_test = np.load('data/svhn/test_labels.npy')
+    X_test = pd.DataFrame(X_test)
+    y_test = pd.Series(y_test).values.ravel()
 
     accs = []
     for i in range(reps):

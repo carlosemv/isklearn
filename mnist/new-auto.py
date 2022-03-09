@@ -15,8 +15,8 @@ X_test = pd.DataFrame(X_test)
 y_test = pd.Series(y_test).values.ravel()
 
 time_limit = timedelta(hours=12, minutes=3, seconds=15)
-cutoff = timedelta(minutes=30)
-mem_limit = 8*1000
+cutoff = timedelta(minutes=10)
+mem_limit = 6*1000
 print("time limit = {}".format(time_limit))
 print("cutoff = {}".format(cutoff))
 print("memory limit = {}".format(mem_limit))
