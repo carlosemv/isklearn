@@ -1,0 +1,437 @@
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 3.1.2112M
+* Copyright (C) 2010-2018
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt --max-experiments 2000 -p ./fashion-mnist/parameters-1545522.txt --parallel 32 --train-instances-file fashion-mnist/new-instances.txt --log-file ./output/fashion-mnist/fashion-mnist-1f2k20m-irace-1545522.Rdata
+# 8 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2020-06-30 01:39:25 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 7
+# minNbSurvival: 7
+# nbParameters: 50
+# seed: 2112883523
+# confidence level: 0.95
+# budget: 2000
+# mu: 5
+# deterministic: TRUE
+
+# 2020-06-30 01:39:25 BRT: Iteration 1 of 7
+# experimentsUsedSoFar: 0
+# remainingBudget: 2000
+# currentBudget: 285
+# nbConfigurations: 47
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         47|          9|  -0.7426666667|         47|00:40:00|   NA|  NA|    NA|
+|x|          2|         47|          9|  -0.7421666667|         94|00:40:01|+1.00|1.00|0.0000|
+|x|          3|         47|          9|  -0.7408888889|        141|00:40:01|+1.00|1.00|0.0000|
+|x|          4|         47|          9|  -0.7391666667|        188|00:40:02|+1.00|1.00|0.0000|
+|!|          5|          1|          9|  -0.7394666667|        235|00:40:03|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           9    mean value:   -0.7394666667
+Description of the best-so-far configuration:
+  .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+9    9 fashion-mnist 1545522     20         1 classification  False   None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       NA
+
+# 2020-06-30 04:59:35 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+        dataset  job_id cutoff metafolds           task sparse f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+9 fashion-mnist 1545522     20         1 classification  False   None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-06-30 04:59:35 BRT: Iteration 2 of 7
+# experimentsUsedSoFar: 235
+# remainingBudget: 1765
+# currentBudget: 294
+# nbConfigurations: 42
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|         42|         57|  -0.7640000000|         42|00:38:42|   NA|  NA|    NA|
+|x|          4|         42|         57|  -0.7546666667|         83|00:38:14|+1.00|1.00|0.0000|
+|x|          2|         42|         57|  -0.7584444444|        124|00:38:42|+1.00|1.00|0.0000|
+|x|          3|         42|         57|  -0.7553333333|        165|00:38:41|+1.00|1.00|0.0000|
+|!|          1|          2|         57|  -0.7568666667|        206|00:38:35|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           9    mean value:   -0.7407777778
+Description of the best-so-far configuration:
+  .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+9    9 fashion-mnist 1545522     20         1 classification  False   None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       NA
+
+# 2020-06-30 08:12:34 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+         dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+9  fashion-mnist 1545522     20         1 classification  False       None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+57 fashion-mnist 1545522     20         1 classification  False Extraction      None   False KNeighbors       False        PCA         0.9172            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          55 distance            NA               NA      NA  False     arpack          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-06-30 08:12:34 BRT: Iteration 3 of 7
+# experimentsUsedSoFar: 441
+# remainingBudget: 1559
+# currentBudget: 311
+# nbConfigurations: 40
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         40|        106|  -0.8353333333|         40|00:21:20|   NA|  NA|    NA|
+|x|          4|         40|        106|  -0.8338333333|         78|00:21:09|+1.00|1.00|0.0000|
+|x|          2|         40|        106|  -0.8297777778|        116|00:21:03|+1.00|1.00|0.0000|
+|x|          6|         40|        106|  -0.8285833333|        154|00:21:28|+1.00|1.00|0.0000|
+|!|          3|          3|        106|  -0.8280666667|        192|00:21:19|+1.00|1.00|0.0052|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           9    mean value:   -0.7427142857
+Description of the best-so-far configuration:
+  .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+9    9 fashion-mnist 1545522     20         1 classification  False   None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-06-30 09:58:56 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver  alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+9   fashion-mnist 1545522     20         1 classification  False       None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>     NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+57  fashion-mnist 1545522     20         1 classification  False Extraction      None   False KNeighbors       False        PCA         0.9172            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>     NA            NA       NA       <NA>          55 distance            NA               NA      NA  False     arpack          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+106 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam 0.1195             2      199       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+# 2020-06-30 09:58:56 BRT: Iteration 4 of 7
+# experimentsUsedSoFar: 633
+# remainingBudget: 1367
+# currentBudget: 341
+# nbConfigurations: 40
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         40|        106|  -0.8386666667|         40|00:21:11|   NA|  NA|    NA|
+|x|          3|         40|        106|  -0.8323333333|         77|00:20:39|+0.99|0.99|0.0000|
+|x|          6|         40|        106|  -0.8298888889|        114|00:20:48|+0.99|0.99|0.0000|
+|x|          4|         40|        106|  -0.8305000000|        151|00:20:57|+0.99|0.99|0.0265|
+|!|          1|          3|        106|  -0.8286666667|        189|00:20:53|+1.00|1.00|0.0035|
+|.|          2|          3|        106|  -0.8275000000|        189|23:59:59|+1.00|1.00|0.0048|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           9    mean value:   -0.7417500000
+Description of the best-so-far configuration:
+  .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+9    9 fashion-mnist 1545522     20         1 classification  False   None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-06-30 11:43:30 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver  alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+9   fashion-mnist 1545522     20         1 classification  False       None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>     NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+106 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam 0.1195             2      199       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+57  fashion-mnist 1545522     20         1 classification  False Extraction      None   False KNeighbors       False        PCA         0.9172            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>     NA            NA       NA       <NA>          55 distance            NA               NA      NA  False     arpack          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-06-30 11:43:30 BRT: Iteration 5 of 7
+# experimentsUsedSoFar: 822
+# remainingBudget: 1178
+# currentBudget: 392
+# nbConfigurations: 41
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         41|        199|  -0.8413333333|         41|00:22:01|   NA|  NA|    NA|
+|x|          7|         41|        199|  -0.8415000000|         79|00:20:58|+0.85|0.93|0.1041|
+|x|          5|         41|        199|  -0.8420000000|        119|00:21:37|+0.90|0.93|0.0694|
+|x|          3|         41|        199|  -0.8395833333|        157|00:20:56|+0.92|0.94|0.0520|
+|!|          6|          6|        199|  -0.8394000000|        195|00:20:59|+0.77|0.82|0.4773|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         106    mean value:     477218587.7
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver  alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+106  106 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam 0.1195             2      199       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>        9
+
+# 2020-06-30 13:30:06 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+106 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.1195             2      199       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+57  fashion-mnist 1545522     20         1 classification  False Extraction      None   False KNeighbors       False        PCA         0.9172            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          55 distance            NA               NA      NA  False     arpack          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+9   fashion-mnist 1545522     20         1 classification  False       None Selection   False KNeighbors        True       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          98 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>       SVM                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+199 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>
+183 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.7038             2       31       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.3027      225       NA    <NA>
+189 fashion-mnist 1545522     20         1 classification  False       None      None    True        MLP        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.6214             2      245   logistic          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -1.4935      332       NA    <NA>
+# 2020-06-30 13:30:06 BRT: Iteration 6 of 7
+# experimentsUsedSoFar: 1017
+# remainingBudget: 983
+# currentBudget: 491
+# nbConfigurations: 54
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|         54|        245|  -0.8260000000|         54|00:35:29|   NA|  NA|    NA|
+|x|          5|         54|        245|  -0.8175000000|        102|00:31:44|+0.64|0.82|0.2189|
+|x|          6|         54|        245|  -0.8190000000|        150|00:30:58|+0.76|0.84|0.1469|
+|x|          4|         54|        245|  -0.8159166667|        201|00:33:05|+0.80|0.85|0.1285|
+|!|          1|         15|        245|  -0.8146000000|        252|00:33:48|+0.37|0.50|0.9389|
+|!|          9|         11|        245|  -0.8161111111|        261|00:05:16|+0.22|0.35|0.9255|
+|!|          2|         10|        241|    613566755.9|        269|00:07:46|+0.23|0.34|0.9051|
+|-|          8|         10|        241|    536870911.3|        276|00:07:04|+0.31|0.39|0.8636|
+|-|          3|         10|        241|    477218587.7|        280|00:04:11|+0.36|0.43|0.8173|
+|!|          7|          5|        106|    858993458.5|        284|00:03:20|+0.21|0.29|0.8099|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         199    mean value:     1288490188.
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+199  199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>      106
+
+# 2020-06-30 16:42:54 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>
+106 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.1195             2      199       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+241 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7805             1      193       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.7126       NA       NA    <NA>
+245 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7958             3      237       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6045      457      358    <NA>
+244 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -0.5120             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.0326      401       NA    <NA>
+# 2020-06-30 16:42:54 BRT: Iteration 7 of 7
+# experimentsUsedSoFar: 1301
+# remainingBudget: 699
+# currentBudget: 699
+# nbConfigurations: 68
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|         68|        310|  -0.8453333333|         68|00:41:02|   NA|  NA|    NA|
+|x|          8|         68|        297|  -0.8413333333|        131|00:40:05|+0.71|0.86|0.1936|
+|x|          4|         68|        297|  -0.8391111111|        194|00:40:04|+0.78|0.85|0.1484|
+|x|          6|         68|        297|  -0.8389166667|        257|00:40:04|+0.81|0.86|0.1355|
+|!|          2|         12|        297|  -0.8370000000|        320|00:40:04|+0.46|0.56|0.8661|
+|!|          7|          8|        297|  -0.8383333333|        327|00:03:12|+0.55|0.62|0.6335|
+|!|          5|          7|        297|  -0.8385238095|        330|00:02:02|+0.58|0.64|0.5637|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         199    mean value:     1561806289.
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+199  199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>      106
+
+# 2020-06-30 20:09:34 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>
+106 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.1195             2      199       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+241 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7805             1      193       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.7126       NA       NA    <NA>
+245 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7958             3      237       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6045      457      358    <NA>
+244 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -0.5120             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.0326      401       NA    <NA>
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+# 2020-06-30 20:09:34 BRT: Iteration 8 of 8
+# experimentsUsedSoFar: 1631
+# remainingBudget: 369
+# currentBudget: 369
+# nbConfigurations: 37
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         12|         37|        342|  -0.8433333333|         37|00:26:07|   NA|  NA|    NA|
+|x|          4|         37|        314|  -0.8220000000|         67|00:20:00|+0.38|0.69|0.5277|
+|x|          5|         37|        314|  -0.8240000000|         97|00:20:01|+0.51|0.67|0.4449|
+|x|         10|         37|        314|  -0.8252500000|        129|00:20:00|+0.52|0.64|0.4182|
+|!|          9|         12|        314|  -0.8258666667|        161|00:20:00|+0.08|0.26|0.8818|
+|=|          8|         12|        310|    715827882.0|        166|00:01:49|+0.13|0.28|0.9248|
+|!|         11|          9|        310|    613566755.9|        171|00:01:46|+0.13|0.25|0.8722|
+|-|          7|          9|        310|    536870911.3|        173|00:00:45|+0.16|0.27|0.8903|
+|-|          2|          9|        310|    477218587.7|        175|00:00:48|+0.22|0.30|0.8726|
+|-|          6|          9|        310|    429496728.8|        177|00:00:45|+0.25|0.32|0.8454|
+|!|          3|          7|        310|    390451571.6|        181|00:02:05|+0.29|0.35|0.7864|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         199    mean value:     1789569706.
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+199  199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>      106
+
+# 2020-06-30 22:03:46 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+199 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0204             1      461       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.5635       NA       NA    <NA>
+106 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.1195             2      199       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.9324      494       NA    <NA>
+241 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7805             1      193       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.7126       NA       NA    <NA>
+245 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam  0.7958             3      237       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6045      457      358    <NA>
+244 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -0.5120             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.0326      401       NA    <NA>
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+# 2020-06-30 22:03:46 BRT: Iteration 9 of 9
+# experimentsUsedSoFar: 1812
+# remainingBudget: 188
+# currentBudget: 188
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|         20|        297|  -0.8336666667|         20|00:20:00|   NA|  NA|    NA|
+|x|          7|         20|        297|  -0.8393333333|         33|00:20:00|+0.41|0.70|0.4750|
+|x|         12|         20|        345|  -0.8218888889|         46|00:20:00|+0.24|0.49|0.5067|
+|x|         10|         20|        345|  -0.8243333333|         59|00:20:00|+0.33|0.50|0.4375|
+|!|          5|         11|        345|  -0.8260666667|         72|00:20:00|+0.11|0.28|0.9507|
+|!|         11|          9|        344|    715827882.0|         76|00:04:06|+0.27|0.39|0.7540|
+|-|          4|          9|        344|    613566755.9|         78|00:02:40|+0.32|0.42|0.7622|
+|-|          9|          9|        344|    536870911.3|         80|00:02:41|+0.26|0.35|0.8036|
+|-|          1|          9|        344|    477218587.7|         84|00:04:05|+0.30|0.38|0.7848|
+|-|          6|          9|        344|    429496728.8|         86|00:02:40|+0.32|0.39|0.8019|
+|-|          2|          9|        344|    390451571.6|         88|00:02:41|+0.33|0.39|0.7930|
+|!|          8|          8|        344|    357913940.6|         90|00:02:42|+0.34|0.39|0.7815|
+|!|          3|          3|        344|    330382098.9|         91|00:01:51|-0.05|0.03|0.7134|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         297    mean value:     991146298.4
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+297  297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>      199
+
+# 2020-07-01 00:07:19 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+344 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.5446             1      324       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.8835       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+# 2020-07-01 00:07:19 BRT: Iteration 10 of 10
+# experimentsUsedSoFar: 1903
+# remainingBudget: 97
+# currentBudget: 97
+# nbConfigurations: 9
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         14|          9|        358|  -0.8416666667|          9|00:07:43|   NA|  NA|    NA|
+|x|          5|          9|        358|  -0.8408333333|         15|00:04:24|+0.65|0.83|0.0252|
+|x|          3|          9|        356|  -0.8377777778|         21|00:04:23|+0.50|0.67|0.0263|
+|x|         11|          9|        356|  -0.8395000000|         27|00:04:22|+0.49|0.62|0.0386|
+|!|          1|          6|        356|  -0.8373333333|         33|00:04:22|-0.18|0.06|0.9584|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         344    mean value:     306783377.5
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+344  344 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.5446             1      324       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.8835       NA       NA    <NA>      244
+
+# 2020-07-01 00:32:36 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+344 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.5446             1      324       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.8835       NA       NA    <NA>
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+356 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0979             1      375       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.8624       NA       NA    <NA>
+358 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.7177             1      195       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.0195       NA       NA    <NA>
+361 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.3133             1      345       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.2747       NA       NA    <NA>
+# 2020-07-01 00:32:36 BRT: Iteration 11 of 11
+# experimentsUsedSoFar: 1936
+# remainingBudget: 64
+# currentBudget: 64
+# nbConfigurations: 9
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         15|          9|        297|  -0.8450000000|          9|00:09:39|   NA|  NA|    NA|
+|x|          6|          9|        297|  -0.8416666667|         15|00:06:24|+0.92|0.96|0.0002|
+|x|         10|          9|        356|  -0.8417777778|         21|00:06:29|+0.46|0.64|0.6790|
+|x|         13|          9|        356|  -0.8397500000|         27|00:06:32|+0.45|0.59|0.8428|
+|!|          3|          6|        356|  -0.8387333333|         30|00:02:49|+0.13|0.31|0.7007|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         297    mean value:     858993458.5
+Description of the best-so-far configuration:
+    .ID.       dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+297  297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>      199
+
+# 2020-07-01 01:04:31 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+344 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.5446             1      324       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.8835       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+356 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0979             1      375       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.8624       NA       NA    <NA>
+358 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.7177             1      195       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.0195       NA       NA    <NA>
+361 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.3133             1      345       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.2747       NA       NA    <NA>
+# 2020-07-01 01:04:31 BRT: Stopped because there is not enough budget left to race more than the minimum (7)
+# You may either increase the budget or set 'minNbSurvival' to a lower value
+# Iteration: 12
+# nbIterations: 12
+# experimentsUsedSoFar: 1966
+# timeUsed: 0
+# remainingBudget: 34
+# currentBudget: 34
+# number of elites: 6
+# nbConfigurations: 7
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+297 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0194             1      395       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.6327       NA       NA    <NA>
+344 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.5446             1      324       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.8835       NA       NA    <NA>
+310 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.2984             2      224       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.7660      489       NA    <NA>
+356 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.0979             1      375       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -2.8624       NA       NA    <NA>
+358 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -1.7177             1      195       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -4.0195       NA       NA    <NA>
+361 fashion-mnist 1545522     20         1 classification  False   None   None    True       MLP        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.3133             1      345       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>            -3.2747       NA       NA    <NA>
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+297  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.0194 --learning_rate_init -2.6327 --hidden_layers 1 --neurons1 395 --activation relu
+344  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -1.5446 --learning_rate_init -3.8835 --hidden_layers 1 --neurons1 324 --activation relu
+310  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.2984 --learning_rate_init -2.766 --hidden_layers 2 --neurons1 224 --neurons2 489 --activation relu
+356  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -3.0979 --learning_rate_init -2.8624 --hidden_layers 1 --neurons1 375 --activation relu
+358  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -1.7177 --learning_rate_init -4.0195 --hidden_layers 1 --neurons1 195 --activation relu
+361  --dataset fashion-mnist --job_id 1545522 --cutoff 20 --metafolds 1 --task classification --sparse False --f_eng1 None --f_eng2 None --scaling True --algorithm MLP --solver adam --alpha -4.3133 --learning_rate_init -3.2747 --hidden_layers 1 --neurons1 345 --activation relu

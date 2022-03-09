@@ -1,0 +1,439 @@
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 3.1.2112M
+* Copyright (C) 2010-2018
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt --max-experiments 2000 -p ./svhn/parameters-1585229.txt --parallel 32 --train-instances-file svhn/new-instances.txt --log-file ./output/svhn/svhn-1f2k10m-irace-1585229.Rdata
+# 8 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2020-08-15 19:30:13 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 7
+# minNbSurvival: 7
+# nbParameters: 50
+# seed: 112922909
+# confidence level: 0.95
+# budget: 2000
+# mu: 5
+# deterministic: TRUE
+
+# 2020-08-15 19:30:13 BRT: Iteration 1 of 7
+# experimentsUsedSoFar: 0
+# remainingBudget: 2000
+# currentBudget: 285
+# nbConfigurations: 47
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         47|         12|  -0.2042567942|         47|00:20:02|   NA|  NA|    NA|
+|x|          2|         47|         12|  -0.1990202378|         94|00:20:01|+1.00|1.00|0.0000|
+|x|          3|         47|         12|  -0.2024759754|        141|00:20:01|+1.00|1.00|0.0000|
+|x|          4|         47|         12|  -0.2012839887|        188|00:20:01|+1.00|1.00|0.0000|
+|!|          5|          1|         12|  -0.2014447781|        235|00:20:01|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          12    mean value:   -0.2014447781
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+12   12    svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.3124     value           0.1369   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              29              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-08-15 21:10:22 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+12    svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.3124     value           0.1369   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              29              <NA>                 NA       NA       NA    <NA>
+# 2020-08-15 21:10:22 BRT: Iteration 2 of 7
+# experimentsUsedSoFar: 235
+# remainingBudget: 1765
+# currentBudget: 294
+# nbConfigurations: 42
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|         42|         80|  -0.2083998361|         42|00:20:05|   NA|  NA|    NA|
+|x|          5|         42|         12|  -0.2027597208|         83|00:20:00|+1.00|1.00|0.0000|
+|x|          3|         42|         80|  -0.2109940120|        124|00:20:00|+1.00|1.00|0.0000|
+|x|          2|         42|         80|  -0.2087304517|        165|00:20:00|+1.00|1.00|0.0000|
+|!|          1|          2|         80|  -0.2090886122|        206|00:20:00|+0.20|0.36|0.4000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          12    mean value:   -0.2017758994
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+12   12    svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.3124     value           0.1369   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              29              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-08-15 22:50:33 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+12    svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.3124     value           0.1369   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              29              <NA>                 NA       NA       NA    <NA>
+80    svhn 1585229     10         1 classification  False      none   none   False DecisionTree        <NA>       <NA>             NA            <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.6179     value           0.0811   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              38              <NA>                 NA       NA       NA    <NA>
+# 2020-08-15 22:50:33 BRT: Iteration 3 of 7
+# experimentsUsedSoFar: 441
+# remainingBudget: 1559
+# currentBudget: 311
+# nbConfigurations: 40
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         40|        112|  -0.2116611580|         40|00:13:37|   NA|  NA|    NA|
+|x|          5|         40|         12|  -0.2067220846|         78|00:13:24|+0.96|0.98|0.0000|
+|x|          4|         40|         90|  -0.2020813721|        117|00:13:56|+0.97|0.98|0.0000|
+|x|          2|         40|         90|  -0.2055244148|        155|00:13:14|+0.97|0.98|0.0000|
+|!|          1|          6|        112|  -0.2089265592|        193|00:13:30|-0.13|0.10|0.9151|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          80    mean value:   -0.2066352962
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+80   80    svhn 1585229     10         1 classification  False   none   none   False DecisionTree        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.6179     value           0.0811   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              38              <NA>                 NA       NA       NA    <NA>       12
+
+# 2020-08-15 23:58:16 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+80     svhn 1585229     10         1 classification  False      none   none   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.6179     value           0.0811   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              38              <NA>                 NA       NA       NA    <NA>
+12     svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA  SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.3124     value           0.1369   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              29              <NA>                 NA       NA       NA    <NA>
+112    svhn 1585229     10         1 classification  False Selection   none    True DecisionTree       False       <NA>             NA  SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.4681     value           0.1001   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              44              <NA>                 NA       NA       NA    <NA>
+98     svhn 1585229     10         1 classification  False Selection   none   False DecisionTree       False       <NA>             NA  SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.6091     value           0.1443   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              41              <NA>                 NA       NA       NA    <NA>
+90     svhn 1585229     10         1 classification  False Selection   none   False DecisionTree        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.6539     value           0.1358   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>         <NA>                f_classif                   NA             80          <NA>       NA       <NA>     NA    NA              37              <NA>                 NA       NA       NA    <NA>
+104    svhn 1585229     10         1 classification  False Selection   none   False DecisionTree        True       <NA>             NA  SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.6585     value           0.1501   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              37              <NA>                 NA       NA       NA    <NA>
+# 2020-08-15 23:58:16 BRT: Iteration 4 of 7
+# experimentsUsedSoFar: 634
+# remainingBudget: 1366
+# currentBudget: 341
+# nbConfigurations: 42
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         42|        137|  -0.3864466130|         42|00:11:32|   NA|  NA|    NA|
+|x|          6|         42|        137|  -0.3918319495|         82|00:11:33|+0.88|0.94|0.0000|
+|x|          5|         42|        137|  -0.3935883853|        118|00:11:36|+0.89|0.93|0.0000|
+|x|          2|         42|        137|  -0.3875492740|        154|00:11:40|+0.88|0.91|0.0250|
+|!|          1|         10|        137|  -0.3891781043|        190|00:11:42|+0.62|0.70|0.0064|
+|!|          3|          8|        137|  -0.3908345240|        198|00:00:46|+0.56|0.64|0.0033|
+|-|          7|          8|        137|  -0.3875884954|        200|00:00:46|+0.55|0.62|0.0040|
+|!|          4|          2|        137|  -0.3858889589|        202|00:00:46|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         137    mean value:   -0.3858889589
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+137  137    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      112
+
+# 2020-08-16 00:58:42 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+137    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+130    svhn 1585229     10         1 classification  False Selection   none   False KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           1  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 00:58:42 BRT: Iteration 5 of 7
+# experimentsUsedSoFar: 836
+# remainingBudget: 1164
+# currentBudget: 388
+# nbConfigurations: 40
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         40|        179|  -0.3930653433|         40|00:15:35|   NA|  NA|    NA|
+|x|          5|         40|        137|  -0.3919428476|         78|00:13:17|+0.99|0.99|0.0000|
+|x|          4|         40|        199|  -0.3869767908|        116|00:13:26|+0.99|0.99|0.0000|
+|x|          8|         40|        179|  -0.3863427719|        154|00:13:18|+0.99|0.99|0.0000|
+|!|          6|          5|        179|  -0.3886247121|        192|00:13:15|+0.42|0.54|0.0206|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         137    mean value:   -0.3859884566
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+137  137    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      112
+
+# 2020-08-16 02:07:35 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+137    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+130    svhn 1585229     10         1 classification  False Selection   none   False KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           1  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+179    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          10 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+190    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          14 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+199    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          16 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 02:07:36 BRT: Iteration 6 of 7
+# experimentsUsedSoFar: 1028
+# remainingBudget: 972
+# currentBudget: 486
+# nbConfigurations: 53
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|         53|        179|  -0.4019754157|         53|00:14:43|   NA|  NA|    NA|
+|x|          8|         53|        179|  -0.3950241729|        101|00:14:39|+0.97|0.99|0.0530|
+|x|          2|         53|        226|  -0.3865817490|        152|00:14:53|+0.98|0.98|0.0353|
+|x|          9|         53|        226|  -0.3866976558|        200|00:14:44|+0.98|0.98|0.0265|
+|!|          7|          8|        179|  -0.3842958525|        251|00:15:15|+0.35|0.48|0.0318|
+|-|          4|          8|        179|  -0.3826198021|        254|00:00:47|+0.33|0.44|0.0343|
+|-|          1|          8|        179|  -0.3839798768|        260|00:00:49|+0.31|0.41|0.0355|
+|-|          5|          8|        217|  -0.3851788163|        263|00:00:46|+0.29|0.38|0.0407|
+|-|          3|          8|        179|  -0.3867860724|        269|00:00:47|+0.32|0.40|0.0432|
+|!|          6|          6|        179|  -0.3878827125|        272|00:00:47|+0.00|0.10|0.8231|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         179    mean value:   -0.3878827125
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+179  179    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          10 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      137
+
+# 2020-08-16 03:25:53 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+179    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          10 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+217    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          12 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+137    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+190    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          14 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+213    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          16 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+226    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 03:25:53 BRT: Iteration 7 of 7
+# experimentsUsedSoFar: 1300
+# remainingBudget: 700
+# currentBudget: 700
+# nbConfigurations: 69
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|         69|        292|  -0.3815549473|         69|00:22:27|   NA|  NA|    NA|
+|x|          7|         69|        217|  -0.3752354013|        132|00:20:00|+0.96|0.98|0.0865|
+|x|          5|         69|        271|  -0.3846358834|        195|00:20:01|+0.96|0.98|0.0766|
+|x|         10|         69|        271|  -0.3874058375|        258|00:20:01|+0.97|0.98|0.0621|
+|!|          3|          9|        271|  -0.3899722729|        321|00:20:01|+0.12|0.30|0.8040|
+|=|          8|          9|        292|  -0.3896488142|        324|00:00:47|+0.03|0.19|0.9007|
+|=|          1|          9|        292|  -0.3904357523|        327|00:00:47|+0.06|0.20|0.8598|
+|=|          4|          9|        292|  -0.3889251159|        330|00:00:47|+0.07|0.19|0.8363|
+|=|          9|          9|        292|  -0.3887796242|        333|00:00:47|+0.06|0.16|0.8553|
+|=|          2|          9|        271|  -0.3863989953|        336|00:00:47|-0.01|0.09|0.9145|
+|=|          6|          9|        179|  -0.3863399581|        339|00:00:47|-0.00|0.09|0.9067|
+|=|         12|          9|        217|  -0.3883896146|        348|00:00:48|+0.03|0.11|0.8723|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         217    mean value:   -0.3883896146
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+217  217    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          12 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      179
+
+# 2020-08-16 05:14:04 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+217    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          12 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+179    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          10 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+271    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+292    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          13 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+270    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+213    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          16 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+190    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          14 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 05:14:04 BRT: Iteration 8 of 8
+# experimentsUsedSoFar: 1648
+# remainingBudget: 352
+# currentBudget: 352
+# nbConfigurations: 33
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|         33|        271|  -0.3874647823|         33|00:10:01|   NA|  NA|    NA|
+|x|         12|         33|        270|  -0.3946518687|         59|00:10:00|+0.98|0.99|0.0000|
+|x|          4|         33|        271|  -0.3894948059|         85|00:10:00|+0.98|0.99|0.0000|
+|x|          8|         33|        270|  -0.3881076806|        111|00:10:00|+0.98|0.99|0.0000|
+|!|          6|          7|        270|  -0.3906470844|        137|00:10:00|-0.07|0.15|0.9607|
+|.|          9|          7|        270|  -0.3907781434|        137|23:59:59|+0.03|0.19|0.8761|
+|.|          5|          7|        270|  -0.3918818362|        137|23:59:59|+0.03|0.17|0.8809|
+|.|          3|          7|        270|  -0.3927564731|        137|23:59:59|+0.05|0.17|0.8438|
+|.|         10|          7|        270|  -0.3936596541|        137|23:59:59|+0.05|0.16|0.8287|
+|.|          2|          7|        270|  -0.3909382130|        137|23:59:59|+0.00|0.10|0.8698|
+|.|         11|          7|        270|  -0.3888164992|        137|23:59:59|-0.03|0.06|0.9024|
+|.|          1|          7|        270|  -0.3889332925|        137|23:59:59|-0.03|0.05|0.8980|
+|.|          7|          7|        270|  -0.3875397331|        137|23:59:59|-0.01|0.06|0.8864|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         217    mean value:   -0.3876460859
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+217  217    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          12 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      179
+
+# 2020-08-16 06:04:08 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+217    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          12 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+179    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          10 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+271    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+270    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           9 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+292    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          13 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+213    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          16 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+190    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          14 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 06:04:08 BRT: Iteration 9 of 9
+# experimentsUsedSoFar: 1785
+# remainingBudget: 215
+# currentBudget: 215
+# nbConfigurations: 21
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         14|         21|        341|  -0.6022114838|         21|00:08:05|   NA|  NA|    NA|
+|x|         10|         21|        341|  -0.6087303633|         35|00:07:35|+0.87|0.94|0.0072|
+|x|         11|         21|        341|  -0.6036177200|         49|00:07:37|+0.87|0.91|0.0055|
+|x|          5|         21|        341|  -0.6004260167|         63|00:07:55|+0.85|0.89|0.0067|
+|!|          9|          9|        341|  -0.6006538120|         77|00:07:37|+0.44|0.55|0.0038|
+|-|          4|          9|        341|  -0.5986356428|         79|00:01:44|+0.48|0.57|0.0031|
+|-|          8|          9|        341|  -0.6034596286|         81|00:01:39|+0.50|0.57|0.0028|
+|-|          3|          9|        341|  -0.6021510089|         83|00:01:41|+0.52|0.58|0.0026|
+|-|         12|          9|        341|  -0.6067695405|         85|00:01:30|+0.52|0.58|0.0023|
+|-|          6|          9|        341|  -0.6058523177|         87|00:01:32|+0.53|0.58|0.0025|
+|-|          2|          9|        341|  -0.6062928605|         89|00:01:42|+0.52|0.56|0.0024|
+|-|         13|          9|        341|  -0.6056255826|         91|00:01:54|+0.51|0.56|0.0023|
+|-|          1|          9|        341|  -0.6080037450|         93|00:01:32|+0.52|0.55|0.0023|
+|!|          7|          2|        341|  -0.6071542225|         95|00:01:36|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         341    mean value:   -0.6071542225
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+341  341    svhn 1585229     10         1 classification  False Selection   none    True       MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>      270
+
+# 2020-08-16 06:57:54 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+341    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>
+345    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          15 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-08-16 06:57:54 BRT: Iteration 10 of 10
+# experimentsUsedSoFar: 1880
+# remainingBudget: 120
+# currentBudget: 120
+# nbConfigurations: 9
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         15|          9|        354|  -0.6277908451|          9|00:10:00|   NA|  NA|    NA|
+|x|          1|          9|        341|  -0.6077279465|         16|00:10:00|+0.98|0.99|0.0000|
+|x|          2|          9|        341|  -0.6087180602|         23|00:10:00|+0.99|0.99|0.0000|
+|x|          4|          9|        341|  -0.6036747442|         30|00:10:00|+0.99|0.99|0.0000|
+|!|         10|          3|        341|  -0.6059896439|         37|00:10:00|+0.70|0.76|0.0190|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         341    mean value:   -0.6052715543
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+341  341    svhn 1585229     10         1 classification  False Selection   none    True       MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>      270
+
+# 2020-08-16 07:47:55 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+341    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>
+345    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          15 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+354    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.4211             1      415       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.7560       NA       NA    <NA>
+# 2020-08-16 07:47:55 BRT: Iteration 11 of 11
+# experimentsUsedSoFar: 1917
+# remainingBudget: 83
+# currentBudget: 83
+# nbConfigurations: 8
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         16|          8|        363|  -0.6709271197|          8|00:10:00|   NA|  NA|    NA|
+|x|          6|          8|        363|  -0.6656953859|         14|00:10:00|+0.90|0.95|0.3022|
+|x|         15|          8|        363|  -0.6655843263|         19|00:10:00|+0.93|0.95|0.2015|
+|x|         13|          8|        363|  -0.6632327164|         25|00:10:00|+0.94|0.95|0.1511|
+|!|          3|          4|        363|  -0.6625598430|         31|00:10:00|+0.92|0.94|0.0054|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         341    mean value:   -0.6060087448
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+341  341    svhn 1585229     10         1 classification  False Selection   none    True       MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>      270
+
+# 2020-08-16 08:37:57 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+341    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>
+345    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          15 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+354    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.4211             1      415       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.7560       NA       NA    <NA>
+363    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.9301             1      248       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -2.8394       NA       NA    <NA>
+# 2020-08-16 08:37:57 BRT: Stopped because there is not enough budget left to race more than the minimum (7)
+# You may either increase the budget or set 'minNbSurvival' to a lower value
+# Iteration: 12
+# nbIterations: 12
+# experimentsUsedSoFar: 1948
+# timeUsed: 0
+# remainingBudget: 52
+# currentBudget: 52
+# number of elites: 4
+# nbConfigurations: 6
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components       selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver   alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm    sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+341    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -3.9632             1      419       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.5403       NA       NA    <NA>
+345    svhn 1585229     10         1 classification  False Selection   none    True KNeighbors       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>      NA            NA       NA       <NA>          15 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA          mean       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+354    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.4211             1      415       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -1.7560       NA       NA    <NA>
+363    svhn 1585229     10         1 classification  False Selection   none    True        MLP       False       <NA>             NA SelectFromModel   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   adam -4.9301             1      248       relu          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA> RandomForest                     <NA>                   NA             NA        median       NA       <NA>     NA    NA              NA              <NA>            -2.8394       NA       NA    <NA>
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+341  --dataset svhn --job_id 1585229 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm MLP --solver adam --alpha -3.9632 --learning_rate_init -1.5403 --hidden_layers 1 --neurons1 419 --activation relu
+345  --dataset svhn --job_id 1585229 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold mean --scaling True --algorithm KNeighbors --n_neighbors 15 --weights distance
+354  --dataset svhn --job_id 1585229 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm MLP --solver adam --alpha -4.4211 --learning_rate_init -1.756 --hidden_layers 1 --neurons1 415 --activation relu
+363  --dataset svhn --job_id 1585229 --cutoff 10 --metafolds 1 --task classification --sparse False --f_eng1 Selection --f_eng2 none --pre_scaling False --selection SelectFromModel --sel_model RandomForest --sel_threshold median --scaling True --algorithm MLP --solver adam --alpha -4.9301 --learning_rate_init -2.8394 --hidden_layers 1 --neurons1 248 --activation relu

@@ -1,0 +1,463 @@
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 3.1.2112M
+* Copyright (C) 2010-2018
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt --max-experiments 2000 -p ./cifar10/parameters-1585121.txt --parallel 32 --train-instances-file cifar10/instances.txt --log-file ./output/cifar10/cifar10-3f2k15m-irace-1585121.Rdata
+# 8 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2020-08-14 13:31:57 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 7
+# minNbSurvival: 7
+# nbParameters: 50
+# seed: 11458283
+# confidence level: 0.95
+# budget: 2000
+# mu: 5
+# deterministic: TRUE
+
+# 2020-08-14 13:31:57 BRT: Iteration 1 of 7
+# experimentsUsedSoFar: 0
+# remainingBudget: 2000
+# currentBudget: 285
+# nbConfigurations: 47
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         47|          4|  -0.1829333333|         47|00:30:00|   NA|  NA|    NA|
+|x|          2|         47|          2|  -0.1836666667|         94|00:30:00|+1.00|1.00|0.0000|
+|x|          3|         47|          4|  -0.1846222222|        141|00:30:01|+1.00|1.00|0.0000|
+|x|          4|         47|          2|  -0.1816666667|        188|00:30:18|+1.00|1.00|0.0000|
+|!|          5|          1|          4|  -0.1854666667|        235|00:30:02|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           4    mean value:   -0.1854666667
+Description of the best-so-far configuration:
+  .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+4    4 cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       NA
+
+# 2020-08-14 16:02:23 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+  dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+4 cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-14 16:02:23 BRT: Iteration 2 of 7
+# experimentsUsedSoFar: 235
+# remainingBudget: 1765
+# currentBudget: 294
+# nbConfigurations: 42
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|         42|         83|  -0.2364000000|         42|00:30:00|   NA|  NA|    NA|
+|x|          4|         42|         83|  -0.2374666667|         83|00:30:01|+1.00|1.00|0.0000|
+|x|          5|         42|         83|  -0.2383555556|        124|00:30:00|+1.00|1.00|0.0000|
+|x|          3|         42|         83|  -0.2342000000|        165|00:30:00|+1.00|1.00|0.0000|
+|!|          2|          2|         83|  -0.2359466667|        206|00:30:01|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           4    mean value:   -0.1852222222
+Description of the best-so-far configuration:
+  .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+4    4 cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       NA
+
+# 2020-08-14 18:32:30 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+4  cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+83 cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-14 18:32:30 BRT: Iteration 3 of 7
+# experimentsUsedSoFar: 441
+# remainingBudget: 1559
+# currentBudget: 311
+# nbConfigurations: 40
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         40|        121|  -0.2314666667|         40|00:30:22|   NA|  NA|    NA|
+|x|          1|         40|        121|  -0.2340666667|         79|00:30:47|+1.00|1.00|0.0000|
+|x|          2|         40|        121|  -0.2385777778|        117|00:29:41|+0.81|0.87|0.1441|
+|x|          3|         40|         93|  -0.1922333333|        155|00:25:56|+0.75|0.82|0.1853|
+|!|          4|          8|         93|  -0.1922933333|        193|00:28:11|+0.41|0.53|0.9831|
+|!|          6|          5|        121|    715827882.5|        199|00:05:48|+0.29|0.41|0.8944|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          83    mean value:     1227133513.
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+83   83 cifar10 1585121     15         3 classification  False   none   none   False KNeighbors        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA        4
+
+# 2020-08-14 21:03:19 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+83  cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+4   cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+121 cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          45  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+93  cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          91 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             11          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+117 cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          65  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             12          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-14 21:03:19 BRT: Iteration 4 of 7
+# experimentsUsedSoFar: 640
+# remainingBudget: 1360
+# currentBudget: 340
+# nbConfigurations: 41
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         41|        162|  -0.2382666667|         41|00:32:20|   NA|  NA|    NA|
+|x|          2|         41|        162|  -0.2426000000|         77|00:30:19|+0.76|0.88|0.1753|
+|x|          7|         41|        162|  -0.2363555556|        113|00:26:57|+0.84|0.89|0.1179|
+|x|          3|         41|        162|  -0.2339666667|        149|00:23:22|+0.85|0.89|0.1089|
+|!|          6|         10|        162|  -0.2351466667|        185|00:23:19|+0.49|0.59|0.9067|
+|!|          1|          8|        162|  -0.2348444444|        190|00:02:06|+0.46|0.55|0.8227|
+|!|          4|          6|        162|  -0.2360380952|        193|00:02:06|+0.40|0.49|0.7387|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          83    mean value:     1610612736.
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+83   83 cifar10 1585121     15         3 classification  False   none   none   False KNeighbors        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA        4
+
+# 2020-08-14 23:23:53 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+83  cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+4   cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+121 cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          45  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+162 cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          90 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+143 cifar10 1585121     15         3 classification  False Selection   none   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          50  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             33          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+161 cifar10 1585121     15         3 classification  False      none   none   False KNeighbors        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          68  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-14 23:23:53 BRT: Iteration 5 of 7
+# experimentsUsedSoFar: 833
+# remainingBudget: 1167
+# currentBudget: 389
+# nbConfigurations: 43
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         43|        193|  -0.2750666667|         43|00:22:26|   NA|  NA|    NA|
+|x|          6|         43|        193|  -0.2792000000|         80|00:17:53|+0.97|0.99|0.0000|
+|x|          4|         43|        193|  -0.2804888889|        117|00:17:46|+0.98|0.98|0.0000|
+|x|          3|         43|        193|  -0.2801000000|        154|00:17:57|+0.94|0.95|0.0379|
+|!|          5|         11|        193|  -0.2792266667|        195|00:20:45|+0.87|0.89|0.3707|
+|!|          2|          7|        193|  -0.2792222222|        200|00:02:58|+0.69|0.74|0.3242|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         162    mean value:   -0.2357629630
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+162  162 cifar10 1585121     15         3 classification  False   none   none   False KNeighbors        <NA>       <NA>             NA      <NA>   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          90 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA      121
+
+# 2020-08-15 01:03:42 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components        selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors  weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+162 cifar10 1585121     15         3 classification  False      none   none   False         KNeighbors        <NA>       <NA>             NA             <NA>      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          90 distance            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+121 cifar10 1585121     15         3 classification  False      none   none   False         KNeighbors        <NA>       <NA>             NA             <NA>      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          45  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+161 cifar10 1585121     15         3 classification  False      none   none   False         KNeighbors        <NA>       <NA>             NA             <NA>      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          68  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+143 cifar10 1585121     15         3 classification  False Selection   none   False         KNeighbors       False       <NA>             NA SelectPercentile      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          50  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             33          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+83  cifar10 1585121     15         3 classification  False      none   none   False         KNeighbors        <NA>       <NA>             NA             <NA>      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          87  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+4   cifar10 1585121     15         3 classification  False Selection   none   False         KNeighbors        True       <NA>             NA SelectPercentile      NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          88  uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              6          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+193 cifar10 1585121     15         3 classification  False      none   none   False LogisticRegression        <NA>       <NA>             NA             <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA     <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 01:03:42 BRT: Iteration 6 of 7
+# experimentsUsedSoFar: 1033
+# remainingBudget: 967
+# currentBudget: 483
+# nbConfigurations: 54
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|         54|        193|  -0.2806666667|         54|00:27:07|   NA|  NA|    NA|
+|x|          3|         54|        193|  -0.2798000000|        101|00:25:39|+0.87|0.93|0.0434|
+|x|          1|         54|        193|  -0.2782666667|        149|00:26:49|+0.89|0.93|0.0580|
+|x|          4|         54|        193|  -0.2794666667|        196|00:25:39|+0.91|0.94|0.0653|
+|!|          9|         12|        193|  -0.2785866667|        243|00:25:41|+0.92|0.93|0.6231|
+|!|          8|          8|        193|  -0.2785555556|        249|00:03:44|+0.74|0.78|0.6256|
+|-|          7|          8|        193|  -0.2773904762|        251|00:01:11|+0.76|0.79|0.6245|
+|-|          6|          8|        193|  -0.2781333333|        252|00:00:41|+0.77|0.80|0.5915|
+|-|          2|          8|        193|  -0.2782518519|        253|00:00:41|+0.78|0.81|0.5624|
+|!|          5|          1|        193|  -0.2780000000|        254|00:00:41|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:   -0.2780000000
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 03:21:43 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 03:21:43 BRT: Iteration 7 of 7
+# experimentsUsedSoFar: 1287
+# remainingBudget: 713
+# currentBudget: 713
+# nbConfigurations: 65
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|         65|        295|  -0.2845333333|         65|00:31:02|   NA|  NA|    NA|
+|x|          4|         65|        295|  -0.2900000000|        129|00:30:04|+0.84|0.92|0.1808|
+|x|         10|         65|        295|  -0.2914222222|        193|00:30:04|+0.89|0.93|0.1205|
+|x|          8|         65|        295|  -0.2917666667|        257|00:30:04|+0.92|0.94|0.0904|
+|!|          5|          4|        295|  -0.2909866667|        321|00:30:04|+0.82|0.86|0.1540|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     390451572.1
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 05:53:04 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 05:53:04 BRT: Iteration 8 of 8
+# experimentsUsedSoFar: 1608
+# remainingBudget: 392
+# currentBudget: 392
+# nbConfigurations: 36
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         12|         36|        295|  -0.2969333333|         36|00:18:27|   NA|  NA|    NA|
+|x|          4|         36|        295|  -0.2962000000|         68|00:15:01|+0.82|0.91|0.2427|
+|x|          9|         36|        295|  -0.2926666667|        103|00:17:02|+0.88|0.92|0.1592|
+|x|          1|         36|        295|  -0.2916333333|        138|00:17:02|+0.91|0.93|0.1187|
+|!|          7|          6|        295|  -0.2900266667|        173|00:17:02|+0.90|0.92|0.1679|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     715827882.4
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 07:17:41 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 07:17:41 BRT: Iteration 9 of 9
+# experimentsUsedSoFar: 1781
+# remainingBudget: 219
+# currentBudget: 219
+# nbConfigurations: 22
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|         22|        295|  -0.2805333333|         22|00:15:00|   NA|  NA|    NA|
+|x|         12|         22|        295|  -0.2887333333|         38|00:15:00|+0.88|0.94|0.2617|
+|x|          5|         22|        295|  -0.2884444444|         56|00:15:00|+0.91|0.94|0.1737|
+|x|          7|         22|        295|  -0.2872333333|         72|00:15:00|+0.93|0.95|0.1413|
+|!|          9|          6|        295|  -0.2869066667|         88|00:15:00|+0.88|0.90|0.1167|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     660764199.1
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 08:32:45 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 08:32:45 BRT: Iteration 10 of 10
+# experimentsUsedSoFar: 1869
+# remainingBudget: 131
+# currentBudget: 131
+# nbConfigurations: 14
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         14|         14|        313|  -0.2814666667|         14|00:10:55|   NA|  NA|    NA|
+|x|         10|         14|        295|  -0.2866666667|         24|00:09:05|+0.95|0.98|0.0224|
+|x|          6|         14|        295|  -0.2877333333|         37|00:10:36|+0.96|0.97|0.0257|
+|x|          4|         14|        295|  -0.2896666667|         45|00:08:29|+0.97|0.97|0.0218|
+|!|         12|          6|        295|  -0.2911200000|         53|00:08:34|+0.73|0.78|0.2854|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     613566756.3
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 09:20:27 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 09:20:27 BRT: Iteration 11 of 11
+# experimentsUsedSoFar: 1922
+# remainingBudget: 78
+# currentBudget: 78
+# nbConfigurations: 10
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         15|         10|        313|  -0.3001333333|         10|00:07:06|   NA|  NA|    NA|
+|x|          5|         10|        313|  -0.2947333333|         14|00:04:19|+0.95|0.98|0.0223|
+|x|          7|         10|        313|  -0.2896000000|         18|00:04:17|+0.94|0.96|0.0209|
+|x|         11|         10|        313|  -0.2890666667|         24|00:05:07|+0.88|0.91|0.5046|
+|!|          6|          6|        313|  -0.2890133333|         28|00:04:20|+0.79|0.84|0.2035|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     572662305.9
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 09:45:39 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 09:45:39 BRT: Iteration 12 of 12
+# experimentsUsedSoFar: 1950
+# remainingBudget: 50
+# currentBudget: 50
+# nbConfigurations: 8
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         16|          8|        295|  -0.3026666667|          8|00:04:41|   NA|  NA|    NA|
+|x|          7|          8|        295|  -0.2931333333|         10|00:02:02|+0.93|0.96|0.0302|
+|x|         11|          8|        295|  -0.2902666667|         12|00:02:02|+0.86|0.90|0.5281|
+|x|         14|          8|        295|  -0.2874666667|         14|00:02:02|+0.89|0.92|0.4176|
+|!|         12|          6|        295|  -0.2893600000|         16|00:02:04|+0.83|0.87|0.1612|
+|.|          9|          6|        295|  -0.2887333333|         16|23:59:59|+0.81|0.84|0.1351|
+|.|         13|          6|        295|  -0.2875619048|         16|23:59:59|+0.83|0.86|0.1325|
+|.|          5|          6|        295|  -0.2876000000|         16|23:59:59|+0.84|0.86|0.1229|
+|.|         15|          6|        295|  -0.2888740741|         16|23:59:59|+0.84|0.86|0.1276|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         193    mean value:     536870911.8
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+193  193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA       83
+
+# 2020-08-15 09:58:33 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# 2020-08-15 09:58:33 BRT: Stopped because there is not enough budget left to race more than the minimum (7)
+# You may either increase the budget or set 'minNbSurvival' to a lower value
+# Iteration: 13
+# nbIterations: 13
+# experimentsUsedSoFar: 1966
+# timeUsed: 0
+# remainingBudget: 34
+# currentBudget: 34
+# number of elites: 6
+# nbConfigurations: 7
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse f_eng1 f_eng2 scaling          algorithm pre_scaling extraction ext_components selection    lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+193 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.5933     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      151       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+295 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.2381     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      101       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+260 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -3.0992     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      117       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+305 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.7262     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      119       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+340 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -0.6285     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+313 cifar10 1585121     15         3 classification  False   none   none   False LogisticRegression        <NA>       <NA>             NA      <NA> -1.9289     lbfgs multinomial NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>      107       <NA>     NA    NA              NA              <NA>                 NA       NA       NA      NA
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+193  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -3.5933 --lr_solver lbfgs --multi_class multinomial --max_iter 151
+295  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -0.2381 --lr_solver lbfgs --multi_class multinomial --max_iter 101
+260  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -3.0992 --lr_solver lbfgs --multi_class multinomial --max_iter 117
+305  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -1.7262 --lr_solver lbfgs --multi_class multinomial --max_iter 119
+340  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -0.6285 --lr_solver lbfgs --multi_class multinomial --max_iter 107
+313  --dataset cifar10 --job_id 1585121 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 none --f_eng2 none --scaling False --algorithm LogisticRegression --lr_C -1.9289 --lr_solver lbfgs --multi_class multinomial --max_iter 107

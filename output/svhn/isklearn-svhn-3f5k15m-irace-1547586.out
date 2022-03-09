@@ -1,0 +1,487 @@
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 3.1.2112M
+* Copyright (C) 2010-2018
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/cemvieira/bin/R/irace
+# called with: -s scenario.txt --max-experiments 5000 -p ./svhn/parameters-1547586.txt --parallel 32 --train-instances-file svhn/instances.txt --log-file ./output/svhn/svhn-3f5k15m-irace-1547586.Rdata
+# 8 expression(s) specifying forbidden configurations read from '/home/cemvieira/isklearn/forbidden.txt'
+# 2020-07-02 19:58:04 BRT: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 7
+# minNbSurvival: 7
+# nbParameters: 50
+# seed: 195245582
+# confidence level: 0.95
+# budget: 5000
+# mu: 5
+# deterministic: TRUE
+
+# 2020-07-02 19:58:04 BRT: Iteration 1 of 7
+# experimentsUsedSoFar: 0
+# remainingBudget: 5000
+# currentBudget: 714
+# nbConfigurations: 119
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|        119|         33|  -0.2324687108|        119|01:00:07|   NA|  NA|    NA|
+|x|          2|        119|         33|  -0.2241559289|        238|01:00:05|+0.91|0.96|0.0776|
+|x|          3|        119|         33|  -0.2253877022|        357|01:00:05|+0.94|0.96|0.0518|
+|x|          4|        119|         33|  -0.2255478584|        476|01:00:06|+0.95|0.97|0.0388|
+|!|          5|          4|         33|  -0.2250644522|        595|01:00:06|+0.64|0.71|0.0216|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          33    mean value:   -0.2250644522
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+33   33    svhn 1547586     15         3 classification  False Selection   None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-07-03 00:58:40 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1    f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+33     svhn 1547586     15         3 classification  False Selection      None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+101    svhn 1547586     15         3 classification  False      None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.0401      none           0.1625   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              20              <NA>                 NA       NA       NA    <NA>
+2      svhn 1547586     15         3 classification  False      None Selection   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.8850      none           0.2142   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              7          <NA>       NA       <NA>     NA    NA              14              <NA>                 NA       NA       NA    <NA>
+23     svhn 1547586     15         3 classification  False Selection      None   False RandomForest        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>           484                     gini                   NA       0.1428     value           0.4101   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             52          <NA>       NA       <NA>     NA    NA              15              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 00:58:40 BRT: Iteration 2 of 7
+# experimentsUsedSoFar: 595
+# remainingBudget: 4405
+# currentBudget: 734
+# nbConfigurations: 107
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          6|        107|        221|  -0.3258249352|        107|00:53:58|   NA|  NA|    NA|
+|x|          3|        107|        221|  -0.3258719144|        210|00:53:34|+1.00|1.00|0.0000|
+|x|          5|        107|        221|  -0.3107487427|        313|00:53:38|+1.00|1.00|0.0000|
+|x|          2|        107|        221|  -0.3020449907|        416|00:53:27|+1.00|1.00|0.0000|
+|!|          1|          5|        221|  -0.2982971448|        519|00:53:08|+0.76|0.81|0.0063|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          33    mean value:   -0.2262039997
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+33   33    svhn 1547586     15         3 classification  False Selection   None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-07-03 05:26:33 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+33     svhn 1547586     15         3 classification  False  Selection      None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+101    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.0401      none           0.1625   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              20              <NA>                 NA       NA       NA    <NA>
+2      svhn 1547586     15         3 classification  False       None Selection   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.8850      none           0.2142   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              7          <NA>       NA       <NA>     NA    NA              14              <NA>                 NA       NA       NA    <NA>
+23     svhn 1547586     15         3 classification  False  Selection      None   False RandomForest        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>           484                     gini                   NA       0.1428     value           0.4101   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             52          <NA>       NA       <NA>     NA    NA              15              <NA>                 NA       NA       NA    <NA>
+221    svhn 1547586     15         3 classification  False Extraction Selection   False   KNeighbors        True        PCA         0.3124 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          66 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             70          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 05:26:33 BRT: Iteration 3 of 7
+# experimentsUsedSoFar: 1114
+# remainingBudget: 3886
+# currentBudget: 777
+# nbConfigurations: 100
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|        100|        310|  -0.2331291194|        100|00:45:47|   NA|  NA|    NA|
+|x|          6|        100|        310|  -0.2335142676|        195|00:45:03|+0.93|0.96|0.0579|
+|x|          5|        100|        310|  -0.2318766385|        290|00:45:03|+0.95|0.97|0.0386|
+|x|          1|        100|        310|  -0.2300592091|        385|00:45:03|+0.96|0.97|0.0290|
+|!|          2|          9|        310|  -0.2328320597|        480|00:45:04|+0.72|0.77|0.6778|
+|!|          4|          6|        310|  -0.2326332580|        485|00:01:36|+0.61|0.67|0.5275|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         221    mean value:     613566756.3
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+221  221    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.3124 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          66 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             70          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      101
+
+# 2020-07-03 09:14:15 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+221    svhn 1547586     15         3 classification  False Extraction Selection   False   KNeighbors        True        PCA         0.3124 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          66 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             70          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+33     svhn 1547586     15         3 classification  False  Selection      None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+101    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.0401      none           0.1625   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              20              <NA>                 NA       NA       NA    <NA>
+2      svhn 1547586     15         3 classification  False       None Selection   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.8850      none           0.2142   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              7          <NA>       NA       <NA>     NA    NA              14              <NA>                 NA       NA       NA    <NA>
+23     svhn 1547586     15         3 classification  False  Selection      None   False RandomForest        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>           484                     gini                   NA       0.1428     value           0.4101   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             52          <NA>       NA       <NA>     NA    NA              15              <NA>                 NA       NA       NA    <NA>
+310    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.6691      none           0.0447   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 09:14:16 BRT: Iteration 4 of 7
+# experimentsUsedSoFar: 1599
+# remainingBudget: 3401
+# currentBudget: 850
+# nbConfigurations: 99
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         99|        369|  -0.3531595377|         99|00:45:03|   NA|  NA|    NA|
+|x|          2|         99|        369|  -0.3176391659|        192|00:45:03|+0.95|0.98|0.0241|
+|x|          4|         99|        404|  -0.2780158495|        285|00:45:04|+0.94|0.96|0.0325|
+|x|          7|         99|        404|  -0.2760800177|        378|00:45:03|+0.95|0.96|0.0285|
+|!|          5|         10|        404|  -0.2774976519|        471|00:45:03|+0.71|0.77|0.8542|
+|!|          6|          7|        404|  -0.2760528984|        475|00:00:58|+0.62|0.69|0.7560|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          33    mean value:   -0.2259046558
+Description of the best-so-far configuration:
+   .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+33   33    svhn 1547586     15         3 classification  False Selection   None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>       NA
+
+# 2020-07-03 13:00:35 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling    algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+33     svhn 1547586     15         3 classification  False  Selection      None   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.4797      none           0.0407   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             40          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+221    svhn 1547586     15         3 classification  False Extraction Selection   False   KNeighbors        True        PCA         0.3124 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          66 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             70          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+101    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.0401      none           0.1625   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              20              <NA>                 NA       NA       NA    <NA>
+2      svhn 1547586     15         3 classification  False       None Selection   False DecisionTree       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                  entropy                   NA       0.8850      none           0.2142   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              7          <NA>       NA       <NA>     NA    NA              14              <NA>                 NA       NA       NA    <NA>
+23     svhn 1547586     15         3 classification  False  Selection      None   False RandomForest        True       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>           484                     gini                   NA       0.1428     value           0.4101   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             52          <NA>       NA       <NA>     NA    NA              15              <NA>                 NA       NA       NA    <NA>
+310    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.6691      none           0.0447   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              43              <NA>                 NA       NA       NA    <NA>
+404    svhn 1547586     15         3 classification  False       None      None   False DecisionTree        <NA>       <NA>             NA             <NA>   NA      <NA>        <NA> NA   <NA>            NA                     gini                   NA       0.2275      none           0.0102   <NA>    NA            NA       NA       <NA>          NA    <NA>            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                     <NA>                   NA             NA          <NA>       NA       <NA>     NA    NA              33              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 13:00:35 BRT: Iteration 5 of 7
+# experimentsUsedSoFar: 2074
+# remainingBudget: 2926
+# currentBudget: 975
+# nbConfigurations: 103
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|        103|        496|  -0.2998728128|        103|00:36:18|   NA|  NA|    NA|
+|x|          4|        103|        416|  -0.2883031922|        199|00:34:40|+0.86|0.93|0.0598|
+|x|          3|        103|        496|  -0.2985001339|        297|00:35:11|+0.90|0.93|0.0399|
+|x|          8|        103|        496|  -0.3049005536|        393|00:34:28|+0.91|0.93|0.0362|
+|!|          6|         16|        496|  -0.3101406982|        489|00:34:36|+0.77|0.82|0.7942|
+|!|          1|         10|        496|  -0.3074748660|        499|00:02:00|+0.70|0.75|0.6640|
+|-|          2|         10|        496|  -0.3010440862|        502|00:01:12|+0.71|0.75|0.5946|
+|-|          7|         10|        496|  -0.2985560927|        505|00:01:13|+0.70|0.73|0.6621|
+|!|          5|          3|        496|  -0.2978919904|        508|00:01:14|-0.08|0.04|0.6898|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         496    mean value:   -0.2978919904
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+496  496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      221
+
+# 2020-07-03 16:01:34 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 16:01:34 BRT: Iteration 6 of 7
+# experimentsUsedSoFar: 2582
+# remainingBudget: 2418
+# currentBudget: 1209
+# nbConfigurations: 123
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         10|        123|        614|  -0.3452474820|        123|01:00:06|   NA|  NA|    NA|
+|x|          4|        123|        614|  -0.3155160945|        243|01:00:06|+0.88|0.94|0.0945|
+|x|          9|        123|        614|  -0.3158350780|        363|01:00:06|+0.92|0.95|0.0630|
+|x|          3|        123|        614|  -0.3220484729|        483|01:00:06|+0.94|0.96|0.0473|
+|!|          1|          7|        614|  -0.3208230826|        603|01:00:05|+0.59|0.67|0.4493|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         496    mean value:     429496729.3
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+496  496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      221
+
+# 2020-07-03 21:02:09 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+614    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          32 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA              8          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+625    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0628 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          50 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+559    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          67 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             19          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+619    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          84 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-03 21:02:09 BRT: Iteration 7 of 7
+# experimentsUsedSoFar: 3185
+# remainingBudget: 1815
+# currentBudget: 1815
+# nbConfigurations: 171
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|        171|        679|  -0.3246301238|        171|01:14:40|   NA|  NA|    NA|
+|x|          8|        171|        679|  -0.3285591356|        339|01:13:44|+0.93|0.96|0.0616|
+|x|          3|        171|        679|  -0.3413307219|        503|01:12:50|+0.94|0.96|0.0500|
+|x|          5|        171|        679|  -0.3422295249|        671|01:13:35|+0.93|0.95|0.0533|
+|!|          9|         16|        679|  -0.3433754213|        835|01:13:02|+0.76|0.81|0.4606|
+|!|         10|         11|        679|  -0.3467824911|        844|00:01:32|+0.80|0.83|0.4723|
+|-|          4|         11|        679|  -0.3403039006|        848|00:00:48|+0.79|0.82|0.4309|
+|!|          1|          5|        679|  -0.3401897814|        852|00:00:49|+0.74|0.77|0.2863|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         502    mean value:   -0.2957568172
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+502  502    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       33
+
+# 2020-07-04 03:13:17 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+679    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          19 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             18          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+662    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          20 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             15          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 03:13:17 BRT: Iteration 8 of 8
+# experimentsUsedSoFar: 4037
+# remainingBudget: 963
+# currentBudget: 963
+# nbConfigurations: 84
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         12|         84|        863|  -0.3300303897|         84|00:41:34|   NA|  NA|    NA|
+|x|          1|         84|        863|  -0.3396268154|        163|00:39:02|+0.96|0.98|0.0493|
+|x|          6|         84|        863|  -0.3404673828|        244|00:39:00|+0.94|0.96|0.0633|
+|x|          9|         84|        863|  -0.3428457171|        323|00:38:38|+0.95|0.96|0.0558|
+|!|          4|         10|        863|  -0.3344938332|        402|00:38:53|+0.74|0.79|0.3805|
+|!|          5|          6|        863|  -0.3369337071|        407|00:01:52|+0.87|0.89|0.2565|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         502    mean value:   -0.2949319018
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+502  502    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       33
+
+# 2020-07-04 06:32:21 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+679    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          19 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             18          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+662    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          20 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             15          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 06:32:21 BRT: Iteration 9 of 9
+# experimentsUsedSoFar: 4444
+# remainingBudget: 556
+# currentBudget: 556
+# nbConfigurations: 48
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|         48|        898|  -0.3282150376|         48|00:19:35|   NA|  NA|    NA|
+|x|          8|         48|        898|  -0.3389860241|         91|00:18:47|+0.84|0.92|0.0853|
+|x|          9|         48|        898|  -0.3423791012|        133|00:18:47|+0.89|0.93|0.0575|
+|x|          6|         48|        898|  -0.3404408799|        175|00:18:33|+0.90|0.92|0.0503|
+|!|          7|         10|        898|  -0.3402354905|        220|00:19:09|+0.67|0.73|0.4378|
+|!|          1|          8|        863|  -0.3381299302|        224|00:01:39|+0.83|0.86|0.3216|
+|!|         11|          7|        863|  -0.3361889665|        227|00:01:06|+0.84|0.87|0.3854|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         502    mean value:   -0.2931620562
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+502  502    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       33
+
+# 2020-07-04 08:10:02 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+679    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          19 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             18          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+662    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          20 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             15          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+898    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             30          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 08:10:03 BRT: Iteration 10 of 10
+# experimentsUsedSoFar: 4671
+# remainingBudget: 329
+# currentBudget: 329
+# nbConfigurations: 30
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         14|         30|        863|  -0.3702705730|         30|00:08:26|   NA|  NA|    NA|
+|x|         13|         30|        898|  -0.3475012879|         53|00:06:46|+0.86|0.93|0.8385|
+|x|         12|         30|        898|  -0.3439718273|         77|00:07:00|+0.91|0.94|0.5590|
+|x|          8|         30|        898|  -0.3454181231|        100|00:06:47|+0.87|0.90|0.6791|
+|!|          1|          8|        898|  -0.3452527798|        123|00:06:48|+0.82|0.86|0.4090|
+|!|          9|          7|        898|  -0.3459048591|        124|00:01:47|+0.87|0.89|0.3563|
+|.|          6|          7|        898|  -0.3442936244|        124|23:59:59|+0.86|0.88|0.3850|
+|.|         11|          7|        898|  -0.3430976006|        124|23:59:59|+0.85|0.87|0.4029|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         502    mean value:   -0.2945245991
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+502  502    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>       33
+
+# 2020-07-04 08:47:41 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse     f_eng1    f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+502    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          73 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             17          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+416    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.0250 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          30 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             24          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+496    svhn 1547586     15         3 classification  False Extraction Selection   False KNeighbors        True        PCA         0.1708 SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          61 uniform            NA               NA      NA  False       auto          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             31          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+679    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          19 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             18          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+662    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          20 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             15          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+898    svhn 1547586     15         3 classification  False  Selection      None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             30          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 08:47:41 BRT: Iteration 11 of 11
+# experimentsUsedSoFar: 4795
+# remainingBudget: 205
+# currentBudget: 205
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         15|         20|        898|  -0.3341631368|         20|00:11:08|   NA|  NA|    NA|
+|x|          8|         20|        898|  -0.3419600737|         33|00:09:05|+0.79|0.90|0.2092|
+|x|         12|         20|        898|  -0.3402776845|         46|00:09:11|+0.81|0.87|0.6475|
+|x|          1|         20|        898|  -0.3413561151|         59|00:09:02|+0.83|0.87|0.5138|
+|!|          9|          9|        898|  -0.3429179431|         72|00:09:08|+0.88|0.90|0.2856|
+|!|          7|          8|        898|  -0.3423339414|         74|00:01:20|+0.87|0.89|0.2492|
+|-|         13|          8|        898|  -0.3403169552|         75|00:00:47|+0.88|0.90|0.3065|
+|-|          2|          8|        898|  -0.3405477985|         80|00:01:08|+0.89|0.90|0.2709|
+|-|         14|          8|        898|  -0.3434633252|         81|00:00:47|+0.88|0.90|0.2441|
+|-|         11|          8|        898|  -0.3425895361|         82|00:00:48|+0.88|0.89|0.2701|
+|-|          4|          8|        898|  -0.3394932153|         84|00:01:04|+0.88|0.89|0.2570|
+|-|          3|          8|        898|  -0.3413137934|         87|00:01:06|+0.85|0.86|0.2465|
+|-|          5|          8|        938|  -0.3427258382|         89|00:01:04|+0.86|0.87|0.2307|
+|-|          6|          8|        938|  -0.3426341063|         90|00:00:48|+0.85|0.86|0.2516|
+|!|         10|          3|        938|  -0.3445425865|         93|00:01:05|-0.01|0.06|0.6022|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         938    mean value:   -0.3445425865
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+938  938    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      662
+
+# 2020-07-04 09:45:20 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+938    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+898    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             30          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 09:45:20 BRT: Iteration 12 of 12
+# experimentsUsedSoFar: 4888
+# remainingBudget: 112
+# currentBudget: 112
+# nbConfigurations: 9
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . All alive configurations are elite and nothing is discarded
+
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         16|          9|        863|  -0.3601363167|          9|00:01:25|   NA|  NA|    NA|
+|x|         14|          9|        938|  -0.3642840417|         15|00:01:23|+0.93|0.97|0.0129|
+|x|          5|          9|        938|  -0.3603525315|         21|00:01:23|+0.88|0.92|0.0214|
+|x|         12|          9|        938|  -0.3543553527|         27|00:01:23|+0.84|0.88|0.0311|
+|!|         10|          3|        938|  -0.3577365441|         33|00:01:23|+0.10|0.28|0.4537|
+|.|          1|          3|        938|  -0.3562905183|         33|23:59:59|+0.10|0.25|0.4146|
+|.|          3|          3|        938|  -0.3588676537|         33|23:59:59|+0.14|0.27|0.3864|
+|.|         15|          3|        938|  -0.3557671908|         33|23:59:59|+0.02|0.14|0.4726|
+|.|          8|          3|        938|  -0.3543611072|         33|23:59:59|-0.03|0.09|0.5335|
+|.|         13|          3|        938|  -0.3516381698|         33|23:59:59|-0.03|0.07|0.5460|
+|.|          7|          3|        938|  -0.3504609439|         33|23:59:59|-0.07|0.02|0.6113|
+|.|          4|          3|        938|  -0.3468975696|         33|23:59:59|-0.06|0.03|0.6101|
+|.|          6|          3|        938|  -0.3464778790|         33|23:59:59|-0.06|0.02|0.6018|
+|.|          9|          3|        938|  -0.3467930037|         33|23:59:59|-0.04|0.04|0.5744|
+|.|          2|          3|        938|  -0.3464060402|         33|23:59:59|-0.04|0.03|0.5950|
+|.|         11|          3|        938|  -0.3452999567|         33|23:59:59|-0.03|0.04|0.6092|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best-so-far configuration:         938    mean value:   -0.3452999567
+Description of the best-so-far configuration:
+    .ID. dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual .PARENT.
+938  938    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>      662
+
+# 2020-07-04 09:52:20 BRT: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+938    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+898    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             30          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# 2020-07-04 09:52:20 BRT: Stopped because there is not enough budget left to race more than the minimum (7)
+# You may either increase the budget or set 'minNbSurvival' to a lower value
+# Iteration: 13
+# nbIterations: 13
+# experimentsUsedSoFar: 4921
+# timeUsed: 0
+# remainingBudget: 79
+# currentBudget: 79
+# number of elites: 3
+# nbConfigurations: 7
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    dataset  job_id cutoff metafolds           task sparse    f_eng1 f_eng2 scaling  algorithm pre_scaling extraction ext_components        selection lr_C lr_solver multi_class  C kernel rf_estimators criterion_classification criterion_regression max_features max_depth min_samples_leaf solver alpha hidden_layers neurons1 activation n_neighbors weights ab_estimators ab_learning_rate ab_loss whiten svd_solver ica_algorithm ica_fun dl_fit_algorithm dl_transform_algorithm sel_model sel_score_classification sel_score_regression sel_percentile sel_threshold max_iter lr_penalty degree gamma max_depth_value mlp_learning_rate learning_rate_init neurons2 neurons3 lr_dual
+938    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             22          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+898    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>           7 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             30          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+863    svhn 1547586     15         3 classification  False Selection   None   False KNeighbors       False       <NA>             NA SelectPercentile   NA      <NA>        <NA> NA   <NA>            NA                     <NA>                   NA           NA      <NA>               NA   <NA>    NA            NA       NA       <NA>          11 uniform            NA               NA      NA   <NA>       <NA>          <NA>    <NA>             <NA>                   <NA>      <NA>                f_classif                   NA             16          <NA>       NA       <NA>     NA    NA              NA              <NA>                 NA       NA       NA    <NA>
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+938  --dataset svhn --job_id 1547586 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 22 --scaling False --algorithm KNeighbors --n_neighbors 7 --weights uniform
+898  --dataset svhn --job_id 1547586 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 30 --scaling False --algorithm KNeighbors --n_neighbors 7 --weights uniform
+863  --dataset svhn --job_id 1547586 --cutoff 15 --metafolds 3 --task classification --sparse False --f_eng1 Selection --f_eng2 None --pre_scaling False --selection SelectPercentile --sel_score_classification f_classif --sel_percentile 16 --scaling False --algorithm KNeighbors --n_neighbors 11 --weights uniform
