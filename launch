@@ -117,9 +117,9 @@ else:
 
 			full_file = "{}/{}.out".format(val_dir, val_base)
 			with open(full_file, 'w') as outfile:
-			    for fname in val_files:
-			        with open(fname) as infile:
-			            outfile.write(infile.read())
+				for fname in val_files:
+					with open(fname) as infile:
+						outfile.write(infile.read())
 					# os.remove(fname)
 
 			with open(best_file, 'a') as best:
@@ -140,6 +140,11 @@ else:
 					parser.add_argument('--scaling', required=True)
 					parser.add_argument('--algorithm', required=True)
 					best_args = parser.parse_known_args(args=best_args)[0]
+
+					for a in ('f_eng1', 'f_eng2'):
+						v = getattr(best_args, a)
+						if not v or v in ('None', 'none'):
+							setattr(best_args, a, 'None')
 
 					for i, a in enumerate(('pre_scaling', 'f_eng1',
 							'f_eng2', 'scaling', 'algorithm')):
