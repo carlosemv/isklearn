@@ -64,7 +64,7 @@ if not args.validate and not args.integrate:
 	if slurm:
 		output = "output/{}/isklearn-{}-%j.out".format(ds, log_name)
 	else:
-		job_id = ''.join([str(randrange(10)) for _ in range(6)])
+		job_id = int(''.join([str(randrange(10)) for _ in range(6)]))
 		job_ids = [job_id+r for r in range(args.repeat)]
 		output = ["output/{}/isklearn-{}-{}.out".format(ds, log_name,
 			jid) for jid in job_ids]
@@ -76,7 +76,7 @@ if not args.validate and not args.integrate:
 			subprocess.run(cmd)
 		else:
 			cmd = ["./batch_script", ds] + list(map(str,
-				[exp, cutoff, mf, parallel])) + [log_name, job_ids[r]]
+				[exp, cutoff, mf, parallel, log_name, job_ids[r]]))
 			with open(output[r], 'w') as output_file:
 				subprocess.run(cmd, stdout=output_file, stderr=output_file)
 		
