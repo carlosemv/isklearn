@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+
+import os
+import stat
+from shutil import copyfile
+from pathlib import Path
+import argparse
+import itertools
+import pandas as pd
+from random import sample, shuffle
+from isklearn.utils import _str_to_bool
+import pkg_resources
+
+k_default = 10
+
+def make_instances(metafolds, p=1, samples=1000):
+    if p == 1:
+        instances = list(range(metafolds))
+        shuffle(instances)
+        return instances
+
+    instances = list(itertools.combinations(range(metafolds), p))
+    shuffle(instances)
+    if samples and samples < len(instances):
+        instances = sample(instances, samples)
+    return instances
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--new', '-n', help='Create new dataset '\
+        'directory with given name', required=True, type=str)
+    parser.add_argument('--task', '-t', help='Whether the new dataset '\
+        'is a classification or regression task', choices=['regression',
+        'classification'], default='classification')
+    parser.add_argument('--sparse', '-s', help='Whether the new dataset '\
+        'is sparse (True) or not (False)', type=_str_to_bool, default=False)
+    parser.add_argument('--meta-folds', '-k', help='Choose number k of '\
+    	f'of metafolds into which divide training set. Default k={k_default}',
+    	default=k_default, type=int)
+    args = parser.parse_args()
+
+    dir_path = Path(args.new)
+    if not dir_path.is_absolute():
+        dir_path = Path.cwd() / dir_path
+    print(f"Creating new dataset directory in {dir_path}")
+    dir_path.mkdir(parents=True, exist_ok=True)
+    print("Populating with files...", end=' ')
+
+    for p, prefix in [(3, ''), (1, 'new-')]:
+        instances = make_instances(args.meta_folds, p)
+        df = pd.DataFrame(instances)
+        df.to_csv(dir_path/f"{prefix}instances.txt",
+            header=False, index=False)
+
+    base_params = pkg_resources.resource_filename(
+        'isklearn', 'data/base-params.txt')
+    param_header = (f"task\t\t\t\"--task \"\t\t\t\tc (\"{args.task}\")",
+        f"sparse\t\t\t\"--sparse \"\t\t\t\tc (\"{args.sparse}\")")
+    param_file = dir_path/"parameters.txt"
+    with open(param_file, 'w') as pf:
+        for l in param_header:
+            print(l, file=pf)
+        print(file=pf)
+
+        with open(base_params, 'r') as bp:
+            for line in bp:
+                pf.write(line)
+
+    for i, runtime in enumerate(['ingestion', 'target', 'validate']):
+        template = pkg_resources.resource_filename(
+        'isklearn', f'data/{runtime}_template.py')
+        tgt = dir_path/f"{runtime}.py"
+        copyfile(template, tgt)
+        if i > 0:
+            tgt.chmod(tgt.stat().st_mode | stat.S_IEXEC)
+
+    print("Done.")
+    print("Please implement data ingestion function in",
+        f"{dir_path/'ingestion.py'} before running iSklearn.")
